@@ -17,7 +17,8 @@ let block_learning = {
 let block_test = {
     timeline: [
         empty_slide,
-        word_test
+        word_test,
+        familiarity_slider
     ],
     timeline_variables: TIMELINE_VARS.filter(x => x["test"]),
     on_load: function() { EXP_PART = "test_1" },
