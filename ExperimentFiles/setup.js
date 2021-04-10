@@ -21,7 +21,8 @@ const KEYS = {
 // stimulus durations in ms
 const DURATIONS = {
     LEARN: 500,
-    TEST: 1000
+    TEST: 1000,
+    EMPTY: 500
 }
 
 // initialize variables to record browser interactions
@@ -33,8 +34,6 @@ const N_STIMULI_LEARN = 4
 const N_STIMULI_TEST = 8  // usually 2 * N_STIMULI_LEARN
 let TRIAL_IDX = 0;
 let EXP_PART;
-
-
 
 const ID = jsPsych.randomization.randomID(15);
 console.log("ID: ", ID);

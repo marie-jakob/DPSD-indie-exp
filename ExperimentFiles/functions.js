@@ -34,13 +34,12 @@ function shuffle(arr) {
  * Called from on_interaction_data_update in index.html
  */
 function control_browser_interactions() {
-    console.log(n_blur);
     let get_interactions = jsPsych.data.getInteractionData();
     let interaction_data = JSON.parse(get_interactions.json());
     let last_event = interaction_data[interaction_data.length - 1];
     if (! PAUSE) {
         if (last_event["event"] === "blur") n_blur++;
-        if (N_BLur > 2) {
+        if (N_BLUR > 2) {
             consent = false;
             console.log("exiting the experiment");
             jsPsych.endExperiment('<p><strong>End</strong></p>' +
@@ -139,6 +138,10 @@ function gen_timeline_variables(word_list) {
     return word_list;
 }
 
+
+function write_data(data) {
+    return;
+}
 
 
 console.log("functions.js imported successfully.");
