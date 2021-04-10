@@ -21,14 +21,15 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
     <!-- import custom files -->
     <script src="experiment-files/functions.js"></script>
     <script src="experiment-files/dummy_stimuli.js"></script>
     <script src="experiment-files/setup.js"></script>
     <script src="experiment-files/trials.js"></script>
     <script src="experiment-files/blocks.js"></script>
+    <script src="experiment-files/instructions.js"></script>
     <!--
-    <script src="ExperimentFiles/instructions.js"></script>
     <script src="ExperimentFiles/survey_questions.js"></script>
     -->
 </head>
@@ -36,7 +37,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 <script>
 
     timeline = [
+        welcome,
+        instruction_learn,
         block_learning,
+        instruction_test,
         block_test
     ];
 
