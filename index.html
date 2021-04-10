@@ -54,7 +54,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         // display and download data at the end
         on_finish: function() {
             var data = jsPsych.data.get().csv();
-            let path = ID + "test.csv";
+            let path = ID + "-test.csv";
             download(path, data);
             jsPsych.data.displayData();
         }

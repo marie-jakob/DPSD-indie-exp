@@ -14,6 +14,12 @@ let word_learning = {
     },
     choices: jsPsych.NO_KEYS,
     trial_duration: DURATIONS.LEARN,
+    on_finish: function(data) {
+        write_data(data);
+        data.trial_num = TRIAL_IDX;
+        TRIAL_IDX++;
+        if (TRIAL_IDX == N_STIMULI_LEARN * 2) TRIAL_IDX = 0;
+    }
 };
 
 let empty_slide = {
@@ -32,25 +38,21 @@ let word_test = {
             word + "</p>";
     },
     choices: [KEYS.REMEMBER, KEYS.KNOW, KEYS.NEW],
-    /*prompt: function() {
-        return "<div style='overflow: hidden;'>" +
-            "<p style='text-align: center; position: absolute; left: 25%;" +
-            "font-size: 20px; top: 80%;'>" +
-            "R: Remember</p>" +
-            "<p style='text-align: center; position: absolute; left: 50%;" +
-            "font-size: 20px; top: 80%;'>" +
-            "K: Know</p>" +
-            "<p style='text-align: center; position: absolute; left:75%;" +
-            "font-size: 20px; top: 80%;'>" +
-            "N: New </p> </div>";
-    },*/
+    prompt: "<div class='Row'>" +
+        "<div class='Column'>R: Remember</div>" +
+        "<div class='Column'>K: Know</div>" +
+        "<div class='Column'>N: New</div>" +
+        "</div>",
     // we don't actually want to display feedback but we want the promt feature
     // from the categorize-html plugin, hence this weird stuff
     feedback_duration: 0.0000000001,
     show_stim_with_feedback: false,
     correct_text: "",
     incorrect_text: "",
-    key_answer: false
+    key_answer: false,
+    on_finish: function(data) {
+        write_data(data);
+    }
 };
 
 let familiarity_slider = {
@@ -66,15 +68,18 @@ let familiarity_slider = {
         "moderately familiar", "extremely familiar"],
     min: 0,
     max: 1000,
-    slider_start: function() {
-        return window.innerWidth * 0.35;
-    },
+    // set slider width dynamically, depending on the size of the browser window
+    slider_start: 500,
     slider_width: function() {
         return window.innerWidth * 0.7;
     },
     prompt: "<br>" +
         "Please rate the familiarity of the word presented above." +
-        "<br> <br>"
+        "<br> <br>",
+    on_finish: function(data) {
+        write_data(data);
+        TRIAL_IDX++;
+    }
 }
 
 

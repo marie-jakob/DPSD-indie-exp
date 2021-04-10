@@ -141,8 +141,10 @@ function gen_timeline_variables(word_list) {
 
 function write_data(data) {
     data.trial_num = TRIAL_IDX;
-    for (variable in TIMELINE_VARS) {
-        data.variable = TIMELINE_VARS[TRIAL_IDX][variable];
+    data.exp_part = EXP_PART;
+    let attributes = Object.keys(TIMELINE_VARS[0]);
+    for (attribute of attributes) {
+        data[attribute] = jsPsych.timelineVariable(attribute);
     }
 }
 
