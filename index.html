@@ -1,0 +1,57 @@
+<!--
+Main page of the pilot experiment.
+    - imports relevant jspsych plugins + custom files
+    - merges the parts of the experiment into the timeline that is given to
+    JSPsych to run the experiment
+    - sets relevant settings, such as preloading images, controlling browser
+    interactions etc.
+    - calls the function to save the data
+
+Author:    Marie Jakob <marie.a.jakob@gmail.com>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="jspsych-6.3.0/css/jspsych.css">
+    <!-- import JSPsych + plugins  -->
+    <script src="jspsych-6.3.0/jspsych.js"></script>
+    <!-- import custom files -->
+    <script src="ExperimentFiles/functions.js"></script>
+    <script src="ExperimentFiles/dummy_stimuli.js"></script>
+    <script src="ExperimentFiles/setup.js"></script>
+    <script src="ExperimentFiles/instructions.js"></script>
+    <script src="ExperimentFiles/survey_questions.js"></script>
+    <script src="ExperimentFiles/trials.js"></script>
+    <script src="ExperimentFiles/blocks.js"></script>
+</head>
+<body></body>
+<script>
+
+    timeline = [];
+
+    /* #####################################################################
+                Go!
+    ##################################################################### */
+
+    // init variables to record browser interactions
+    jsPsych.init({
+        timeline: timeline,
+        use_webaudio: false,
+        // save data after every trial
+        on_trial_finish: function(data) { write_data(data); },
+        // control how often participants leave the browser tab / window
+        on_interaction_data_update: function() { control_browser_interactions(); },
+        // display and download data at the end
+        on_finish: function() {
+            var data = jsPsych.data.get().csv();
+            download("testdata.csv", data);
+            jsPsych.data.displayData();
+        }
+    });
+
+</script>
+</html>
+
