@@ -20,6 +20,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/jspsych.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
     <!-- import custom files -->
     <script src="experiment-files/functions.js"></script>
     <script src="experiment-files/dummy_stimuli.js"></script>
@@ -34,7 +35,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 <body></body>
 <script>
 
-    timeline = [];
+    timeline = [
+        block_learning,
+        block_test
+    ];
 
     /* #####################################################################
                 Go!
@@ -45,13 +49,13 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         timeline: timeline,
         use_webaudio: false,
         // save data after every trial
-        on_trial_finish: function(data) { write_data(data); },
         // control how often participants leave the browser tab / window
         on_interaction_data_update: function() { control_browser_interactions(); },
         // display and download data at the end
         on_finish: function() {
             var data = jsPsych.data.get().csv();
-            download("testdata.csv", data);
+            let path = ID + "test.csv";
+            download(path, data);
             jsPsych.data.displayData();
         }
     });

@@ -38,7 +38,7 @@ function control_browser_interactions() {
     let interaction_data = JSON.parse(get_interactions.json());
     let last_event = interaction_data[interaction_data.length - 1];
     if (! PAUSE) {
-        if (last_event["event"] === "blur") n_blur++;
+        if (last_event["event"] === "blur") N_BLUR++;
         if (N_BLUR > 2) {
             consent = false;
             console.log("exiting the experiment");
@@ -140,7 +140,10 @@ function gen_timeline_variables(word_list) {
 
 
 function write_data(data) {
-    return;
+    data.trial_num = TRIAL_IDX;
+    for (variable in TIMELINE_VARS) {
+        data.variable = TIMELINE_VARS[TRIAL_IDX][variable];
+    }
 }
 
 
