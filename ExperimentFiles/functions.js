@@ -38,9 +38,9 @@ function control_browser_interactions() {
     let get_interactions = jsPsych.data.getInteractionData();
     let interaction_data = JSON.parse(get_interactions.json());
     let last_event = interaction_data[interaction_data.length - 1];
-    if (!pause) {
+    if (! PAUSE) {
         if (last_event["event"] === "blur") n_blur++;
-        if (n_blur > 2) {
+        if (N_BLur > 2) {
             consent = false;
             console.log("exiting the experiment");
             jsPsych.endExperiment('<p><strong>End</strong></p>' +
@@ -91,6 +91,54 @@ function check_browser() {
         }
     });
 }
+
+
+
+/* #########################################################################
+           Specialised Functions for the Experiment
+    ######################################################################### */
+
+/**
+ * Takes a list of stimuli (words) and generates a list of experimental trials
+ * (timeline variables) with attributes:
+ *      "word": the word presented
+ *      "learned" (bool): if the word is presented in the learning phase
+ *      "test" (bool): if the word is presented in the test phase
+ *      "strength": strength condition - so far, "weak" words are presented once,
+ *          "strong" words are presented three times
+ *      "correct_resp": contains the respective correct response for the trial
+ * @param word_list list of objects with "word" attribute
+ * @returns list of objects with the attributes above
+ */
+function gen_timeline_variables(word_list) {
+    word_list = word_list.slice(0, N_STIMULI_TEST);
+    for (let i = 0; i < N_STIMULI_TEST; i++) {
+        // use the test attribute to filter the stimuli for the test phase
+        word_list[i]["test"] = true;
+        if (i < N_STIMULI_LEARN) {
+            word_list[i]["learned"] = true;
+            word_list[i]["strength"] = i < N_STIMULI_LEARN && i % 2 == 0? "strong" : "weak";
+        } else {
+            word_list[i]["learned"] = false;
+        }
+        // add 2 repetitions of the word if it's in the strong condition
+        if (word_list[i]["strength"] == "strong") {
+            word_list[i]["test"] = true;
+            for (j = 0; j < 2; j++) {
+                word_list.push({
+                    "word": word_list[i]["word"],
+                    // set test parameter to false to avoid repetitions in the test
+                    "test": false,
+                    "learned": true,
+                    "strength": "strong",
+                });
+            }
+        }
+    }
+    shuffle(word_list);
+    return word_list;
+}
+
 
 
 console.log("functions.js imported successfully.");
