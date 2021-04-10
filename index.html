@@ -1,5 +1,5 @@
 <!--
-Main page of the pilot experiment.
+Main page of the experiment.
     - imports relevant jspsych plugins + custom files
     - merges the parts of the experiment into the timeline that is given to
     JSPsych to run the experiment
@@ -18,14 +18,18 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <link rel="stylesheet" href="jspsych-6.3.0/css/jspsych.css">
     <!-- import JSPsych + plugins  -->
     <script src="jspsych-6.3.0/jspsych.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
     <!-- import custom files -->
-    <script src="ExperimentFiles/functions.js"></script>
-    <script src="ExperimentFiles/dummy_stimuli.js"></script>
-    <script src="ExperimentFiles/setup.js"></script>
+    <script src="experiment-files/functions.js"></script>
+    <script src="experiment-files/dummy_stimuli.js"></script>
+    <script src="experiment-files/setup.js"></script>
+    <script src="experiment-files/trials.js"></script>
+    <script src="experiment-files/blocks.js"></script>
+    <!--
     <script src="ExperimentFiles/instructions.js"></script>
     <script src="ExperimentFiles/survey_questions.js"></script>
-    <script src="ExperimentFiles/trials.js"></script>
-    <script src="ExperimentFiles/blocks.js"></script>
+    -->
 </head>
 <body></body>
 <script>
