@@ -25,7 +25,4 @@ let block_test = {
 }
 
 
-
-
-console.log("Blocks imported successfully.");
-
+console.log("blocks.js imported successfully.");

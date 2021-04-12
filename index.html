@@ -5,7 +5,6 @@ Main page of the experiment.
     JSPsych to run the experiment
     - sets relevant settings, such as preloading images, controlling browser
     interactions etc.
-    - calls the function to save the data
 
 Author:    Marie Jakob <marie.a.jakob@gmail.com>
 -->
@@ -52,7 +51,6 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     jsPsych.init({
         timeline: timeline,
         use_webaudio: false,
-        // save data after every trial
         // control how often participants leave the browser tab / window
         on_interaction_data_update: function() { control_browser_interactions(); },
         // display and download data at the end
@@ -66,4 +64,3 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 
 </script>
 </html>
-

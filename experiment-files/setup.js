@@ -2,12 +2,8 @@
 This file 
     - declares and initialized constants, basic variables
     - prepares the datastructure containing the images presented in the experiment
-    - participant set-up
+    - runs the participant set-up
  */
-
-/* #############################################################################
-        Define Variables and Constants
-############################################################################# */
 
 // response keys
 const KEYS = {
@@ -39,8 +35,8 @@ const ID = jsPsych.randomization.randomID(15);
 console.log("ID: ", ID);
 
 // contains timeline variables for the learning and the test phase
-// filter for the learning phase: "learned"
-// filter for the test phase: "test"
+// -> filter for the learning phase: "learned"
+// -> filter for the test phase: "test"
 let TIMELINE_VARS = gen_timeline_variables(STIMULI);
 console.log(TIMELINE_VARS);
 

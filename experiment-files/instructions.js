@@ -34,3 +34,4 @@ let instruction_test = {
     on_start: function() { EXP_PART = "instr"; }
 }
 
+console.log("instructions.js imported successfully.")

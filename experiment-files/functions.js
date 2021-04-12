@@ -107,7 +107,7 @@ function check_browser() {
  *          "strong" words are presented three times
  *      "correct_resp": contains the respective correct response for the trial
  * @param word_list list of objects with "word" attribute
- * @returns list of objects with the attributes above
+ * @returns array of objects with the attributes above
  */
 function gen_timeline_variables(word_list) {
     word_list = word_list.slice(0, N_STIMULI_TEST);
@@ -138,7 +138,12 @@ function gen_timeline_variables(word_list) {
     return word_list;
 }
 
-
+/**
+ * Saves relevant data from the timeline variables to the jspsych data.
+ * Called from the on_finish parameter of every "relevant" trial
+ * (i.e., after the presentation of a word, not after an empty slide etc.)
+ * @param data jsPsych.data, as given by the on_finish function
+ */
 function write_data(data) {
     data.trial_num = TRIAL_IDX;
     data.exp_part = EXP_PART;
