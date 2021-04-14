@@ -1,7 +1,10 @@
 """
-Generates dummy stimuli, saves them in "dummy_stimuli.csv"
-and adds them to a .js file containing all stimuli in array
-called "stimuli".
+
+Contains functions to generate dummy stimuli and to write
+them to a .csv and a .js file.
+
+The main function writes the word pool to a .js file to use for the experiment.
+
 
 Author: Marie Jakob <marie.a.jakob@gmail.com>
 
@@ -36,13 +39,10 @@ def write_stimuli(stimuli, path):
 
 
 if __name__ == "__main__":
-    stimuli = gen_stimuli(600)
-    write_stimuli(stimuli, "dummy_stimuli.csv")
-    stimuli = pd.read_csv("dummy_stimuli.csv", names = ["word"])
-    # print(stimuli)
-
+    stimuli = pd.read_excel("wordpool.xlsx", names = ["word"])
+    print(stimuli)
     stimuli = stimuli.to_json(orient = 'records')
-    with open("ExperimentFiles/dummy_stimuli.js", "w+") as f:
+    with open("../experiment-files/stimuli.js", "w+") as f:
         f.write("var stimuli = ")
         f.write(stimuli)
         f.write(";\n")
