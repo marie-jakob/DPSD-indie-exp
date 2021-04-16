@@ -49,8 +49,26 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                 Go!
     ##################################################################### */
 
-    // init variables to record browser interactions
-    jatos.onLoad(function() {
+    // change to "true" to test the study in JATOS
+    let JATOS = false;
+
+    if (JATOS) {
+        jatos.onLoad(function () {
+            jsPsych.init({
+                timeline: timeline,
+                use_webaudio: false,
+                // control how often participants leave the browser tab / window
+                on_interaction_data_update: function () {
+                    control_browser_interactions();
+                },
+                on_finish: function () {
+                    // if in JATOS mode, send data to JATOS at the end
+                    var resultJson = jsPsych.data.get().json();
+                    jatos.submitResultData(resultJson, jatos.startNextComponent);
+                }
+            });
+        });
+    } else {
         jsPsych.init({
             timeline: timeline,
             use_webaudio: false,
@@ -60,15 +78,13 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             },
             // display and download data at the end
             on_finish: function () {
-                //var data = jsPsych.data.get().csv();
-                //let path = ID + "-test.csv";
-                // download(path, data);
-                //jsPsych.data.displayData();
-                var resultJson = jsPsych.data.get().json();
-                jatos.submitResultData(resultJson, jatos.startNextComponent);
+                var data = jsPsych.data.get().csv();
+                let path = ID + "-test.csv";
+                download(path, data);
+                jsPsych.data.displayData();
             }
         });
-    });
+    }
 
 </script>
 </html>
