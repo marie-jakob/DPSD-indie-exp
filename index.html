@@ -21,6 +21,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
+    <!-- import JATOS -->
+    <script src="/assets/javascripts/jatos.js"></script>
     <!-- import custom files -->
     <script src="experiment-files/functions.js"></script>
     <script src="experiment-files/dummy_stimuli.js"></script>
@@ -48,18 +50,24 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     ##################################################################### */
 
     // init variables to record browser interactions
-    jsPsych.init({
-        timeline: timeline,
-        use_webaudio: false,
-        // control how often participants leave the browser tab / window
-        on_interaction_data_update: function() { control_browser_interactions(); },
-        // display and download data at the end
-        on_finish: function() {
-            var data = jsPsych.data.get().csv();
-            let path = ID + "-test.csv";
-            download(path, data);
-            jsPsych.data.displayData();
-        }
+    jatos.onLoad(function() {
+        jsPsych.init({
+            timeline: timeline,
+            use_webaudio: false,
+            // control how often participants leave the browser tab / window
+            on_interaction_data_update: function () {
+                control_browser_interactions();
+            },
+            // display and download data at the end
+            on_finish: function () {
+                //var data = jsPsych.data.get().csv();
+                //let path = ID + "-test.csv";
+                // download(path, data);
+                //jsPsych.data.displayData();
+                var resultJson = jsPsych.data.get().json();
+                jatos.submitResultData(resultJson, jatos.startNextComponent);
+            }
+        });
     });
 
 </script>
