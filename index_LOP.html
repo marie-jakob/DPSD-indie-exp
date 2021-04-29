@@ -14,18 +14,19 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="jspsych-6.3.0/css/jspsych.css">
+    <link rel="stylesheet" href="jspsych-6.3.0/css/jspsych-custom.css">
     <!-- import JSPsych + plugins  -->
     <script src="jspsych-6.3.0/jspsych.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-survey-text-custom.js"></script>
     <!-- import JATOS -->
     <script src="/assets/javascripts/jatos.js"></script>
     <!-- import custom files -->
     <script src="experiment-files/functions.js"></script>
-    <script src="experiment-files/dummy_stimuli.js"></script>
+    <script src="experiment-files/stimuli.js"></script>
     <script src="experiment-files/setup.js"></script>
     <script src="experiment-files/trials.js"></script>
     <script src="experiment-files/blocks.js"></script>
@@ -40,7 +41,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     timeline = [
         welcome,
         instruction_learn,
-        block_learning,
+        block_learning_LOP,
         instruction_test,
         block_test
     ];

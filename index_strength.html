@@ -1,0 +1,91 @@
+<!--
+Main page of the experiment.
+    - imports relevant jspsych plugins + custom files
+    - merges the parts of the experiment into the timeline that is given to
+    JSPsych to run the experiment
+    - sets relevant settings, such as preloading images, controlling browser
+    interactions etc.
+
+Author:    Marie Jakob <marie.a.jakob@gmail.com>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="jspsych-6.3.0/css/jspsych-custom.css">
+    <!-- import JSPsych + plugins  -->
+    <script src="jspsych-6.3.0/jspsych.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-survey-text-custom.js"></script>
+    <!-- import JATOS -->
+    <script src="/assets/javascripts/jatos.js"></script>
+    <!-- import custom files -->
+    <script src="experiment-files/functions.js"></script>
+    <script src="experiment-files/stimuli.js"></script>
+    <script src="experiment-files/setup.js"></script>
+    <script src="experiment-files/trials.js"></script>
+    <script src="experiment-files/blocks.js"></script>
+    <script src="experiment-files/instructions.js"></script>
+    <!--
+    <script src="ExperimentFiles/survey_questions.js"></script>
+    -->
+</head>
+<body></body>
+<script>
+
+    timeline = [
+        welcome,
+        instruction_learn,
+        block_learning,
+        instruction_test,
+        block_test
+    ];
+
+    /* #####################################################################
+                Go!
+    ##################################################################### */
+
+    // change to "true" to test the study in JATOS
+    let JATOS = false;
+
+    if (JATOS) {
+        jatos.onLoad(function () {
+            jsPsych.init({
+                timeline: timeline,
+                use_webaudio: false,
+                // control how often participants leave the browser tab / window
+                on_interaction_data_update: function () {
+                    control_browser_interactions();
+                },
+                on_finish: function () {
+                    // if in JATOS mode, send data to JATOS at the end
+                    var resultJson = jsPsych.data.get().json();
+                    jatos.submitResultData(resultJson, jatos.startNextComponent);
+                }
+            });
+        });
+    } else {
+        jsPsych.init({
+            timeline: timeline,
+            use_webaudio: false,
+            // control how often participants leave the browser tab / window
+            on_interaction_data_update: function () {
+                control_browser_interactions();
+            },
+            // display and download data at the end
+            on_finish: function () {
+                var data = jsPsych.data.get().csv();
+                let path = ID + "-test.csv";
+                download(path, data);
+                jsPsych.data.displayData();
+            }
+        });
+    }
+
+</script>
+</html>
