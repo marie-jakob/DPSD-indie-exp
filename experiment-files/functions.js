@@ -107,22 +107,25 @@ function check_browser() {
  *          "strong" words are presented three times
  *      "correct_resp": contains the respective correct response for the trial
  * @param word_list list of objects with "word" attribute
+ * @param LOP (bool) -> LOP manipulation (if false, strength manipulation)
  * @returns array of objects with the attributes above
  */
-function gen_timeline_variables(word_list) {
+function gen_timeline_variables(word_list, LOP) {
     word_list = word_list.slice(0, N_STIMULI_TEST);
     for (let i = 0; i < N_STIMULI_TEST; i++) {
         // use the test attribute to filter the stimuli for the test phase
         word_list[i]["test"] = true;
         if (i < N_STIMULI_LEARN) {
             word_list[i]["learned"] = true;
-            word_list[i]["strength"] = i < N_STIMULI_LEARN && i % 2 == 0? "strong" : "weak";
+            // add experimental condition, depending on the manipulation
+            if (LOP) word_list[i]["LOP"] = i < N_STIMULI_LEARN && i % 2 == 0? "deep" : "shallow";
+            else word_list[i]["strength"] = i < N_STIMULI_LEARN && i % 2 == 0? "strong" : "weak";
         } else {
             word_list[i]["learned"] = false;
         }
-        // add 2 repetitions of the word if it's in the strong condition
-        if (word_list[i]["strength"] == "strong") {
-            word_list[i]["test"] = true;
+        // add the strong words two more times to the stimulus list (only applies
+        // for the strength 
+        if (!LOP && word_list[i]["strength"] == "strong") {
             for (j = 0; j < 2; j++) {
                 word_list.push({
                     "word": word_list[i]["word"],
