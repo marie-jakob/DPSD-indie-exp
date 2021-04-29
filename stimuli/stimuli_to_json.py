@@ -43,11 +43,11 @@ if __name__ == "__main__":
     print(stimuli)
     stimuli = stimuli.to_json(orient = 'records')
     with open("../experiment-files/stimuli.js", "w+") as f:
-        f.write("var stimuli = ")
+        f.write("var STIMULI = ")
         f.write(stimuli)
         f.write(";\n")
-        f.write("console.log(stimuli);\n")
-        f.write("shuffle(stimuli); \n")
+        f.write("console.log(STIMULI);\n")
+        f.write("shuffle(STIMULI); \n")
         f.write("console.log('stimuli.js imported successfully.');")
 
 
