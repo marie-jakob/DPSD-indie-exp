@@ -1,5 +1,5 @@
 <!--
-Main page of the experiment.
+Main page of the experiment for the strength manipulation.
     - imports relevant jspsych plugins + custom files
     - merges the parts of the experiment into the timeline that is given to
     JSPsych to run the experiment
@@ -38,12 +38,43 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 <body></body>
 <script>
 
+    /* #####################################################################
+                Setup
+    ##################################################################### */
+
+    // change to "true" to test the study in JATOS
+    let JATOS = false;
+
+    const ID = jsPsych.randomization.randomID(15);
+    console.log("ID: ", ID);
+    jsPsych.data.addProperties({
+        subject: ID,
+        condition: "strength"
+    });
+
+    // contains timeline variables for the learning and the test phases
+    // -> filter for the learning phase: "learned"
+    // -> filter for the test phase: "test"
+    let TIMELINE_VARS = gen_timeline_variables(STIMULI, LOP = true);
+
+    let timeline = [];
+
+    block_learning_LOP_1 = gen_learning_block(1, LOP = true);
+    block_learning_LOP_2 = gen_learning_block(2, LOP = true);
+    block_learning_LOP_3 = gen_learning_block(3, LOP = true);
+    block_learning_LOP_4 = gen_learning_block(4, LOP = true);
+
+    block_test_1 = gen_test_block(1);
+    block_test_2 = gen_test_block(2);
+    block_test_3 = gen_test_block(3);
+    block_test_4 = gen_test_block(4);
+
     timeline = [
         welcome,
         instruction_learn,
-        block_learning_LOP,
+        block_learning_LOP_1,
         instruction_test,
-        block_test
+        block_test_1
     ];
 
     /* #####################################################################
