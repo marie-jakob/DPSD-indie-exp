@@ -27,9 +27,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <!-- import custom files -->
     <script src="experiment-files/functions.js"></script>
     <script src="experiment-files/stimuli.js"></script>
-    <script src="experiment-files/setup.js"></script>
+    <script src="experiment-files/global-variables.js"></script>
     <script src="experiment-files/trials.js"></script>
-    <script src="experiment-files/blocks.js"></script>
     <script src="experiment-files/instructions.js"></script>
     <!--
     <script src="ExperimentFiles/survey_questions.js"></script>
@@ -59,10 +58,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 
     let timeline = [];
 
-    block_learning_LOP_1 = gen_learning_block(1, LOP = true);
-    block_learning_LOP_2 = gen_learning_block(2, LOP = true);
-    block_learning_LOP_3 = gen_learning_block(3, LOP = true);
-    block_learning_LOP_4 = gen_learning_block(4, LOP = true);
+    block_learning_strength_1 = gen_learning_block(1, LOP = false);
+    block_learning_strength_2 = gen_learning_block(2, LOP = false);
+    block_learning_strength_3 = gen_learning_block(3, LOP = false);
+    block_learning_strength_4 = gen_learning_block(4, LOP = false);
 
     block_test_1 = gen_test_block(1);
     block_test_2 = gen_test_block(2);
@@ -72,7 +71,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     timeline = [
         welcome,
         instruction_learn,
-        block_learning_LOP_1,
+        block_learning_strength_1,
         instruction_test,
         block_test_1
     ];
@@ -80,9 +79,6 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     /* #####################################################################
                 Go!
     ##################################################################### */
-
-    // change to "true" to test the study in JATOS
-    let JATOS = false;
 
     if (JATOS) {
         jatos.onLoad(function () {

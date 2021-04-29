@@ -19,7 +19,7 @@ let word_learning_strength = {
         data.trial_num = TRIAL_IDX;
         TRIAL_IDX++;
         if (TRIAL_IDX == N_STIMULI_LEARN * 2) TRIAL_IDX = 0;
-    }
+    },
 };
 
 let empty_slide = {
@@ -35,8 +35,14 @@ let word_learning_LOP = {
     // !!! the standard preamble function is overwritten in the customized plugin
     // -> you have to specify the exact html string that is displayed as preamble
     preamble: function() {
-        // TODO: this should depend on the LOP condition
-        return "<p style='font-size: 18px'>" + "Assoziation" + "<br></p>";
+        let LOP_tmp = jsPsych.timelineVariable("LOP");
+        if (LOP_tmp == "deep") {
+            return "<p style='font-size: 18px'>" + "Bitte geben Sie ein verwandtes Wort an." + "<br></p>";
+        } else {
+            return "<p style='font-size: 18px'>" + "Bitte geben Sie Anzahl Vokale des Wortes an." + "<br></p>";
+
+        }
+
     },
     questions: [
         {prompt: function() {

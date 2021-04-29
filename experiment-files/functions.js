@@ -141,6 +141,7 @@ function gen_timeline_variables(word_list, LOP) {
     return word_list;
 }
 
+
 /**
  * Saves relevant data from the timeline variables to the jspsych data.
  * Called from the on_finish parameter of every "relevant" trial
