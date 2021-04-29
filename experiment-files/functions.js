@@ -124,7 +124,7 @@ function gen_timeline_variables(word_list, LOP) {
             word_list[i]["learned"] = false;
         }
         // add the strong words two more times to the stimulus list (only applies
-        // for the strength 
+        // for the strength
         if (!LOP && word_list[i]["strength"] == "strong") {
             for (j = 0; j < 2; j++) {
                 word_list.push({
@@ -156,5 +156,53 @@ function write_data(data) {
     }
 }
 
+
+/**
+ * Generates a single block for the learning phase of the experiment. Uses
+ * TIMELINE_VARS (filtered) and slices according to the block_num and total number
+ * of learning stimuli
+ * @param block_num block number (starting at 1)
+ * @param LOP (bool) if the block is for the LOP condition or the strength condition (false)
+ * @returns a learning block of the experiment, according to the LOP Or strength condition
+ */
+function gen_learning_block(block_num, LOP) {
+    // slice timeline variables according to the block
+    let multi_tmp = LOP ? 1 : 2;
+    let start_idx_tmp = N_STIM_BLOCK_LEARN  * block_num - N_STIM_BLOCK_LEARN;
+    let end_idx_tmp = N_STIM_BLOCK_LEARN  * block_num;
+    // determine which trial to display
+    let timeline_tmp = LOP ? [word_learning_LOP] : [word_learning_strength, empty_slide];
+    return {
+        timeline: timeline_tmp,
+        timeline_variables: TIMELINE_VARS.filter(x => x["learned"]).slice(start_idx_tmp, end_idx_tmp),
+        on_load: function() { EXP_PART = "learning_1"},
+        data: { block_num: block_num },
+        randomize_order: true
+    }
+}
+
+
+/**
+ * Generates a single block for the test phase of the experiment. Uses
+ * TIMELINE_VARS (filtered) and slices according to the block_num and total number
+ * of test stimuli
+ * @param block_num block number (starting at 1)
+ * @returns a test block of the experiment
+ */
+function gen_test_block(block_num) {
+    let start_idx_tmp = N_STIM_BLOCK_TEST  * block_num - N_STIM_BLOCK_TEST;
+    let end_idx_tmp = N_STIM_BLOCK_TEST  * block_num;
+    return {
+        timeline: [
+            empty_slide,
+            word_test,
+            familiarity_slider
+        ],
+        timeline_variables: TIMELINE_VARS.filter(x => x["test"]),
+        on_load: function() { EXP_PART = "test_1" },
+        data: { block_num: block_num},
+        randomize_order: true
+    }
+}
 
 console.log("functions.js imported successfully.");
