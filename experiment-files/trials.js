@@ -3,7 +3,7 @@ This file contains the trials used in the experiment.
 */
 
 
-let word_learning = {
+let word_learning_strength = {
     type: 'html-keyboard-response',
     stimulus: function() {
         let word = jsPsych.timelineVariable("word");
@@ -28,6 +28,27 @@ let empty_slide = {
     choices: jsPsych.NO_KEYS,
     trial_duration: DURATIONS.EMPTY,
 }
+
+
+let word_learning_LOP = {
+    type: 'survey-text',
+    // !!! the standard preamble function is overwritten in the customized plugin
+    // -> you have to specify the exact html string that is displayed as preamble
+    preamble: function() {
+        // TODO: this should depend on the LOP condition
+        return "<p style='font-size: 18px'>" + "Assoziation" + "<br></p>";
+    },
+    questions: [
+        {prompt: function() {
+            // same here -> just add the whole html string and not just the text
+            let word = jsPsych.timelineVariable("word");
+            return "<p style='font-size: 28px'>" + word + "</p>";
+            }, rows: 1, columns: 20},
+    ],
+    button_label: "Weiter",
+    required: true
+};
+
 
 let word_test = {
     type: 'categorize-html',
@@ -71,7 +92,7 @@ let familiarity_slider = {
     // set slider width dynamically, depending on the size of the browser window
     slider_start: 500,
     slider_width: function() {
-        return window.innerWidth * 0.7;
+        return window.innerWidth * 0.9;
     },
     prompt: "<br>" +
         "Please rate the familiarity of the word presented above." +
