@@ -3,7 +3,11 @@
  *
  * This stylesheet provides minimal styling to make jsPsych
  * experiments look polished without any additional styles.
+ *
+ * Customizations:
+ *    - Arial --> Helvetica
  */
+
 
  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 
@@ -43,15 +47,15 @@
 /* fonts and type */
 
 .jspsych-display-element {
-  font-family: 'Open Sans', 'Arial', sans-serif;
-  font-size: 18px;
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
+  font-size: 20px;
   line-height: 1.6em;
 }
 
 /* Form elements like input fields and buttons */
 
 .jspsych-display-element input[type="text"] {
-  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
   /* Edit: change input font size for the learning phase */
   font-size: 18px;
 }
@@ -59,18 +63,21 @@
 /* borrowing Bootstrap style for btn elements, but combining styles a bit */
 .jspsych-btn {
   display: inline-block;
-  padding: 6px 12px;
-  margin: 0px;
-  font-size: 14px;
+  /* Edit: 6px 12px -> 8px 16px */
+  padding: 8px 16px;
+  margin: 20px;
+  /* Edit: 14 px -> 18px */
+  font-size: 18px;
   font-weight: 400;
-  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
   cursor: pointer;
   line-height: 1.4;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   background-image: none;
-  border: 1px solid transparent;
+  /* Edit: 1 px -> 2 px */
+  border: 2px solid transparent;
   border-radius: 4px;
   color: #333;
   background-color: #fff;
@@ -215,3 +222,35 @@
 .Column {
   display: table-cell;
 }
+
+/* New Stuff */
+
+
+.Header {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5%;
+  font-size: 24px;
+}
+
+.Important {
+  font-weight: bold
+}
+
+
+
+
+#Instruction {
+  max-width: 75%;
+  text-align: left;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  font-size: 20px
+}
+
+
+
+
+
+
+
