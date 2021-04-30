@@ -298,6 +298,12 @@ let instr_test = {
     }
 }
 
+let instr_final_questions = {
+    type: 'html-button-response',
+    stimulus: '<p id="Header">Die beiden Hauptteile des Experiments sind nun geschafft!</p> ' +
+        '<p style="margin-bottom: 5%">Es folgen nun noch einige Fragen zu Ihrer Teilnahme.</p>',
+    choices: ["Weiter"]
+}
 
 let instr_end = {
     type: 'html-keyboard-response',
