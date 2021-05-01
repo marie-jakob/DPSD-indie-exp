@@ -22,6 +22,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-text-custom.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-html-button-response.js"></script>
     <!-- import JATOS -->
     <script src="/assets/javascripts/jatos.js"></script>
     <!-- import custom files -->
@@ -30,9 +32,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="experiment-files/global-variables.js"></script>
     <script src="experiment-files/trials.js"></script>
     <script src="experiment-files/instructions.js"></script>
-    <!--
-    <script src="ExperimentFiles/survey_questions.js"></script>
-    -->
+    <script src="experiment-files/demographics.js"></script>
+    <script src="experiment-files/post-exp-questions.js"></script>
 </head>
 <body></body>
 <script>
@@ -56,25 +57,36 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     // -> filter for the test phase: "test"
     let TIMELINE_VARS = gen_timeline_variables(STIMULI, LOP = true);
 
+    // generate learn and test blocks for the strength manipulation
+    let blocks_learn = [];
+    let blocks_test = [];
+    for (let block = 1; block <= 4; block++) {
+        blocks_learn.push(gen_learning_block(block, LOP = false));
+        blocks_test.push(gen_test_block(block));
+    }
+
+    // add everything to the timeline
     let timeline = [];
-
-    block_learning_strength_1 = gen_learning_block(1, LOP = false);
-    block_learning_strength_2 = gen_learning_block(2, LOP = false);
-    block_learning_strength_3 = gen_learning_block(3, LOP = false);
-    block_learning_strength_4 = gen_learning_block(4, LOP = false);
-
-    block_test_1 = gen_test_block(1);
-    block_test_2 = gen_test_block(2);
-    block_test_3 = gen_test_block(3);
-    block_test_4 = gen_test_block(4);
-
-    timeline = [
-        welcome,
-        informed_consent,
-        info_study,
-        instr_learning_LOP,
-        instr_test
-    ];
+    timeline.push(welcome);
+    timeline.push(informed_consent);
+    timeline.push(info_study);
+    timeline.push(demographics);
+    timeline.push(instr_learning_strength);
+    for (let i = 0; i < 3; i++) {
+        timeline.push(blocks_learn[i]);
+        timeline.push(instr_breaks_learn[i]);
+    }
+    timeline.push(blocks_test[3]);
+    timeline.push(instr_calculations);
+    timeline.push(calc_block);
+    timeline.push(instr_test);
+    for (let i = 0; i < 3; i++) {
+        timeline.push(blocks_test[i]);
+        timeline.push(instr_breaks_test[i]);
+    }
+    timeline.push(instr_final_questions);
+    timeline.push(questions_data);
+    timeline.push(instr_end);
 
     /* #####################################################################
                 Go!
