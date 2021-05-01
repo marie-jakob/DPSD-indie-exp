@@ -65,7 +65,10 @@
   display: inline-block;
   /* Edit: 6px 12px -> 8px 16px */
   padding: 8px 16px;
-  margin: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 20px;
   /* Edit: 14 px -> 18px */
   font-size: 18px;
   font-weight: 400;
@@ -226,26 +229,23 @@
 /* New Stuff */
 
 
-.Header {
+#Header {
   font-weight: bold;
   text-align: center;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
+  margin-top: 3%;
   font-size: 24px;
 }
 
-.Important {
-  font-weight: bold
-}
 
 
-
-
-#Instruction {
+.Instruction {
   max-width: 75%;
   text-align: left;
   margin: 0 auto;
-  margin-bottom: 5%;
-  font-size: 20px
+  margin-bottom: 3%;
+  font-size: 20px;
+  line-height: 1.6em
 }
 
 
