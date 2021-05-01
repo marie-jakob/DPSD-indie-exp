@@ -98,11 +98,12 @@ let familiarity_slider = {
     // set slider width dynamically, depending on the size of the browser window
     slider_start: 500,
     slider_width: function() {
-        return window.innerWidth * 0.9;
+        return window.innerWidth * 0.6;
     },
     prompt: "<br>" +
         "Please rate the familiarity of the word presented above." +
         "<br> <br>",
+    require_movement: true,
     on_finish: function(data) {
         write_data(data);
         TRIAL_IDX++;

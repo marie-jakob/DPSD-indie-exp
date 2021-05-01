@@ -87,13 +87,13 @@ let info_study = {
         // page 2: general stuff about the participation
         '<div class="Instruction"><p id="Header">Hinweise zur Durchführung</p>' +
         '<ol>Bevor es richtig losgeht, erhalten Sie hier noch einige Hinweise zur Durchführung der Studie.<br><br>' +
-        '<li>Verlassen Sie bitte diese Seite bzw. das Browser-Fenster/den Browser-Tab während des Experiments nicht. ' +
+        '<li><p>Verlassen Sie bitte diese Seite bzw. das Browser-Fenster/den Browser-Tab während des Experiments nicht. ' +
         'Wenn Sie mehr als drei Mal außerhalb der Pausen diese Seite verlassen, ' +
         'wird das Experiment automatisch vorzeitig beendet und Ihre Teilnahme kann nicht über Sona verbucht werden. ' +
-        'Eine mehrmalige Teilnahme bzw. Wiederaufnahme des Experiments ist nicht möglich.</li>' +
-        '<li>Bitte schalten Sie Ihr Handy aus oder auf stumm und legen Sie es außer Reichweite.</li>' +
-        '<li>Falls Sie aktuell im Hintergrund Musik hören oder Videos abspielen, schalten Sie diese bitte aus.</li>' +
-        '<li>Schließen Sie diese Seite bitte nicht und laden Sie sie im Verlauf des Experiments nicht neu!</li></ol></div>'
+        'Eine mehrmalige Teilnahme bzw. Wiederaufnahme des Experiments ist nicht möglich.</p></li>' +
+        '<li><p>Bitte schalten Sie Ihr Handy aus oder auf stumm und legen Sie es außer Reichweite.</p></li>' +
+        '<li><p>Falls Sie aktuell im Hintergrund Musik hören oder Videos abspielen, schalten Sie diese bitte aus.</p></li>' +
+        '<li><p>Schließen Sie diese Seite bitte nicht und laden Sie sie im Verlauf des Experiments nicht neu!</p></li></ol></div>'
     ],
     show_clickable_nav: true,
     button_label_previous: "Zurück",
