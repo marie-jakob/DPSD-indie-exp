@@ -110,4 +110,57 @@ let familiarity_slider = {
 }
 
 
+function gen_calc_task() {
+    let html_str = '<p style="font-size: 28px">';
+    let correct_result = 0;
+    let random_op = " + ";
+    // create a random series of addition and subtraction of 6 random integers
+    for (let i = 0; i < 6; i++) {
+        let random_num = Math.floor(Math.random() * 30 + 1);
+        // also store the correct result to check if the participant answered correctly
+        if (random_op == " + ") correct_result += random_num;
+        else correct_result -= random_num;
+        random_op = Math.random() < 0.7 ? " + " : " - ";
+        html_str += String(random_num);
+        if (i < 5) html_str += random_op;
+    }
+    console.log(correct_result);
+    html_str += ' = ? </p>';
+    // generate a jspsych trial with the task
+    trial = {
+        type: 'survey-text',
+        questions: [
+            {prompt: html_str,
+                rows: 1,
+                columns: 20,
+            name: "calc"},
+        ],
+        button_label: "Weiter",
+        required: true
+    }
+    // return a node with the trial and conditional repetition
+    return {
+        timeline: [trial],
+        // repeat the trial if the participant answered incorrectly
+        loop_function: function(data) {
+            console.log(data.values()[0].response["calc"]);
+            console.log(correct_result);
+            let resp = data.values()[0].response["calc"];
+            let response_correct = resp === String(correct_result);
+            console.log(response_correct);
+            return ! response_correct;
+        }
+    }
+}
+
+
+let calc_block = {
+    timeline: [
+        gen_calc_task(),
+        gen_calc_task(),
+        gen_calc_task()
+    ]
+}
+
+
 console.log("trials.js imported successfully.");
