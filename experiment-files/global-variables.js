@@ -36,5 +36,12 @@ const N_STIM_BLOCK_TEST = N_STIMULI_TEST / N_BLOCKS_TEST;
 let TRIAL_IDX = 0;
 let EXP_PART;
 
+// dev mode (very alpha^^)
+// -> by pressing "q" (strength manipulation learning phase, test phase) or by typing "q"
+// into the text box (LOP manipulation learning phase) remaining trials of a
+// block can be skipped
+let SKIP = false;
+let DEV_MODE;
+
 
 console.log("setup.js imported successfully.");

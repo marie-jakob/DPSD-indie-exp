@@ -159,6 +159,33 @@ function write_data(data) {
 
 
 /**
+ * Checks if the user pressed KEYS.SKIP -> sets SKIP accordingly and skips
+ * the remaining trials of the blocks, if this is the case
+ * @param LOP (bool) if the function is called from an LOP trial
+ * @param learn (bool) if the function is called from the learning phase
+ * @returns {boolean} if the trial continues
+ */
+function check_skip(LOP, learn) {
+    // only enable skipping if dev-mode is on!
+    if (! DEV_MODE) return true;
+    console.log("Dev mode - checking last response");
+    let data_tmp = jsPsych.data.get().values();
+
+    // index to get the last trial data from -> the last element for learn
+    // trials, the one before for test trials (from the R-K task, not the slider)
+    let data_idx_tmp = learn ? data_tmp.length - 1 : data_tmp.length - 2;
+    if (data_idx_tmp > 0) {
+        // get the last response (depending on phase + manipulation) and check
+        // if remaining trials should be skipped
+        let trial_data_tmp = data_tmp[data_idx_tmp]["response"];
+        let resp_tmp = LOP && learn ? trial_data_tmp["Q0"] : trial_data_tmp;
+        if (resp_tmp === KEYS.SKIP) SKIP = true;
+    } else { SKIP = false; }  // reset the variable in the new block
+    return ! SKIP;
+}
+
+
+/**
  * Generates a single block for the learning phase of the experiment. Uses
  * TIMELINE_VARS (filtered) and slices according to the block_num and total number
  * of learning stimuli
@@ -172,13 +199,21 @@ function gen_learning_block(block_num, LOP) {
     let start_idx_tmp = N_STIM_BLOCK_LEARN  * block_num - N_STIM_BLOCK_LEARN;
     let end_idx_tmp = N_STIM_BLOCK_LEARN  * block_num;
     // determine which trial to display
-    let timeline_tmp = LOP ? [word_learning_LOP] : [word_learning_strength, empty_slide];
+
+    let timeline_tmp = {
+        timeline: [],
+        conditional_function(data) {
+            return check_skip(LOP = LOP, learn = true);
+        }
+    }
+    timeline_tmp["timeline"] = LOP ? [word_learning_LOP] : [empty_slide, word_learning_strength];
     return {
-        timeline: timeline_tmp,
+        timeline: [timeline_tmp],
         timeline_variables: TIMELINE_VARS.filter(x => x["learned"]).slice(start_idx_tmp, end_idx_tmp),
         on_load: function() { EXP_PART = "learning_1"},
         data: { block_num: block_num },
-        randomize_order: true
+        randomize_order: true,
+        on_timeline_start: function () { SKIP = false; }
     }
 }
 
@@ -193,16 +228,24 @@ function gen_learning_block(block_num, LOP) {
 function gen_test_block(block_num) {
     let start_idx_tmp = N_STIM_BLOCK_TEST  * block_num - N_STIM_BLOCK_TEST;
     let end_idx_tmp = N_STIM_BLOCK_TEST  * block_num;
-    return {
+
+    let timeline_tmp = {
         timeline: [
             empty_slide,
             word_test,
             familiarity_slider
         ],
+        conditional_function(data) {
+            return check_skip(LOP = LOP, learn = false);
+        }
+    }
+    return {
+        timeline: [timeline_tmp],
         timeline_variables: TIMELINE_VARS.filter(x => x["test"]),
         on_load: function() { EXP_PART = "test_1" },
         data: { block_num: block_num},
-        randomize_order: true
+        randomize_order: true,
+        on_timeline_start: function () { SKIP = false; }
     }
 }
 

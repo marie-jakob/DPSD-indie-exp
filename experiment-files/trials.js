@@ -12,7 +12,7 @@ let word_learning_strength = {
             "font-size: 28px; line-height: 1.5'>" +
             word + "</p>";
     },
-    choices: jsPsych.NO_KEYS,
+    choices: [KEYS.SKIP],
     trial_duration: DURATIONS.LEARN,
     on_finish: function(data) {
         write_data(data);
@@ -64,7 +64,7 @@ let word_test = {
             "font-size: 28px; line-height: 1.5'>" +
             word + "</p>";
     },
-    choices: [KEYS.REMEMBER, KEYS.KNOW, KEYS.NEW],
+    choices: [KEYS.REMEMBER, KEYS.KNOW, KEYS.NEW, KEYS.SKIP],
     prompt: "<div class='Row'>" +
         "<div class='Column'>R: Remember</div>" +
         "<div class='Column'>K: Know</div>" +
@@ -148,7 +148,8 @@ function gen_calc_task() {
             let resp = data.values()[0].response["calc"];
             let response_correct = resp === String(correct_result);
             console.log(response_correct);
-            return ! response_correct;
+            if (DEV_MODE && resp === KEYS.SKIP) return false;
+            else return ! response_correct;
         }
     }
 }

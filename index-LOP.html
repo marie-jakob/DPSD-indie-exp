@@ -20,7 +20,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
-    <script src="jspsych-6.3.0/plugins/jspsych-instructions.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-instructions-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-text-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-button-response.js"></script>
@@ -41,6 +41,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                 Setup
     ##################################################################### */
 
+    // allows to skip the remaining trials of a block by pressing "q"
+    // !!! set to false for data collection !!!
+    DEV_MODE = true;
+
     // change to "true" to test the study in JATOS
     let JATOS = false;
 
@@ -60,7 +64,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     let blocks_learn = [];
     let blocks_test = [];
     for (let block = 1; block <= 4; block++) {
-        blocks_learn.push(gen_learning_block(block, LOP = false));
+        blocks_learn.push(gen_learning_block(block, LOP = true));
         blocks_test.push(gen_test_block(block));
     }
 
@@ -75,7 +79,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         timeline.push(blocks_learn[i]);
         timeline.push(instr_breaks_learn[i]);
     }
-    timeline.push(blocks_test[3]);
+    timeline.push(blocks_learn[3]);
     timeline.push(instr_calculations);
     timeline.push(calc_block);
     timeline.push(instr_test);
@@ -83,6 +87,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         timeline.push(blocks_test[i]);
         timeline.push(instr_breaks_test[i]);
     }
+    timeline.push(blocks_test[3]);
     timeline.push(instr_final_questions);
     timeline.push(questions_data);
     timeline.push(instr_end);
@@ -98,7 +103,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                 use_webaudio: false,
                 // control how often participants leave the browser tab / window
                 on_interaction_data_update: function () {
-                    control_browser_interactions();
+                    //control_browser_interactions();
                 },
                 on_finish: function () {
                     // if in JATOS mode, send data to JATOS at the end
