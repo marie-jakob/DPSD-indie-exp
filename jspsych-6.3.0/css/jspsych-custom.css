@@ -116,9 +116,12 @@
   width: 100%; 
   background: transparent; 
 }
+
 .jspsych-slider:focus {
-  outline: none;
+  outline: #000000;
 }
+
+
 /* track */
 .jspsych-slider::-webkit-slider-runnable-track {
   appearance: none;
@@ -170,6 +173,7 @@
   background: #ffffff;
   cursor: pointer;
 }
+
 .jspsych-slider::-ms-thumb {
   border: 1px solid #666;
   height: 20px;
@@ -238,15 +242,81 @@
 }
 
 
-
 .Instruction {
-  max-width: 75%;
+  max-width: 65%;
   text-align: left;
   margin: 0 auto;
   margin-bottom: 3%;
   font-size: 20px;
   line-height: 1.6em
 }
+
+/* Johannas Stuff */
+
+
+.slider-container {
+  border: #fff;
+  padding: 50px;
+  margin: 20px 0;
+}
+
+.slider-container.active,
+.slider-container:focus {
+  border-color: #fff;
+  outline: none;
+}
+
+.slider-bar {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  border: 2px solid #ccc;
+  background-color: #ccc
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  margin-top: -8px;
+  margin-left: -10px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 40px;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+
+.slider-container.active .slider-handle,
+.slider-container:focus .slider-handle {
+  border-color: grey;
+  background-color: #bbb;
+
+}
+
+.slider-container.active .slider-handle,
+.slider-container:focus .slider-bar {
+  border-color: grey;
+}
+
+.slider-handle:hover {
+  border-color: grey;
+  background-color: #bbb;
+  cursor: pointer;
+}
+
+.slider-bar:hover {
+  border-color: grey;
+  cursor: pointer;
+}
+
 
 
 
