@@ -85,7 +85,7 @@ let info_study = {
         'Insgesamt wird das Experiment etwa <strong>XXX Minuten</strong> dauern.</div>',
 
         // page 2: general stuff about the participation
-        '<div class="""Instruction"><p id="Header">Hinweise zur Durchführung</p>' +
+        '<div class="Instruction"><p id="Header">Hinweise zur Durchführung</p>' +
         '<ol>Bevor es richtig losgeht, erhalten Sie hier noch einige Hinweise zur Durchführung der Studie.<br><br>' +
         '<li>Verlassen Sie bitte diese Seite bzw. das Browser-Fenster/den Browser-Tab während des Experiments nicht. ' +
         'Wenn Sie mehr als drei Mal außerhalb der Pausen diese Seite verlassen, ' +

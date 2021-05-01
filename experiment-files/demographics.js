@@ -9,7 +9,7 @@ let question_age = {
     questions: [
         {prompt: "<div>Im Folgenden bitten wir Sie um einige persönliche Angaben.</div>" +
                 "<br>" + "<br>" + "<br>" +
-                "Wie alt sind Sie?",
+                "Wie alt sind Sie? ",
             rows: 1, columns: 20,
             name: "age",
             required: true
@@ -53,15 +53,15 @@ let question_demographic_choice = {
             options: scale_school,
             name: "school",
             required: true},
-        {prompt: "<strong>Was ist Ihr höchster, beruflicher Ausbildungsstand?</strong>",
+        {prompt: "<strong>Was ist Ihr höchster beruflicher Ausbildungsstand?</strong>",
             options: scale_education,
             name: "education",
             required: true},
     ],
     button_label: "Weiter",
     on_finish: function(data) {
-        // console.log(data.responses.includes('noch in Ausbildung oder Student/in (noch kein Abschluss)'));
-        if(data.responses.includes('noch in Ausbildung oder Student/in (noch kein Abschluss)')) {
+        let resp_tmp = jsPsych.data.get().values()[1]["response"]["education"];
+        if (resp_tmp === 'noch in Ausbildung oder Student/in (noch kein Abschluss)') {
             education_text = true;
         } else {
             education_text = false;
@@ -73,10 +73,10 @@ let question_demographic_choice = {
 let question_demographic_text = {
     type: "survey-text",
     questions: [
-        {prompt: "<div> Sie haben angegeben, dass Sie sich noch in der Ausbildung befinden oder " +
-                "studieren. </div>" +
-                "<div> Welche Ausbildung absolvieren Sie aktuell bzw. welches " +
-                "Studienfach studieren Sie?</div>",
+        {prompt: '<div class="Instruction"> Sie haben angegeben, dass Sie sich noch in der Ausbildung befinden oder ' +
+                'studieren. </div>' +
+                '<div class="Instruction"> Welche Ausbildung absolvieren Sie aktuell bzw. welches ' +
+                'Studienfach studieren Sie?</div>',
             rows: 10, columns: 80,
             name: "education_text",
             required: true},
@@ -97,7 +97,7 @@ let demographics = {
     timeline: [
         question_age,
         question_demographic_choice,
-        question_education
+        conditional_education
     ],
     on_start: function() { EXP_PART = 'demographics'}
 }
