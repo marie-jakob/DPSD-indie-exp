@@ -67,7 +67,7 @@
   padding: 8px 16px;
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 0px;
+  margin-top: 30px;
   margin-bottom: 20px;
   /* Edit: 14 px -> 18px */
   font-size: 18px;
@@ -298,12 +298,13 @@
 .slider-container:focus .slider-handle {
   border-color: grey;
   background-color: #bbb;
-
+  cursor: not-allowed;
 }
 
 .slider-container.active .slider-handle,
 .slider-container:focus .slider-bar {
   border-color: grey;
+  cursor: not-allowed;
 }
 
 .slider-handle:hover {
