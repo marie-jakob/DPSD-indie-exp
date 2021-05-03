@@ -118,12 +118,11 @@ jsPsych.plugins['html-slider-response'] = (function() {
     //html += '<div>'
     html += '<div class="slider-container" id="my-slider" tabindex="0">' +
         '    <div class="slider-bar">' +
-        '      <div class="slider-progress" style="width: 50%;"></div>' +
         '      <div class="slider-handle" style="left: 50%;"></div>' +
         '    </div>';
 
     for(var j=0; j < trial.labels.length; j++){
-      var label_width_perc = 100/(trial.labels.length-1);
+      var label_width_perc = 100/(trial.labels.length - 1);
       var percent_of_range = j * (100/(trial.labels.length - 1));
       var percent_dist_from_center = ((percent_of_range-50)/50)*100;
       var offset = (percent_dist_from_center * half_thumb_width)/100;
@@ -159,32 +158,38 @@ jsPsych.plugins['html-slider-response'] = (function() {
         active = true;
       });
     };
+
+    // function that handles keydown events for the slider and adapts the
+    // handle according to the key pressed
+    function handle_keydown_slider(event) {
+      var key = event.keyCode ? event.keyCode : event.which;
+      // Left arrow
+      if (key == 37) {
+        // Get the slider progress and the handle
+        var slider_progress = document.querySelector('.slider-progress');
+        var slider_handle = document.querySelector('.slider-handle');
+        // Get the slider position and decrease it by 1
+        var value = Math.max(parseInt(slider_handle.style.left) - 1, 0);
+        console.log(value);
+        // Set the new position, value and progress
+        slider_handle.style.left = value.toString() + '%';
+        //slider_handle.innerHTML = value;
+        slider_progress.style.width = value.toString() + '%';
+      }
+      // Right arrow
+      else if (key == 39) {
+        // Get the slider progress and the handle
+        var slider_handle = document.querySelector('.slider-handle');
+        // Get the slider position and increase it by 1
+        var value = Math.min(parseInt(slider_handle.style.left) + 1, 100);
+        console.log(value);
+        // Set the new position, value and progress
+        slider_handle.style.left = value.toString() + '%';
+      }
+    };
     // do the key stuff but only when the slider is active
     display_element.querySelector('.slider-container').addEventListener('keydown', function (event) {
-          var key = event.keyCode ? event.keyCode : event.which;
-          // Left arrow
-          if (key == 37) {
-            // Get the slider progress and the handle
-            var slider_progress = document.querySelector('.slider-progress');
-            var slider_handle = document.querySelector('.slider-handle');
-            // Get the slider position and decrease it by 1
-            var value = Math.max(parseInt(slider_handle.style.left) - 1, 0);
-            console.log(value);
-            // Set the new position, value and progress
-            slider_handle.style.left = value.toString() + '%';
-            //slider_handle.innerHTML = value;
-            slider_progress.style.width = value.toString() + '%';
-          }
-          // Right arrow
-          else if (key == 39) {
-            // Get the slider progress and the handle
-            var slider_handle = document.querySelector('.slider-handle');
-            // Get the slider position and increase it by 1
-            var value = Math.min(parseInt(slider_handle.style.left) + 1, 100);
-            console.log(value);
-            // Set the new position, value and progress
-            slider_handle.style.left = value.toString() + '%';
-          }
+          handle_keydown_slider(event);
         }
     );
       display_element.querySelector('#jspsych-html-slider-response-next').addEventListener('click', function() {

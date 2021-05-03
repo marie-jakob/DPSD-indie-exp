@@ -241,7 +241,7 @@ function gen_test_block(block_num) {
     }
     return {
         timeline: [timeline_tmp],
-        timeline_variables: TIMELINE_VARS.filter(x => x["test"]),
+        timeline_variables: TIMELINE_VARS.filter(x => x["test"]).slice(start_idx_tmp, end_idx_tmp),
         on_load: function() { EXP_PART = "test_1" },
         data: { block_num: block_num},
         randomize_order: true,

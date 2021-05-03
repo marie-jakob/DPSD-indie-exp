@@ -19,7 +19,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/jspsych.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
-    <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-instructions-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-text-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
@@ -74,7 +74,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     timeline.push(informed_consent);
     timeline.push(info_study);
     timeline.push(demographics);
-    timeline.push(instr_learning_strength);
+    timeline.push(instr_learning_LOP);
     for (let i = 0; i < 3; i++) {
         timeline.push(blocks_learn[i]);
         timeline.push(instr_breaks_learn[i]);
@@ -117,8 +117,11 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             timeline: timeline,
             use_webaudio: false,
             // control how often participants leave the browser tab / window
-            on_interaction_data_update: function () {
+            on_interaction_data_update: function() {
                 control_browser_interactions();
+            },
+            on_trial_finish: function(data) {
+                write_data(data);
             },
             // display and download data at the end
             on_finish: function () {

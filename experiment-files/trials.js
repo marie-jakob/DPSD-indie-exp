@@ -15,8 +15,6 @@ let word_learning_strength = {
     choices: [KEYS.SKIP],
     trial_duration: DURATIONS.LEARN,
     on_finish: function(data) {
-        write_data(data);
-        data.trial_num = TRIAL_IDX;
         TRIAL_IDX++;
         if (TRIAL_IDX == N_STIMULI_LEARN * 2) TRIAL_IDX = 0;
     },
@@ -38,9 +36,9 @@ let word_learning_LOP = {
     preamble: function() {
         let LOP_tmp = jsPsych.timelineVariable("LOP");
         if (LOP_tmp == "deep") {
-            return "<p style='font-size: 18px'>" + "Bitte geben Sie ein verwandtes Wort an." + "<br></p>";
+            return "<p class='deep-prompt'>" + "Bitte geben Sie ein damit zusammenhängendes Wort ein." + "<br></p>";
         } else {
-            return "<p style='font-size: 18px'>" + "Bitte geben Sie Anzahl Vokale des Wortes an." + "<br></p>";
+            return "<p class='shallow-prompt'>" + "Bitte geben Sie Anzahl Vokale ein." + "<br></p>";
 
         }
 
@@ -49,8 +47,11 @@ let word_learning_LOP = {
         {prompt: function() {
             // same here -> just add the whole html string and not just the text
             let word = jsPsych.timelineVariable("word");
-            return "<p style='font-size: 28px'>" + word + "</p>";
-            }, rows: 1, columns: 20},
+            let LOP_tmp = jsPsych.timelineVariable("LOP");
+            if (LOP_tmp === "deep") return '<p class="deep-word">' + word + '</p>';
+            else return '<p class="shallow-word">' + word + '</p>';
+            },
+            rows: 1, columns: 20},
     ],
     button_label: "Weiter",
     required: true
@@ -78,9 +79,6 @@ let word_test = {
     correct_text: "",
     incorrect_text: "",
     key_answer: false,
-    on_finish: function(data) {
-        write_data(data);
-    }
 };
 
 let familiarity_slider = {
@@ -92,39 +90,45 @@ let familiarity_slider = {
             word + "</p>" +
             "<br>";
     },
-    labels: ["extremely unfamiliar", "moderately unfamiliar",
-        "moderately familiar", "extremely familiar"],
+    labels: ["extrem <strong>un</strong>vertraut", "relativ <strong>un</strong>vertraut",
+        "relativ vertraut", "extrem vertraut"],
     min: 0,
     max: 1000,
     // set slider width dynamically, depending on the size of the browser window
     slider_start: 500,
-    slider_width: function() {
-        return window.innerWidth * 0.6;
-    },
+    //slider_width: function() {
+    //    return window.innerWidth * 0.6;
+    //},
     prompt: "<br>" +
-        "Please rate the familiarity of the word presented above." +
+        "Bitte geben Sie an, wie vertraut Ihnen das Wort ist. " +
+        "Bewegen Sie dazu den Schieberegler mit den Pfeiltasten." +
         "<br> <br>",
     require_movement: true,
-    on_finish: function(data) {
-        write_data(data);
-        TRIAL_IDX++;
-    }
+    on_finish: function(data) { TRIAL_IDX++ }
 }
 
 
 function gen_calc_task() {
-    let html_str = '<p style="font-size: 28px">';
-    let correct_result = 0;
-    let random_op = " + ";
     // create a random series of addition and subtraction of 6 random integers
-    for (let i = 0; i < 6; i++) {
-        let random_num = Math.floor(Math.random() * 30 + 1);
-        // also store the correct result to check if the participant answered correctly
-        if (random_op == " + ") correct_result += random_num;
-        else correct_result -= random_num;
-        random_op = Math.random() < 0.7 ? " + " : " - ";
-        html_str += String(random_num);
-        if (i < 5) html_str += random_op;
+    let correct_result;
+    let html_str;
+    while (true) {
+        console.log("while");
+        correct_result = 0;
+        html_str = '<p style="font-size: 28px">';
+        let random_op = " + ";
+        for (let i = 0; i < 6; i++) {
+            let random_num = Math.floor(Math.random() * 30 + 1);
+            // also store the correct result to check if the participant answered correctly
+            if (random_op == " + ") correct_result += random_num;
+            else correct_result -= random_num;
+            if (correct_result < 0) break;
+            random_op = Math.random() < 0.5 ? " + " : " - ";
+            html_str += String(random_num);
+            if (i < 5) html_str += random_op;
+        }
+        // ensure that the tasks aren't too complicated^
+        if (correct_result > 0 && correct_result < 50) break;
     }
     console.log(correct_result);
     html_str += ' = ? </p>';

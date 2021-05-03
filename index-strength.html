@@ -19,7 +19,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/jspsych.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-categorize-html.js"></script>
-    <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-html-slider-response-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-instructions-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-text-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
@@ -93,7 +93,6 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     timeline.push(questions_data);
     timeline.push(instr_end);
 
-    timeline = [instr_calculations];
     /* #####################################################################
                 Go!
     ##################################################################### */
@@ -124,10 +123,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             },
             // display and download data at the end
             on_finish: function () {
-                var data = jsPsych.data.get().csv();
+                //var data = jsPsych.data.get().csv();
                 let path = ID + "-test.csv";
-                download(path, data);
-                jsPsych.data.displayData();
+                //download(path, data);
+                //jsPsych.data.displayData();
             }
         });
     }

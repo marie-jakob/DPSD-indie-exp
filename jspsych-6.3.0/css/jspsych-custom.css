@@ -31,7 +31,7 @@
  }
 
  .jspsych-content {
-   max-width: 95%; /* this is mainly an IE 10-11 fix */
+   max-width: 100%; /* this is mainly an IE 10-11 fix */
    text-align: center;
    margin: auto; /* this is for overflowing content */
  }
@@ -65,10 +65,11 @@
   display: inline-block;
   /* Edit: 6px 12px -> 8px 16px */
   padding: 8px 16px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin: 10px;
+  /*margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   /* Edit: 14 px -> 18px */
   font-size: 18px;
   font-weight: 400;
@@ -236,6 +237,8 @@
 #Header {
   font-weight: bold;
   text-align: center;
+  max-width: 90%;
+  margin: 0 auto;
   margin-bottom: 3%;
   margin-top: 3%;
   font-size: 24px;
@@ -243,7 +246,7 @@
 
 
 .Instruction {
-  max-width: 65%;
+  max-width: 70%;
   text-align: left;
   margin: 0 auto;
   margin-bottom: 3%;
@@ -251,12 +254,32 @@
   line-height: 1.6em
 }
 
-/* Johannas Stuff */
+.deep-word {
+  color: dodgerblue;
+  font-size: 28px;
+}
+
+.deep-prompt {
+  color: dodgerblue;
+  font-size: 20px;
+}
+
+.shallow-word {
+  color: limegreen;
+  font-size: 28px;
+}
+
+.shallow-prompt {
+  color: limegreen;
+  font-size: 20px;
+}
+
+/* Johannas Stuff + edits */
 
 
 .slider-container {
   border: #fff;
-  padding: 50px;
+  padding: 20px;
   margin: 20px 0;
 }
 
@@ -269,9 +292,8 @@
 .slider-bar {
   position: relative;
   width: 100%;
-  height: 10px;
+  height: 11px;
   border: 2px solid #ccc;
-  background-color: #ccc
   box-sizing: border-box;
   margin-bottom: 10px;
   opacity: 0.7;
@@ -309,7 +331,7 @@
 
 .slider-handle:hover {
   border-color: grey;
-  background-color: #bbb;
+  /*background-color: #bbb;*/
   cursor: pointer;
 }
 
@@ -317,7 +339,6 @@
   border-color: grey;
   cursor: pointer;
 }
-
 
 
 
