@@ -49,11 +49,15 @@ let informed_consent = {
     choices: ['Ich stimme zu.', 'Ich stimme <strong>nicht</strong> zu.'],
     on_finish: function(data){
         PAUSE = false;
-        if (data.button_pressed == 1){
+        // button "Ich stimme nicht zu" was pressed -> consent not given
+        if (data.response === 1){
             CONSENT = false;
-            jsPsych.endExperiment('As you did not agree to participate under the described ' +
-                'conditions,<br> this study ends here.');
+            console.log("No consent");
+            jsPsych.endExperiment('Das Experiment endet an dieser Stelle, da Sie' +
+                'den Teilnahmebedingungen nicht zugestimmt haben. ' +
+                'Sie können dieses Fenster jetzt schließen.');
         } else {
+            console.log("consent given");
             CONSENT = true;
         }
     }
@@ -96,6 +100,7 @@ let info_study = {
         '<li><p>Schließen Sie diese Seite bitte nicht und laden Sie sie im Verlauf des Experiments nicht neu!</p></li></ol></div>'
     ],
     show_clickable_nav: true,
+    allow_keys: false,
     button_label_previous: "Zurück",
     button_label_next: "Weiter",
     on_start: function() { EXP_PART = "instr"; }
@@ -252,30 +257,17 @@ let instr_test = {
         'eine Typ A oder Typ B Erinnerung wiedererkennen, folgt eine zweite Aufgabe: ' +
         'Dabei sollen Sie für dasselbe Wort beurteilen, wie vertraut es Ihnen vorkommt. ' +
         'Ihre Antwort geben Sie mithilfe dieses Schiebereglers: </div>' +
-        // please ignore this monstrosity (copied from the console, to get the
-        // exact slider that is produced by the slider plugin)
-        '<div class="jspsych-html-slider-response-container" style="position:relative; ' +
-        'margin: 0 auto 3em auto; width:1080px;"><input type="range" class="jspsych-slider" ' +
-        'value="500" min="0" max="1000" step="1" id="jspsych-html-slider-response-response">' +
-        '</input><div><div style="border: 1px solid transparent; display: inline-block; ' +
-        'position: absolute; left:calc(0% - (33.333333333333336% / 2) - -7.5px); ' +
-        'text-align: center; width: 33.333333333333336%;"><span style="text-align: center; ' +
-        'font-size: 80%;">extremely unvertraut</span></div><div style="border: 1px solid transparent; ' +
-        'display: inline-block; position: absolute; left:calc(33.333333333333336% - (33.333333333333336% / 2) - -2.4999999999999996px); ' +
-        'text-align: center; width: 33.333333333333336%;"><span style="text-align: center; font-size: 80%;">' +
-        'eher unvertraut</span></div><div style="border: 1px solid transparent; ' +
-        'display: inline-block; position: absolute; ' +
-        'left:calc(66.66666666666667% - (33.333333333333336% / 2) - 2.5000000000000004px); ' +
-        'text-align: center; width: 33.333333333333336%;"><span style="text-align: center; ' +
-        'font-size: 80%;">eher vertraut</span></div><div style="border: 1px solid transparent; ' +
-        'display: inline-block; position: absolute; left:calc(100% - (33.333333333333336% / 2) - 7.5px); ' +
-        'text-align: center; width: 33.333333333333336%;"><span style="text-align: center; font-size: 80%;">' +
-        'extrem vertraut</span></div></div>' +
+        // my own slider, copied from the plugin:
+        '<div class="slider-container" id="my-slider" tabindex="0">' +
+        '    <div class="slider-bar">' +
+        '      <div class="slider-progress" style="width: 50%;"></div>' +
+        '      <div class="slider-handle" style="left: 50%;"></div>' +
+        '    </div>' +
         '<div class="Instruction" style="margin-top: 7%"> Bewegen Sie den Schieberegler ' +
         'auf die Stelle der Skala, die Ihrer Ansicht nach angibt, ' +
-        'wie vertraut Ihnen das Wort ist. Je weiter nach rechts Sie den Schieberegler einstellen, ' +
-        'desto vertrauter kommt Ihnen ein Wort vor. Versuchen Sie, ' +
-        'für jedes Wort eine individuelle und möglichst akkurate Einschätzung vorzunehmen.</div>',
+        'wie vertraut Ihnen das Wort ist. ' +
+        //'Je weiter nach rechts Sie den Schieberegler einstellen, desto vertrauter kommt Ihnen ein Wort vor.
+        'Versuchen Sie, für jedes Wort eine individuelle und möglichst akkurate Einschätzung vorzunehmen.</div>',
 
         ////////////////////////////////////////////////////////////////////////
         // Recap
@@ -291,10 +283,17 @@ let instr_test = {
         '<p>Wenn Sie bereit sind, mit der Testphase zu beginnen, klicken Sie auf „Weiter“. </p></div> '
     ],
     show_clickable_nav: true,
+    allow_keys: false,
     button_label_previous: "Zurück",
     button_label_next: "Weiter",
     on_start: function () {
         EXP_PART = "instr";
+        // TODO
+        // listen to keyboard and events for the slider
+        //document.querySelector('.slider-container').addEventListener('keydown', function (event) {
+        //    console.log("querySelector works");
+            //handle_keydown_slider(event);
+        //} );
     }
 }
 

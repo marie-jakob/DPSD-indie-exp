@@ -20,6 +20,7 @@ let word_learning_strength = {
         TRIAL_IDX++;
         if (TRIAL_IDX == N_STIMULI_LEARN * 2) TRIAL_IDX = 0;
     },
+    response_ends_trial: false
 };
 
 let empty_slide = {
@@ -66,9 +67,9 @@ let word_test = {
     },
     choices: [KEYS.REMEMBER, KEYS.KNOW, KEYS.NEW, KEYS.SKIP],
     prompt: "<div class='Row'>" +
-        "<div class='Column'>R: Remember</div>" +
-        "<div class='Column'>K: Know</div>" +
-        "<div class='Column'>N: New</div>" +
+        "<div class='Column'>A: Typ A Erinnerung</div>" +
+        "<div class='Column'>B: Typ B Erinnerung</div>" +
+        "<div class='Column'>N: Neues Wort</div>" +
         "</div>",
     // we don't actually want to display feedback but we want the promt feature
     // from the categorize-html plugin, hence this weird stuff

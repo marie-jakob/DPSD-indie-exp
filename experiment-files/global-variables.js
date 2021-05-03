@@ -9,8 +9,8 @@ This file
 const KEYS = {
     CONTINUE: "space", 
     BACK: "z",
-    REMEMBER: "r",
-    KNOW: "k",
+    REMEMBER: "a",
+    KNOW: "b",
     NEW: "n",
     SKIP: "q"
 };
