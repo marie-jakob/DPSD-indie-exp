@@ -59,7 +59,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     // contains timeline variables for the learning and the test phases
     // -> filter for the learning phase: "learned"
     // -> filter for the test phase: "test"
-    let TIMELINE_VARS = gen_timeline_variables(STIMULI, LOP = true);
+    let TIMELINE_VARS = gen_timeline_variables(STIMULI, LOP = false);
 
     // generate learn and test blocks for the strength manipulation
     let blocks_learn = [];
@@ -106,6 +106,9 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                 on_interaction_data_update: function () {
                     control_browser_interactions();
                 },
+                on_trial_finish: function(data) {
+                    write_data(data);
+                },
                 on_finish: function () {
                     // if in JATOS mode, send data to JATOS at the end
                     var resultJson = jsPsych.data.get().json();
@@ -121,12 +124,15 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             on_interaction_data_update: function () {
                 //control_browser_interactions();
             },
+            on_trial_finish: function(data) {
+                write_data(data);
+            },
             // display and download data at the end
             on_finish: function () {
-                //var data = jsPsych.data.get().csv();
+                var data = jsPsych.data.get().csv();
                 let path = ID + "-test.csv";
-                //download(path, data);
-                //jsPsych.data.displayData();
+                download(path, data);
+                jsPsych.data.displayData();
             }
         });
     }

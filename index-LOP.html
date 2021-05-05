@@ -92,6 +92,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     timeline.push(questions_data);
     timeline.push(instr_end);
 
+    timeline = [instr_test];
     /* #####################################################################
                 Go!
     ##################################################################### */
@@ -104,6 +105,9 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                 // control how often participants leave the browser tab / window
                 on_interaction_data_update: function () {
                     //control_browser_interactions();
+                },
+                on_trial_finish: function(data) {
+                    write_data(data);
                 },
                 on_finish: function () {
                     // if in JATOS mode, send data to JATOS at the end
@@ -118,7 +122,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             use_webaudio: false,
             // control how often participants leave the browser tab / window
             on_interaction_data_update: function() {
-                control_browser_interactions();
+                //control_browser_interactions();
             },
             on_trial_finish: function(data) {
                 write_data(data);

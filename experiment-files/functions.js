@@ -151,6 +151,7 @@ function gen_timeline_variables(word_list, LOP) {
 function write_data(data) {
     data.trial_num = TRIAL_IDX;
     data.exp_part = EXP_PART;
+    data.correct = "NA";
     let attributes = Object.keys(TIMELINE_VARS[0]);
     for (attribute of attributes) {
         data[attribute] = jsPsych.timelineVariable(attribute);
@@ -196,8 +197,10 @@ function check_skip(LOP, learn) {
 function gen_learning_block(block_num, LOP) {
     // slice timeline variables according to the block
     let multi_tmp = LOP ? 1 : 2;
-    let start_idx_tmp = N_STIM_BLOCK_LEARN  * block_num - N_STIM_BLOCK_LEARN;
-    let end_idx_tmp = N_STIM_BLOCK_LEARN  * block_num;
+    let start_idx_tmp = (N_STIM_BLOCK_LEARN * block_num - N_STIM_BLOCK_LEARN) * multi_tmp;
+    let end_idx_tmp = N_STIM_BLOCK_LEARN * block_num * multi_tmp;
+    console.log(start_idx_tmp);
+    console.log(end_idx_tmp);
     // determine which trial to display
 
     let timeline_tmp = {
@@ -210,7 +213,7 @@ function gen_learning_block(block_num, LOP) {
     return {
         timeline: [timeline_tmp],
         timeline_variables: TIMELINE_VARS.filter(x => x["learned"]).slice(start_idx_tmp, end_idx_tmp),
-        on_load: function() { EXP_PART = "learning_1"},
+        on_load: function() { EXP_PART = "learning"},
         data: { block_num: block_num },
         randomize_order: true,
         on_timeline_start: function () { SKIP = false; }
@@ -242,7 +245,7 @@ function gen_test_block(block_num) {
     return {
         timeline: [timeline_tmp],
         timeline_variables: TIMELINE_VARS.filter(x => x["test"]).slice(start_idx_tmp, end_idx_tmp),
-        on_load: function() { EXP_PART = "test_1" },
+        on_load: function() { EXP_PART = "test" },
         data: { block_num: block_num},
         randomize_order: true,
         on_timeline_start: function () { SKIP = false; }

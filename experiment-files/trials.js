@@ -14,11 +14,11 @@ let word_learning_strength = {
     },
     choices: [KEYS.SKIP],
     trial_duration: DURATIONS.LEARN,
-    on_finish: function(data) {
+    on_finish: function() {
         TRIAL_IDX++;
-        if (TRIAL_IDX == N_STIMULI_LEARN * 2) TRIAL_IDX = 0;
+        // if (TRIAL_IDX == N_STIMULI_LEARN * 2) TRIAL_IDX = 0;
     },
-    response_ends_trial: false
+    response_ends_trial: false,
 };
 
 let empty_slide = {
@@ -54,7 +54,8 @@ let word_learning_LOP = {
             rows: 1, columns: 20},
     ],
     button_label: "Weiter",
-    required: true
+    required: true,
+    on_finish: function(data) { TRIAL_IDX++ }
 };
 
 
@@ -79,7 +80,9 @@ let word_test = {
     correct_text: "",
     incorrect_text: "",
     key_answer: false,
+    on_start: function(data) { TRIAL_IDX++ }
 };
+
 
 let familiarity_slider = {
     type: 'html-slider-response',
@@ -94,9 +97,11 @@ let familiarity_slider = {
         "relativ vertraut", "extrem vertraut"],
     min: 0,
     max: 1000,
+    button_label: "Weiter",
     // set slider width dynamically, depending on the size of the browser window
     slider_start: 500,
     //slider_width: function() {
+    //    return window.innerWidth * 0.6;
     //    return window.innerWidth * 0.6;
     //},
     prompt: "<br>" +
@@ -104,7 +109,6 @@ let familiarity_slider = {
         "Bewegen Sie dazu den Schieberegler mit den Pfeiltasten." +
         "<br> <br>",
     require_movement: true,
-    on_finish: function(data) { TRIAL_IDX++ }
 }
 
 

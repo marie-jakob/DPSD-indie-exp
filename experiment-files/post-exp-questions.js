@@ -21,7 +21,7 @@ let question_disturbed = {
     ],
     button_label: "Continue",
     on_start: function() {
-        exp_part_current = "survey";
+        EXP_PART = "post-exp-questions";
         $('body').css('cursor', 'default');
     }
 };

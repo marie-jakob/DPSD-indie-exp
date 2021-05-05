@@ -208,11 +208,10 @@ let instr_test = {
         'entscheiden Sie bitte, ob es sich dabei um eine Typ A oder eine Typ B Erinnerung handelt ' +
         'und antworten Sie entsprechend „A“ oder „B“. </li></ul>' +
         'Wie genau sich die beiden Erinnerungen unterscheiden, ' +
-        'wird Ihnen auf der nächsten Seite erklärt.</p>' +
+        'wird Ihnen auf der nächsten Seite erklärt.</p></div>',
         //'<p>Auch die Testphase ist in Blöcke aufgeteilt, zwischen denen Sie ' +
         //'jeweils eine kurze Pause machen können. Insgesamt wird es vier Blöcke ' +
-        //'mit jeweils 50 Wörtern
-        'geben.</p></div> ',
+        //'mit jeweils 50 Wörtern geben.</p></div> ',
 
         ////////////////////////////////////////////////////////////////////////
         // Type A and B memory
@@ -221,13 +220,19 @@ let instr_test = {
         'an dessen Vorkommen in der Lernphase einhergeht, antworten Sie bitte „A“: ' +
         'Typ A Erinnerungen sind dadurch charakterisiert, dass Sie sich bewusst ' +
         'einen oder mehrere Aspekte von dem, was während der Präsentation des Wortes ' +
-        'in der Lernphase passiert ist bzw. was Sie zu diesem Zeitpunkt gedacht oder erlebt haben, ' +
-        'ins Gedächtnis zurückrufen können (z.B. Aspekte in Bezug darauf, wie das Wort aussah, ' +
-        'oder etwas, das zu diesem Zeitpunkt irgendwo im Raum passiert ist, ' +
-        'oder was Sie während der Präsentation des Wortes gedacht oder gemacht haben). ' +
+        'in der Lernphase passiert ist ' +
+        //'bzw. was Sie zu diesem Zeitpunkt gedacht oder erlebt haben, ' +
+        'ins Gedächtnis zurückrufen können. Das können zum Beispiel sein: ' +
+        '<ul><li>Aspekte in Bezug darauf, wie das Wort aussah,</li>' +
+        '<li>etwas, das zu diesem Zeitpunkt irgendwo im Raum passiert ist, </li>' +
+        '<li>was Sie während der Präsentation des Wortes gedacht oder gemacht haben, </li>' +
+        '<li>oder eine andere Erinnerung dieser Art.</li></ul>' +
+        // '(z.B. Aspekte in Bezug darauf, wie das Wort aussah, ' +
+        //'oder etwas, das zu diesem Zeitpunkt irgendwo im Raum passiert ist, ' +
+        //'oder was Sie während der Präsentation des Wortes gedacht oder gemacht haben). ' +
         'Anders gesagt, eine Typ A Erinnerung sollte Ihnen eine bestimmte Assoziation, ' +
         'ein Bild, etwas Persönlicheres, oder etwas in Bezug auf die Präsentation ' +
-        'oder Position des Wortes (also bspw. was vor oder was nach dem Wort präsentiert wurde) ' +
+        'des Wortes (also bspw. was vor oder was nach dem Wort präsentiert wurde) ' +
         'aus der Lernphase in Gedächtnis zurückrufen. Antworten Sie also bitte „A“, ' +
         'wenn Sie diese Details, an die Sie sich erinnern, auch konkret angeben könnten, ' +
         'wenn Sie danach gefragt würden.</p>' +
@@ -236,39 +241,41 @@ let instr_test = {
         'die während des Lernens dieses Wortes passiert sind oder die Sie währenddessen ' +
         'erlebt oder gedacht haben. Anders gesagt, antworten Sie bitte „B“, wenn Sie das Gefühl haben, ' +
         'das Wort wiederzuerkennen, das Wort aber keine spezifischen, bewussten Erinnerungen ' +
-        'aus der Lernphase zurück ins Gedächtnis ruft.</p>' +
-        'Auf der nächsten Seite folgen einige Beispiele dazu.</div>',
+        'aus der Lernphase zurück ins Gedächtnis ruft.</p></div>',
+        //'Auf der nächsten Seite folgen einige Beispiele dazu.</div>',
 
         ////////////////////////////////////////////////////////////////////////
         // Examples - Type A and B memory
         '<div class="Instruction"><p id="Header">Typ A und B Erinnerungen</p>' +
-        '<p>Um die Unterschiede zwischen diesen beiden Antworten bzw. Erinnerungen (also „A“ und „B“) ' +
-        'zu verdeutlichen, sind hier ein paar Beispiele: Wenn jemand Sie nach Ihrem Namen fragt, ' +
+        'Um die Unterschiede zwischen Typ A und Typ B Erinnerungen ' +
+        // '<p>Um die Unterschiede zwischen diesen beiden Antworten bzw. Erinnerungen (also „A“ und „B“) ' +
+        'zu verdeutlichen, sind hier ein paar Beispiele: ' +
+        '<ul><li>Wenn jemand Sie nach Ihrem Namen fragt, ' +
         'antworten Sie üblicherweise im „Typ B“ Sinne, ohne sich irgendeines bestimmten ' +
         'Ereignisses oder einer bestimmten Erfahrung bewusst zu werden. ' +
         'Wenn Sie jedoch gefragt werden, was der letzte Film war, den Sie gesehen haben, ' +
         'antworten Sie üblicherweise im „Typ A“ Sinne, erinnern sich also bewusst an ' +
-        'Aspekte dieser Erfahrung.</p> ' +
-        //'<p>Ein anderes Beispiel ist das Wiedererkennen einer Person: ' +
-        //'Wenn Sie eine andere Person sehen und Ihnen einfällt, dass Sie diese Person ' +
-        //'von der Arbeit kennen und dass Sie sie dort immer in der Kantine sehen, ' +
-        //'handelt es sich um eine „Typ A“ Erinnerung. Erinnern Sie sich jedoch nicht ' +
-        //'an so ein Detail, denken aber trotzdem, diese Person wiederzuerkennen, ' +
-        //'ist das eine „Typ B“ Erinnerung.</p>' +
-        '<p>Ein anderes Beispiel: Wenn Sie in der Testphase das Wort „Hund“ sehen ' +
+        'Aspekte dieser Erfahrung.</li>' +
+        '<li>Ein anderes Beispiel ist das Wiedererkennen einer Person: ' +
+        'Wenn Sie eine andere Person sehen und Ihnen einfällt, dass Sie diese Person ' +
+        'von der Arbeit kennen und dass Sie sie dort immer in der Kantine sehen, ' +
+        'handelt es sich um eine „Typ A“ Erinnerung. Erinnern Sie sich jedoch nicht ' +
+        'an so ein Detail, denken aber trotzdem, diese Person wiederzuerkennen, ' +
+        'ist das eine „Typ B“ Erinnerung.</li>' +
+        '<li>Ein letztes Beispiel: Wenn Sie in der Testphase das Wort „Hund“ sehen ' +
         'und sich erinnern, woran Sie bei der Präsentation gedacht haben ' +
         '(z.B., wie gerne Sie einen Hund hätten) oder was währenddessen passiert ist ' +
         '(z.B., dass kurz davor der Nachbarshund gebellt hat, oder währenddessen Ihre Katze ins Zimmer kam), ' +
         'ist das eine „Typ A“ Erinnerung. Erinnern Sie sich nicht an solche Dinge, ' +
         'haben aber das Gefühl, dass das Wort in der Lernphase präsentiert wurde, ' +
-        'ist das eine „Typ B“ Erinnerung.</p>' +
-        '<p>Noch einmal zusammengefasst: Antworten Sie für ein Wort „N“ (neu), ' +
-        'wenn Sie der Ansicht sind, dieses Wort in der Lernphase nicht gesehen zu haben. ' +
-        'Wenn Sie das Wort wiedererkennen und sich bewusst an Details aus der Lernphase ' +
-        'in Bezug auf dieses Wort erinnern, antworten Sie bitte „A“. Wenn Sie „A“ geantwortet haben, ' +
-        'sollten Sie also dazu in der Lage sein, diese Details aus der Lernphase zu berichten. ' +
-        'Antworten Sie „B“, wenn Sie der Ansicht sind, das Wort aus der Lernphase zu kennen, ' +
-        'sich aber nicht an solche spezifischen Detail aus der Lernphase erinnern.</p></div>',
+        'ist das eine „Typ B“ Erinnerung.</li></ul></div>',
+        //'<p>Noch einmal zusammengefasst: Antworten Sie für ein Wort „N“ (neu), ' +
+        //'wenn Sie der Ansicht sind, dieses Wort in der Lernphase nicht gesehen zu haben. ' +
+        //'Wenn Sie das Wort wiedererkennen und sich bewusst an Details aus der Lernphase ' +
+        //'in Bezug auf dieses Wort erinnern, antworten Sie bitte „A“. Wenn Sie „A“ geantwortet haben, ' +
+        //'sollten Sie also dazu in der Lage sein, diese Details aus der Lernphase zu berichten. ' +
+        //'Antworten Sie „B“, wenn Sie der Ansicht sind, das Wort aus der Lernphase zu kennen, ' +
+        //'sich aber nicht an solche spezifischen Detail aus der Lernphase erinnern.</p></div>',
 
         ////////////////////////////////////////////////////////////////////////
         // familiarity rating task
@@ -309,6 +316,7 @@ let instr_test = {
     button_label_next: "Weiter",
     on_start: function () {
         EXP_PART = "instr";
+        TRIAL_IDX = 0;
         // TODO
         // listen to keyboard and events for the slider
         //document.querySelector('.slider-container').addEventListener('keydown', function (event) {
@@ -322,7 +330,8 @@ let instr_final_questions = {
     type: 'html-button-response',
     stimulus: '<p id="Header">Die beiden Hauptteile des Experiments sind nun geschafft!</p> ' +
         '<p style="margin-bottom: 5%">Es folgen nun noch einige Fragen zu Ihrer Teilnahme.</p>',
-    choices: ["Weiter"]
+    choices: ["Weiter"],
+    on_start: function() { EXP_PART = "instr"; }
 }
 
 
@@ -330,7 +339,8 @@ let debriefing = {
     type: 'html-button-response',
     stimulus: '<div class="Instruction"><p id="Header">Ziele dieser Studie' +
         'Zum Abschluss möchten wir Sie kurz über den Hintergrund unserer Studie informieren. ' +
-        'Wie bereits angekündigt, möchten wir</div>'
+        'Wie bereits angekündigt, möchten wir</div>',
+    on_start: function() { EXP_PART = "instr"; }
 }
 
 let instr_end = {
@@ -338,7 +348,9 @@ let instr_end = {
     stimulus:
         '<div class="Instruction"><p id="Header">Das Experiment ist nun beendet. ' +
         'Vielen Dank für Ihre Teilnahme!</p>' +
-        'Sie können dieses Fenster nun schließen / Sie werden nun zu Sona weitergeleitet.</div>'
+        'Sie können dieses Fenster nun schließen / Sie werden nun zu Sona weitergeleitet.<br>' +
+        'Testmode: Drücken Sie eine beliebige Tasten, um die Daten herunterzuladen.</div>',
+    on_start: function() { EXP_PART = "instr"; }
 }
 
 
