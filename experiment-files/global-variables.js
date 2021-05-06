@@ -17,8 +17,7 @@ const KEYS = {
 
 // stimulus durations in ms
 const DURATIONS = {
-    LEARN: 2000,
-    TEST: 1000,
+    LEARN: 2500,
     EMPTY: 500
 }
 

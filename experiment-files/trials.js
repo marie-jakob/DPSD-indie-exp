@@ -36,9 +36,9 @@ let word_learning_LOP = {
     preamble: function() {
         let LOP_tmp = jsPsych.timelineVariable("LOP");
         if (LOP_tmp == "deep") {
-            return "<p class='deep-prompt'>" + "Bitte geben Sie ein damit zusammenhängendes Wort ein." + "<br></p>";
+            return "<p class='deep-prompt'>" + "Geben Sie ein assoziiertes Wort ein." + "<br></p>";
         } else {
-            return "<p class='shallow-prompt'>" + "Bitte geben Sie Anzahl Vokale ein." + "<br></p>";
+            return "<p class='shallow-prompt'>" + "Geben Sie Anzahl Vokale ein." + "<br></p>";
 
         }
 
@@ -51,9 +51,11 @@ let word_learning_LOP = {
             if (LOP_tmp === "deep") return '<p class="deep-word">' + word + '</p>';
             else return '<p class="shallow-word">' + word + '</p>';
             },
-            rows: 1, columns: 20},
+            rows: 1, columns: 20,
+        required: true},
     ],
     button_label: "Weiter",
+    trial_duration: 5000,
     required: true,
     on_finish: function(data) { TRIAL_IDX++ }
 };

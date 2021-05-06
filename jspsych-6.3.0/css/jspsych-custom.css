@@ -60,6 +60,12 @@
   font-size: 18px;
 }
 
+.jspsych-display-element textare[type="text"] {
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
+  /* Edit: change input font size for the learning phase */
+  font-size: 18px;
+}
+
 /* borrowing Bootstrap style for btn elements, but combining styles a bit */
 .jspsych-btn {
   display: inline-block;
@@ -255,7 +261,7 @@
 }
 
 .deep-word {
-  color: dodgerblue;
+  /*color: dodgerblue;*/
   font-size: 28px;
 }
 
@@ -265,7 +271,7 @@
 }
 
 .shallow-word {
-  color: limegreen;
+  /*color: limegreen;*/
   font-size: 28px;
 }
 

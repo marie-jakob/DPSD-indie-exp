@@ -55,4 +55,22 @@ let questions_data = {
     randomize_question_order: false
 }
 
+let question_comments = {
+    type: 'survey-text',
+    questions: [
+        {
+            prompt: "<p>Möchten Sie uns sonst noch etwas mitteilen?</p>",
+            required: false,
+            rows: 3,
+            columns: 50,
+        }
+    ],
+    button_label: "Weiter",
+}
 
+let post_exp_questions = {
+    timeline: [
+        questions_data,
+        question_comments
+    ]
+}

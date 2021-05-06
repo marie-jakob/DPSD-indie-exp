@@ -3,7 +3,7 @@ Dummy instructions.
  */
 
 let welcome = {
-    type: 'html-button-response',
+    type: 'html-keyboard-response',
     stimulus:
         '<div class="Instruction"><p id="Header"> Herzlich Willkommen zu dieser Online-Studie der Universität Freiburg!</p>' +
         'In diesem Experiment wollen wir das menschliche Gedächtnis untersuchen. Daher wird es Ihre Aufgabe sein, ' +
@@ -14,9 +14,10 @@ let welcome = {
         'Vermeiden Sie bitte außerdem Ablenkungen jeglicher Art (z.B. durch Fernseher, Musik, Handy, Haustiere etc.). ' +
         'Sie können an dieser Studie nur von einem PC, nicht von einem Tablet oder Smartphone aus teilnehmen. <br><br>' +
         '<em>Wichtig: Bitte schließen Sie das Browser-Fenster während der Studie nicht ' +
-        'und laden Sie diese Seite nicht neu! </em><br><br>', //+
+        'und laden Sie diese Seite nicht neu! </em><br><br></div>' +
+        'Drücken Sie die Leertaste, wenn Sie bereit sind, zu starten.',  //+
         //'Klicken Sie auf „Weiter“, wenn Sie bereit sind, zu starten.</div>',
-    choices: ["Weiter"],
+    choices: [' '],
     on_start: function() { EXP_PART = "instr"; }
 }
 
@@ -78,8 +79,8 @@ let info_study = {
         //'Zwischen den beiden Teilen können Sie eine kurze Pause einlegen.<br><br> ' +
         'Der genaue Ablauf dieser Studie sieht so aus: ' +
         '<ul><li>Zunächst bitten wir Sie, einige <strong>demographische Angaben</strong> zu machen.</li> ' +
-        'Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in der Sie sich einige ' +
-        'Wörter merken sollen, die Ihnen präsentiert werden.' +
+        '<li>Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in der Sie sich einige ' +
+        'Wörter merken sollen, die nacheinander auf dem Bildschirm erscheinen.</li>' +
         //'<li>Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in der nacheinander ' +
         //'auf dem Bildschirm Wörter erscheinen, die Sie sich merken sollen. ' +
         //'Bitte benutzen Sie dazu keine externen Hilfsmittel wie Stift und Papier, ' +
@@ -97,7 +98,8 @@ let info_study = {
         // page 2: general stuff about the participation
         '<div class="Instruction"><p id="Header">Hinweise zur Durchführung</p>' +
         '<ol>Bevor es mit der Studie losgeht, erhalten Sie hier noch einige Hinweise zur Durchführung.<br>' +
-        '<li><p><strong>Verlassen Sie bitte diese Seite während des Experiments nicht.</strong> ' +
+        '<li><p><strong>Wechseln Sie während des Experiments bitte nicht in ein anderes Browser-Fenster/' +
+        'einen anderen Browser-Tab oder ein anderes Programm.</strong> ' +
         'Wenn Sie mehr als drei Mal außerhalb der Pausen diese Seite verlassen, ' +
         'wird das Experiment automatisch vorzeitig beendet und Ihre Teilnahme kann nicht über Sona verbucht werden. ' +
         'Eine mehrmalige Teilnahme bzw. Wiederaufnahme des Experiments ist nicht möglich.</p></li>' +
@@ -117,12 +119,14 @@ let instr_learning_LOP = {
     stimulus:
         '<div class="Instruction"><p id="Header">Lernphase</p>' +
         '<p>Nun beginnt die Lernphase des Experiments, ' +
-        'in der Sie sich Wörter möglichst gut einprägen sollen. Dafür werden gleich mehrere Wörter nacheinander auf dem Bildschirm erscheinen. Bitte versuchen Sie, ' +
-        'sich diese Wörter möglichst gut zu merken, da Sie sich im nächsten Teil daran erinnern sollen. </p>' +
+        'in der Sie sich Wörter möglichst gut einprägen sollen. Dafür werden gleich mehrere Wörter nacheinander auf dem Bildschirm erscheinen. ' +
+        'Für jedes Wort sollen Sie eine dieser beiden Aufgaben bearbeiten: ' +
+        //'Bitte versuchen Sie, ' +
+        //'sich diese Wörter möglichst gut zu merken, da Sie sich im nächsten Teil daran erinnern sollen. </p>' +
         //'Wie bereits angekündigt, ' +
         //'werden wir Sie im darauffolgenden Teil auffordern, sich an diese Wörter zu erinnern. ' +
         //'In jedem Block werden insgesamt 25 Begriffe auf dem Bildschirm erscheinen. <br><br>' +
-        'Für jedes Wort sollen Sie eine dieser beiden Aufgaben bearbeiten: ' +
+
         //'Für jedes Wort sollen Sie <strong>eine von zwei Aufgaben bearbeiten</strong> und Ihre Antwort ' +
         //'in das Textfeld unter dem Wort schreiben.' +
         '<ul><li><span class="shallow-prompt"><strong>Entweder: </strong>Geben Sie an, wie viele Vokale das Wort hat. </span>' +
@@ -184,7 +188,7 @@ let instr_calculations = {
     stimulus:
         '<p id="Header">Die Lernphase ist nun geschafft!</p>' +
         '<p class="Instruction">Bevor es mit der Testphase weitergeht, ' +
-        'bitten wir Sie, drei kurze Rechenaufgaben bearbeiten. Die Aufgaben werden ' +
+        'bitten wir Sie, drei kurze Rechenaufgaben zu lösen. Die Aufgaben werden ' +
         'nacheinander auf dem Bildschirm erscheinen. Wenn Sie die <em>richtige</em> Antwort eingeben, ' +
         'gelangen Sie direkt zur nächsten Aufgabe.</p>' +
         '<p class="Instruction">Wenn Sie bereit sind, mit den Rechenaufgaben zu beginnen, klicken Sie auf „Weiter“.</p>',
@@ -201,10 +205,9 @@ let instr_test = {
         '<p>Im nächsten Teil werden Ihnen wieder nacheinander einige Wörter gezeigt. ' +
         'Einen Teil dieser Wörter haben Sie schon in der Lernphase gesehen („alte“ Wörter), ' +
         'den anderen Teil nicht („neue“ Wörter). ' +
-        '<ul><li>Wenn Sie ein Wort nicht aus dem ersten Teil des ' +
-        'Experiments wiedererkennen, das Wort also Ihrer Einschätzung nach neu ist, ' +
+        '<ul><li>Wenn Sie ein Wort nicht aus der Lernphase wiedererkennen, das Wort also Ihrer Einschätzung nach neu ist, ' +
         'antworten Sie bitte „N“. </li>' +
-        '<li>Wenn Sie ein Wort aus dem ersten Teil des Experiments wiedererkennen, ' +
+        '<li>Wenn Sie ein Wort aus der Lernphase wiedererkennen, ' +
         'entscheiden Sie bitte, ob es sich dabei um eine Typ A oder eine Typ B Erinnerung handelt ' +
         'und antworten Sie entsprechend „A“ oder „B“. </li></ul>' +
         'Wie genau sich die beiden Erinnerungen unterscheiden, ' +
@@ -220,7 +223,7 @@ let instr_test = {
         'an dessen Vorkommen in der Lernphase einhergeht, antworten Sie bitte „A“: ' +
         'Typ A Erinnerungen sind dadurch charakterisiert, dass Sie sich bewusst ' +
         'einen oder mehrere Aspekte von dem, was während der Präsentation des Wortes ' +
-        'in der Lernphase passiert ist ' +
+        'in der Lernphase passiert ist, ' +
         //'bzw. was Sie zu diesem Zeitpunkt gedacht oder erlebt haben, ' +
         'ins Gedächtnis zurückrufen können. Das können zum Beispiel sein: ' +
         '<ul><li>Aspekte in Bezug darauf, wie das Wort aussah,</li>' +
@@ -255,13 +258,13 @@ let instr_test = {
         'Ereignisses oder einer bestimmten Erfahrung bewusst zu werden. ' +
         'Wenn Sie jedoch gefragt werden, was der letzte Film war, den Sie gesehen haben, ' +
         'antworten Sie üblicherweise im „Typ A“ Sinne, erinnern sich also bewusst an ' +
-        'Aspekte dieser Erfahrung.</li>' +
+        'Aspekte dieser Erfahrung.</li><br>' +
         '<li>Ein anderes Beispiel ist das Wiedererkennen einer Person: ' +
         'Wenn Sie eine andere Person sehen und Ihnen einfällt, dass Sie diese Person ' +
         'von der Arbeit kennen und dass Sie sie dort immer in der Kantine sehen, ' +
         'handelt es sich um eine „Typ A“ Erinnerung. Erinnern Sie sich jedoch nicht ' +
         'an so ein Detail, denken aber trotzdem, diese Person wiederzuerkennen, ' +
-        'ist das eine „Typ B“ Erinnerung.</li>' +
+        'ist das eine „Typ B“ Erinnerung.</li><br>' +
         '<li>Ein letztes Beispiel: Wenn Sie in der Testphase das Wort „Hund“ sehen ' +
         'und sich erinnern, woran Sie bei der Präsentation gedacht haben ' +
         '(z.B., wie gerne Sie einen Hund hätten) oder was währenddessen passiert ist ' +
@@ -286,11 +289,30 @@ let instr_test = {
         'Ihre Antwort geben Sie mithilfe dieses Schiebereglers: </div>' +
         // my own slider, copied from the plugin:
         '<div class="slider-container" id="my-slider" tabindex="0">' +
-        '    <div class="slider-bar">' +
-        '      <div class="slider-progress" style="width: 50%;"></div>' +
+        '    <div class="slider-bar" style="width: 65%; margin: 0 auto;">' +
         '      <div class="slider-handle" style="left: 50%;"></div>' +
         '    </div>' +
-        '<div class="Instruction" style="margin-top: 7%"> Bewegen Sie den Schieberegler mit den Pfeiltasten' +
+         // could this be any uglier?
+        //'<div style="width: 65%; margin: 0 auto;">' +
+        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
+        'text-align: center; width: 22%;">' +
+        '<span style="text-align: center; font-size: 80%;">extrem <strong>un</strong>vertraut</span>' +
+        '</div>' +
+        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
+        'text-align: center; width: 22%;">' +
+        '<span style="text-align: center; font-size: 80%;">relativ <strong>un</strong>vertraut</span>' +
+        '</div>' +
+        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
+        'text-align: center; width: 22%;">' +
+        '<span style="text-align: center; font-size: 80%;">relativ vertraut</span>' +
+        '</div>' +
+        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
+        'text-align: center; width: 22%;">' +
+        '<span style="text-align: center; font-size: 80%;">extrem vertraut</span>' +
+        '</div>' +
+        //'</div>' +
+
+        '<div class="Instruction" style="margin-top: 7%"> Bewegen Sie den Schieberegler mit den Pfeiltasten ' +
         'auf die Stelle der Skala, die Ihrer Ansicht nach angibt, ' +
         'wie vertraut Ihnen das Wort ist. ' +
         //'Je weiter nach rechts Sie den Schieberegler einstellen, desto vertrauter kommt Ihnen ein Wort vor.
@@ -335,12 +357,36 @@ let instr_final_questions = {
 }
 
 
-let debriefing = {
+
+let debriefing_strength = {
     type: 'html-button-response',
-    stimulus: '<div class="Instruction"><p id="Header">Ziele dieser Studie' +
+    stimulus: '<div class="Instruction"><p id="Header">Ziele dieser Studie</p>' +
         'Zum Abschluss möchten wir Sie kurz über den Hintergrund unserer Studie informieren. ' +
-        'Wie bereits angekündigt, möchten wir</div>',
-    on_start: function() { EXP_PART = "instr"; }
+        'Wie bereits angekündigt, möchten wir das menschliche Gedächtnis untersuchen. ' +
+        'Konkret interessiert uns, ob Typ A Erinnerungen und Typ B Erinnerungen' +
+        'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie oft' +
+        'Personen ein Wort gesehen haben. Deshalb haben Sie in der Lernphase ' +
+        'manche Wörter mehrmals gesehen und andere nur einmal.</div>' +
+        '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
+        'Ihrer Teilnahme unsere Forschung unterstützt haben!</p>',
+    on_start: function() { EXP_PART = "instr"; },
+    choices: ["Weiter"]
+}
+
+let debriefing_LOP = {
+    type: 'html-button-response',
+    stimulus: '<div class="Instruction"><p id="Header">Ziele dieser Studie</p>' +
+        'Zum Abschluss möchten wir Sie kurz über den Hintergrund unserer Studie informieren. ' +
+        'Wie bereits angekündigt, möchten wir das menschliche Gedächtnis untersuchen. ' +
+        'Konkret interessiert uns, ob Typ A Erinnerungen und Typ B Erinnerungen ' +
+        'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie ' +
+        'tief die Wörter verarbeitet wurden. Deshalb sollten Sie in der Lernphase' +
+        'für einen Teil der Wörter die Anzahl der Vokale und für den ' +
+        'anderen Teil ein assoziiertes Wort angeben. </div>' +
+        '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
+        'Ihrer Teilnahme unsere Forschung unterstützt haben!</p>',
+    on_start: function() { EXP_PART = "instr"; },
+    choices: ["Weiter"]
 }
 
 let instr_end = {
