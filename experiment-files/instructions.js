@@ -44,8 +44,8 @@ let informed_consent = {
         '<em>Ansprechperson bei Fragen</em><br>' +
         'Wenn sie jetzt oder nach dem Versuch Fragen zu diesen Informationen ' +
         'oder zum Experiment haben, wenden Sie sich bitte an <em>mjakob@cs.uni-freiburg.de.</em><br><br>' +
-        'Hiermit versichere ich, dass ich die oben beschriebenen Teilnahmeinformationen verstanden habe ' +
-        'und mit den genannten Teilnahmebedingungen einverstanden bin.',
+        '<strong>Hiermit versichere ich, dass ich die oben beschriebenen Teilnahmeinformationen verstanden habe ' +
+        'und mit den genannten Teilnahmebedingungen einverstanden bin.</strong>',
     on_start: function() { EXP_PART = "instr"; },
     choices: ['Ich stimme <strong>nicht</strong> zu.', 'Ich stimme zu.'],
     on_finish: function(data){
@@ -79,13 +79,13 @@ let info_study = {
         //'Zwischen den beiden Teilen können Sie eine kurze Pause einlegen.<br><br> ' +
         'Der genaue Ablauf dieser Studie sieht so aus: ' +
         '<ul><li>Zunächst bitten wir Sie, einige <strong>demographische Angaben</strong> zu machen.</li> ' +
-        '<li>Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in der Sie sich einige ' +
+        '<li>Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in dem Sie sich einige ' +
         'Wörter merken sollen, die nacheinander auf dem Bildschirm erscheinen.</li>' +
         //'<li>Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in der nacheinander ' +
         //'auf dem Bildschirm Wörter erscheinen, die Sie sich merken sollen. ' +
         //'Bitte benutzen Sie dazu keine externen Hilfsmittel wie Stift und Papier, ' +
         //'sondern versuchen Sie, sich die Wörter ohne Unterstützung möglichst gut zu merken. </li>' +
-        '<li>Danach sollen Sie ein paar <strong>kurze Rechenaufgaben lösen.</strong> </li>' +
+        '<li>Danach sollen Sie ein paar <strong>kurze Rechenaufgaben</strong> lösen.</li>' +
         '<li>Anschließend werden Ihnen in Teil zwei, ' +
         'der <strong>Testphase</strong>, wieder nacheinander Wörter gezeigt. ' +
         //'Manche der Wörter sind aus der Lernphase, andere sind neu.
@@ -154,7 +154,7 @@ let instr_learning_strength = {
     stimulus:
         '<div class="Instruction"><p id="Header">Lernphase</p>' +
         '<p>Nun beginnt die Lernphase des Experiments, ' +
-        'in der Sie sich Wörter möglichst gut einprägen sollen. Dafür werden gleich mehrere' +
+        'in der Sie sich Wörter möglichst gut einprägen sollen. Dafür werden gleich mehrere ' +
         'Wörter nacheinander auf dem Bildschirm erscheinen. Manche Wörter erscheinen ' +
         'mehrmals, andere nur ein Mal. Bitte versuchen Sie, ' +
         'sich diese Wörter möglichst gut zu merken, da Sie sich im nächsten Teil daran erinnern sollen. </p>' +
@@ -363,7 +363,7 @@ let debriefing_strength = {
     stimulus: '<div class="Instruction"><p id="Header">Ziele dieser Studie</p>' +
         'Zum Abschluss möchten wir Sie kurz über den Hintergrund unserer Studie informieren. ' +
         'Wie bereits angekündigt, möchten wir das menschliche Gedächtnis untersuchen. ' +
-        'Konkret interessiert uns, ob Typ A Erinnerungen und Typ B Erinnerungen' +
+        'Konkret interessiert uns, ob Typ A Erinnerungen und Typ B Erinnerungen ' +
         'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie oft' +
         'Personen ein Wort gesehen haben. Deshalb haben Sie in der Lernphase ' +
         'manche Wörter mehrmals gesehen und andere nur einmal.</div>' +
@@ -392,7 +392,7 @@ let debriefing_LOP = {
 let instr_end = {
     type: 'html-keyboard-response',
     stimulus:
-        '<div class="Instruction"><p id="Header">Das Experiment ist nun beendet. ' +
+        '<div><p style="font-weight: bold; font-size: 24px;">Das Experiment ist nun beendet. ' +
         'Vielen Dank für Ihre Teilnahme!</p>' +
         'Sie können dieses Fenster nun schließen / Sie werden nun zu Sona weitergeleitet.<br>' +
         'Testmode: Drücken Sie eine beliebige Tasten, um die Daten herunterzuladen.</div>',
