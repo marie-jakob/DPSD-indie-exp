@@ -152,7 +152,8 @@ function write_data(data) {
     data.trial_num = TRIAL_IDX;
     data.exp_part = EXP_PART;
     data.correct = "NA";
-    let attributes = Object.keys(TIMELINE_VARS[0]);
+    let attributes = Object.keys(TIMELINE_VARS.filter(x => x["learned"])[0]);
+    console.log(attributes);
     for (attribute of attributes) {
         data[attribute] = jsPsych.timelineVariable(attribute);
     }
