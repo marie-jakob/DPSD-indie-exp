@@ -350,12 +350,13 @@ let instr_test = {
 
 
 let instr_final_questions = {
-    type: 'html-keyboard-response',
+    type: 'html-button-response',
     stimulus:
         '<div><p style="font-weight: bold; font-size: 24px;">' +
         'Die beiden Hauptteile des Experiments sind nun geschafft!</p>' +
         '<p style="margin-bottom: 5%">Es folgen nun noch einige Fragen zu Ihrer Teilnahme.</p></div>',
-    on_start: function() { EXP_PART = "instr"; }
+    on_start: function() { EXP_PART = "instr"; },
+    choices: ["Weiter"]
 }
 
 
