@@ -142,7 +142,7 @@ let instr_learning_LOP = {
         'oder einen Text-Editor auf dem Computer, sondern versuchen Sie, sich die Wörter ' +
         'ohne Hilfsmittel möglichst gut zu merken!</em> ' +
         'Da wir in dieser Studie das menschliche Gedächtnis untersuchen, ist dies essentiell. ' +
-        'Danke für Ihre Compliance! <br><br>' +
+        'Danke für Ihre Kooperationsbereitschaft! <br><br>' +
         'Klicken Sie auf „Weiter“, wenn Sie bereit sind, mit der Lernphase zu beginnen.</div>',
     choices: ["Weiter"],
     on_start: function() { EXP_PART = "instr"; }
@@ -205,7 +205,7 @@ let instr_test = {
         '<p>Im nächsten Teil werden Ihnen wieder nacheinander einige Wörter gezeigt. ' +
         'Einen Teil dieser Wörter haben Sie schon in der Lernphase gesehen („alte“ Wörter), ' +
         'den anderen Teil nicht („neue“ Wörter). ' +
-        '<ul><li>Wenn Sie ein Wort nicht aus der Lernphase wiedererkennen, das Wort also Ihrer Einschätzung nach neu ist, ' +
+        '<ul><li>Wenn Sie ein Wort aus der Lernphase <strong>nicht</strong> wiedererkennen, das Wort also Ihrer Einschätzung nach neu ist, ' +
         'antworten Sie bitte „N“. </li>' +
         '<li>Wenn Sie ein Wort aus der Lernphase wiedererkennen, ' +
         'entscheiden Sie bitte, ob es sich dabei um eine Typ A oder eine Typ B Erinnerung handelt ' +
@@ -253,17 +253,17 @@ let instr_test = {
         'Um die Unterschiede zwischen Typ A und Typ B Erinnerungen ' +
         // '<p>Um die Unterschiede zwischen diesen beiden Antworten bzw. Erinnerungen (also „A“ und „B“) ' +
         'zu verdeutlichen, sind hier ein paar Beispiele: ' +
-        '<ul><li>Wenn jemand Sie nach Ihrem Namen fragt, ' +
-        'antworten Sie üblicherweise im „Typ B“ Sinne, ohne sich irgendeines bestimmten ' +
-        'Ereignisses oder einer bestimmten Erfahrung bewusst zu werden. ' +
-        'Wenn Sie jedoch gefragt werden, was der letzte Film war, den Sie gesehen haben, ' +
-        'antworten Sie üblicherweise im „Typ A“ Sinne, erinnern sich also bewusst an ' +
-        'Aspekte dieser Erfahrung.</li><br>' +
+        //'<ul><li>Wenn jemand Sie nach Ihrem Namen fragt, ' +
+        //'antworten Sie üblicherweise im „Typ B“ Sinne, ohne sich irgendeines bestimmten ' +
+        //'Ereignisses oder einer bestimmten Erfahrung bewusst zu werden. ' +
+        //'Wenn Sie jedoch gefragt werden, was der letzte Film war, den Sie gesehen haben, ' +
+        //'antworten Sie üblicherweise im „Typ A“ Sinne, erinnern sich also bewusst an ' +
+        //'Aspekte dieser Erfahrung.</li><br>' +
         '<li>Ein anderes Beispiel ist das Wiedererkennen einer Person: ' +
         'Wenn Sie eine andere Person sehen und Ihnen einfällt, dass Sie diese Person ' +
         'von der Arbeit kennen und dass Sie sie dort immer in der Kantine sehen, ' +
         'handelt es sich um eine „Typ A“ Erinnerung. Erinnern Sie sich jedoch nicht ' +
-        'an so ein Detail, denken aber trotzdem, diese Person wiederzuerkennen, ' +
+        'an so ein Detail, aber trotzdem der Meinung sind, diese Person schon mal gesehen zu haben, ' +
         'ist das eine „Typ B“ Erinnerung.</li><br>' +
         '<li>Ein letztes Beispiel: Wenn Sie in der Testphase das Wort „Hund“ sehen ' +
         'und sich erinnern, woran Sie bei der Präsentation gedacht haben ' +
@@ -366,7 +366,7 @@ let debriefing_strength = {
         'Zum Abschluss möchten wir Sie kurz über den Hintergrund unserer Studie informieren. ' +
         'Wie bereits angekündigt, möchten wir das menschliche Gedächtnis untersuchen. ' +
         'Konkret interessiert uns, ob Typ A Erinnerungen und Typ B Erinnerungen ' +
-        'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie oft' +
+        'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie oft ' +
         'Personen ein Wort gesehen haben. Deshalb haben Sie in der Lernphase ' +
         'manche Wörter mehrmals gesehen und andere nur einmal.</div>' +
         '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
