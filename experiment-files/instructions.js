@@ -1,5 +1,5 @@
 /*
-Dummy instructions.
+Contains the instructions
  */
 
 let welcome = {
@@ -43,7 +43,7 @@ let informed_consent = {
         'Deutschen Gesellschaft für Psychologie (DGPs) zur Qualitätssicherung in der Forschung.<br><br>' +
         '<em>Ansprechperson bei Fragen</em><br>' +
         'Wenn sie jetzt oder nach dem Versuch Fragen zu diesen Informationen ' +
-        'oder zum Experiment haben, wenden Sie sich bitte an <em>mjakob@cs.uni-freiburg.de.</em><br><br>' +
+        'oder zum Experiment haben, wenden Sie sich bitte an Marie Jakob (<em>mjakob@cs.uni-freiburg.de).</em><br><br>' +
         '<strong>Hiermit versichere ich, dass ich die oben beschriebenen Teilnahmeinformationen verstanden habe ' +
         'und mit den genannten Teilnahmebedingungen einverstanden bin.</strong>',
     on_start: function() { EXP_PART = "instr"; },
@@ -135,8 +135,11 @@ let instr_learning_LOP = {
         '<li><span class="deep-prompt"><strong>Oder: </strong>Geben Sie das erste Wort an, das Ihnen in ' +
         'Zusammenhang mit dem angezeigten Wort in den Sinn kommt.</span></li></ul>' +
         //'Bei der zweiten Aufgabe sollen Sie ein Wort in das Textfeld schreiben, das Sie mit dem Wort auf dem Bildschirm assoziieren. ' +
-        'Schreiben Sie Ihre Antwort bitte in das Textfeld unter dem Wort. ' +
-        'Welche Aufgabe Sie jeweils ausführen sollen, wird in jedem Durchgang zusammen mit farblicher Markierung wie oben angezeigt.<br>' +
+        'Schreiben Sie Ihre Antwort bitte in das Textfeld, das nach dem Wort auf dem Bildschirm erscheint. ' +
+        'Falls Sie einmal ein Wort übersehen etc., können Sie das Textfeld auch leer lassen; passiert dies jedoch zu oft, ' +
+        'endet das Experiment vorzeitig. ' +
+        'Welche Aufgabe Sie jeweils ausführen sollen, wird zu Beginn jedes Durchgangs zusammen ' +
+        'mit farblicher Markierung wie oben angezeigt.<br>' +
         '<p>Insgesamt wird es <strong>vier Blöcke</strong> geben, zwischen denen Sie jeweils eine kurze Pause machen können. </p>' +
         '<em>Bitte benutzen Sie keine Hilfsmittel, wie Papier und Stift, Handy, ' +
         'oder einen Text-Editor auf dem Computer, sondern versuchen Sie, sich die Wörter ' +
@@ -165,7 +168,7 @@ let instr_learning_strength = {
         'oder einen Text-Editor auf dem Computer, sondern versuchen Sie, sich die Wörter ' +
         'ohne Hilfsmittel möglichst gut zu merken!</em> ' +
         'Da wir in dieser Studie das menschliche Gedächtnis untersuchen, ist dies essentiell. ' +
-        'Danke für Ihre Compliance! <br><br>' +
+        'Danke für Ihre Kooperationsbereitschaft! <br><br>' +
         'Klicken Sie auf „Weiter“, wenn Sie bereit sind, mit der Lernphase zu beginnen.</div>',
     choices: ["Weiter"],
     on_start: function() { EXP_PART = "instr"; }
