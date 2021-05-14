@@ -41,18 +41,25 @@ let word_learning_LOP = {
             return "<p class='shallow-prompt'>" + "Geben Sie Anzahl Vokale ein." + "<br></p>";
 
         }
-
     },
     questions: [
-        {prompt: function() {
+        {
+            prompt: function() {
             // same here -> just add the whole html string and not just the text
             let word = jsPsych.timelineVariable("word");
             let LOP_tmp = jsPsych.timelineVariable("LOP");
             if (LOP_tmp === "deep") return '<p class="deep-word">' + word + '</p>';
             else return '<p class="shallow-word">' + word + '</p>';
             },
-            rows: 1, columns: 20,
-        required: true},
+            rows: 1,
+            columns: 20,
+            type: function() {
+                let type = jsPsych.timelineVariable("LOP") == "deep" ? "text" : "numeric";
+                return type
+            },
+            pattern: "[^0-9]+",
+            required: false
+        },
     ],
     button_label: "Weiter",
     trial_duration: 5000,

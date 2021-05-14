@@ -58,6 +58,18 @@ jsPsych.plugins['survey-text'] = (function() {
             pretty_name: 'Question Name',
             default: '',
             description: 'Controls the name of data values associated with this question'
+          },
+          type: {
+            type: jsPsych.plugins.parameterType.STRING,
+            pretty_name: 'Input Type',
+            default: 'text',
+            description: 'Controls the type of input (numeric or text) that is allowed'
+          },
+          pattern: {
+            type: jsPsych.plugins.parameterType.STRING,
+            pretty_name: 'Input Pattern',
+            default: '.*',
+            description: 'Controls the allowed input type with a given Regex'
           }
         }
       },
@@ -131,8 +143,12 @@ jsPsych.plugins['survey-text'] = (function() {
       html += question.prompt;
       var autofocus = i == 0 ? "autofocus" : "";
       var req = question.required ? "required" : "";
-      if(question.rows == 1){
-        html += '<input type="text" id="input-'+question_index+'"  name="#jspsych-survey-text-response-' + question_index + '" data-name="'+question.name+'" size="'+question.columns+'" '+autofocus+' '+req+' placeholder="'+question.placeholder+'"></input>';
+      let html_input = question.type == "text" ? '"text"' : '"number" min="1" max="8"';
+      if(question.rows == 1) {
+        html += '<input type=' + html_input + 'pattern=' + question.pattern +' id="input-' +
+            question_index+'"  name="#jspsych-survey-text-response-' + question_index +
+            '" data-name="'+question.name+'" size="'+question.columns+'" '+autofocus+' '+ req +
+            ' placeholder="'+question.placeholder+'" error="E-mail address seems to be invalid"></input>';
       } else {
         html += '<textarea id="input-'+question_index+'" name="#jspsych-survey-text-response-' + question_index + '" data-name="'+question.name+'" cols="' + question.columns + '" rows="' + question.rows + '" '+autofocus+' '+req+' placeholder="'+question.placeholder+'"></textarea>';
       }
