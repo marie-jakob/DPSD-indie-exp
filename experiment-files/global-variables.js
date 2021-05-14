@@ -17,8 +17,9 @@ const KEYS = {
 
 // stimulus durations in ms
 const DURATIONS = {
-    LEARN: 2500,
-    EMPTY: 500
+    LEARN: 2000,
+    EMPTY: 500,
+    PROMPT: 1000,
 }
 
 // initialize variables to record browser interactions

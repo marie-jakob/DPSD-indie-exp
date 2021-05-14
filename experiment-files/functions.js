@@ -210,7 +210,8 @@ function gen_learning_block(block_num, LOP) {
             return check_skip(LOP = LOP, learn = true);
         }
     }
-    timeline_tmp["timeline"] = LOP ? [word_learning_LOP] : [empty_slide, word_learning_strength];
+    if (LOP) timeline_tmp["timeline"] = [response_prompt, word_learning_LOP, resp_learning_LOP];
+    else timeline_tmp["timeline"] = [empty_slide, word_learning_strength];
     return {
         timeline: [timeline_tmp],
         timeline_variables: TIMELINE_VARS.filter(x => x["learned"]).slice(start_idx_tmp, end_idx_tmp),

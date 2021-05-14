@@ -28,8 +28,38 @@ let empty_slide = {
     trial_duration: DURATIONS.EMPTY,
 }
 
+/* #####################################################################
+                LOP
+    ##################################################################### */
+
+let response_prompt = {
+    type: 'html-keyboard-response',
+    stimulus: function() {
+        let LOP_tmp = jsPsych.timelineVariable("LOP");
+        if (LOP_tmp == "deep") {
+            return "<p class='deep-prompt'>" + "Geben Sie ein assoziiertes Wort ein." + "<br></p>";
+        } else {
+            return "<p class='shallow-prompt'>" + "Geben Sie Anzahl Vokale ein." + "<br></p>";
+        }
+    },
+    choices: jsPsych.NO_KEYS,
+    trial_duration: DURATIONS.PROMPT
+}
 
 let word_learning_LOP = {
+    type: 'html-keyboard-response',
+    stimulus: function() {
+        // same here -> just add the whole html string and not just the text
+        let word = jsPsych.timelineVariable("word");
+        let LOP_tmp = jsPsych.timelineVariable("LOP");
+        if (LOP_tmp === "deep") return '<p class="deep-word">' + word + '</p>';
+        else return '<p class="shallow-word">' + word + '</p>';
+    },
+    choices: jsPsych.NO_KEYS,
+    trial_duration: DURATIONS.LEARN
+}
+
+let resp_learning_LOP = {
     type: 'survey-text',
     // !!! the standard preamble function is overwritten in the customized plugin
     // -> you have to specify the exact html string that is displayed as preamble
@@ -38,19 +68,12 @@ let word_learning_LOP = {
         if (LOP_tmp == "deep") {
             return "<p class='deep-prompt'>" + "Geben Sie ein assoziiertes Wort ein." + "<br></p>";
         } else {
-            return "<p class='shallow-prompt'>" + "Geben Sie Anzahl Vokale ein." + "<br></p>";
-
+            return "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
         }
     },
     questions: [
         {
-            prompt: function() {
-            // same here -> just add the whole html string and not just the text
-            let word = jsPsych.timelineVariable("word");
-            let LOP_tmp = jsPsych.timelineVariable("LOP");
-            if (LOP_tmp === "deep") return '<p class="deep-word">' + word + '</p>';
-            else return '<p class="shallow-word">' + word + '</p>';
-            },
+            prompt: "",
             rows: 1,
             columns: 20,
             type: "text",
@@ -69,7 +92,6 @@ let word_learning_LOP = {
         },
     ],
     button_label: "Weiter",
-    trial_duration: 5000,
     required: true,
     on_finish: function(data) { TRIAL_IDX++ }
 };
