@@ -183,9 +183,15 @@ jsPsych.plugins['survey-text'] = (function() {
       console.log(id_tmp);
       let element_tmp = document.getElementById(id_tmp);
       element_tmp.oninvalid = function(event) {
+        console.log("invalid");
         event.target.setCustomValidity(question.invalid_message);
       }
+      element_tmp.oninput = function(event) {
+        console.log("Hi");
+        event.target.setCustomValidity("");
+      }
     }
+
 
     // backup in case autofocus doesn't work
     display_element.querySelector('#input-'+question_order[0]).focus();
