@@ -53,11 +53,18 @@ let word_learning_LOP = {
             },
             rows: 1,
             columns: 20,
-            type: function() {
-                let type = jsPsych.timelineVariable("LOP") == "deep" ? "text" : "numeric";
-                return type
+            type: "text",
+            pattern: function() {
+                let type = jsPsych.timelineVariable("LOP") == "deep" ? "[^0-9]+" : "^[0-9q]+$";
+                return type;
             },
-            pattern: "[^0-9]+",
+            invalid_message: function() {
+                if (jsPsych.timelineVariable("LOP") == "deep") {
+                    return "Bitte geben Sie nur Buchstaben ein.";
+                } else {
+                    return "Bitte geben Sie nur Zahlen ein.";
+                }
+            },
             required: false
         },
     ],
