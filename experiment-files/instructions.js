@@ -288,7 +288,7 @@ let instr_test = {
         'Dabei sollen Sie für dasselbe Wort beurteilen, wie vertraut es Ihnen vorkommt. ' +
         'Ihre Antwort geben Sie mithilfe dieses Schiebereglers: </div>' +
         // my own slider, copied from the plugin:
-        '<div class="slider-container" id="my-slider" tabindex="0">' +
+        '<div class="slider-container" id="my-slider" tabindex="0" onclick: >' +
         '    <div class="slider-bar" style="width: 65%; margin: 0 auto;">' +
         '      <div class="slider-handle" style="left: 50%;"></div>' +
         '    </div>' +
@@ -339,12 +339,6 @@ let instr_test = {
     on_start: function () {
         EXP_PART = "instr";
         TRIAL_IDX = 0;
-        // TODO
-        // listen to keyboard and events for the slider
-        //document.querySelector('.slider-container').addEventListener('keydown', function (event) {
-        //    console.log("querySelector works");
-            //handle_keydown_slider(event);
-        //} );
     }
 }
 
@@ -418,7 +412,6 @@ function gen_instr_break(learn, block_num, LOP) {
         on_start: function() { EXP_PART = "instr"; }
     }
 }
-
 
 
 

@@ -163,8 +163,6 @@ jsPsych.plugins['html-slider-response'] = (function() {
         console.log(value);
         // Set the new position, value and progress
         slider_handle.style.left = value.toString() + '%';
-        //slider_handle.innerHTML = value;
-        slider_progress.style.width = value.toString() + '%';
 
         display_element.querySelector('#jspsych-html-slider-response-next').disabled = false;
       }

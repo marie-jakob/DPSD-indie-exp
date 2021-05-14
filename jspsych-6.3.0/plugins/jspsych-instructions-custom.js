@@ -140,9 +140,44 @@ jsPsych.plugins.instructions = (function() {
         } 
         display_element.innerHTML = html;
       }
-      
-    }
 
+
+      // I am deeply ashamed of this part..
+      function handle_keydown_slider(event) {
+        var key = event.keyCode ? event.keyCode : event.which;
+        // Left arrow
+        if (key == 37) {
+          // Get the slider progress and the handle
+          var slider_progress = document.querySelector('.slider-progress');
+          var slider_handle = document.querySelector('.slider-handle');
+          // Get the slider position and decrease it by 1
+          var value = Math.max(parseInt(slider_handle.style.left) - 1, 0);
+          console.log(value);
+          // Set the new position, value and progress
+          slider_handle.style.left = value.toString() + '%';
+        }
+        // Right arrow
+        else if (key == 39) {
+          // Get the slider progress and the handle
+          var slider_handle = document.querySelector('.slider-handle');
+          // Get the slider position and increase it by 1
+          var value = Math.min(parseInt(slider_handle.style.left) + 1, 100);
+          console.log(value);
+          // Set the new position, value and progress
+          slider_handle.style.left = value.toString() + '%';
+        }
+      };
+      let slider = document.querySelector('.slider-container');
+      console.log("slider: ", slider);
+      if (slider != null) {
+        slider.addEventListener('keydown', function (event) {
+          console.log("querySelector works");
+          handle_keydown_slider(event);
+        });
+      }
+      // Done
+
+    }
     function next() {
 
       add_current_page_to_view_history()
