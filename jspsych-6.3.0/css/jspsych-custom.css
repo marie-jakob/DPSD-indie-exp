@@ -60,7 +60,25 @@
   font-size: 18px;
 }
 
-.jspsych-display-element textare[type="text"] {
+.jspsych-display-element input[type="number"] {
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
+  font-size: 18px;
+}
+
+.jspsych-display-element select {
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
+  font-size: 18px;
+}
+
+.jspsych-display-element option {
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
+  font-size: 18px;
+}
+
+optgroup { font-size: 18px; }
+
+
+.jspsych-display-element textarea[type="text"] {
   font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
   /* Edit: change input font size for the learning phase */
   font-size: 18px;
@@ -68,6 +86,7 @@
 
 /* borrowing Bootstrap style for btn elements, but combining styles a bit */
 .jspsych-btn {
+  tab-index: 0;
   display: inline-block;
   /* Edit: 6px 12px -> 8px 16px */
   padding: 8px 16px;
@@ -321,6 +340,7 @@
   vertical-align: middle;
   margin-bottom: 10px;
 }
+
 
 .slider-container.active .slider-handle,
 .slider-container:focus .slider-handle {
