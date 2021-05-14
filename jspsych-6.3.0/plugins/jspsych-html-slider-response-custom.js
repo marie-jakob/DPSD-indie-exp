@@ -149,16 +149,6 @@ jsPsych.plugins['html-slider-response'] = (function() {
       response: null
     };
 
-    let active = false;
-    if (trial.require_movement) {
-      // Edit
-      display_element.querySelector('.slider-container').addEventListener('click', function () {
-        console.log("Hello");
-        display_element.querySelector('#jspsych-html-slider-response-next').disabled = false;
-        active = true;
-      });
-    };
-
     // function that handles keydown events for the slider and adapts the
     // handle according to the key pressed
     function handle_keydown_slider(event) {
@@ -175,6 +165,8 @@ jsPsych.plugins['html-slider-response'] = (function() {
         slider_handle.style.left = value.toString() + '%';
         //slider_handle.innerHTML = value;
         slider_progress.style.width = value.toString() + '%';
+
+        display_element.querySelector('#jspsych-html-slider-response-next').disabled = false;
       }
       // Right arrow
       else if (key == 39) {
@@ -185,9 +177,14 @@ jsPsych.plugins['html-slider-response'] = (function() {
         console.log(value);
         // Set the new position, value and progress
         slider_handle.style.left = value.toString() + '%';
+
+        display_element.querySelector('#jspsych-html-slider-response-next').disabled = false;
       }
     };
-    // do the key stuff but only when the slider is active
+
+    // autofocus the slider
+    display_element.querySelector('.slider-container').focus();
+    // handle arrow key events and move the slider accordingly
     display_element.querySelector('.slider-container').addEventListener('keydown', function (event) {
           handle_keydown_slider(event);
         }
