@@ -32,7 +32,7 @@ let question_demo = {
 // put everything together
 let demographics = {
     timeline: [
-        question_age,
+        question_demo,
         //question_demographic_choice,
         //conditional_education
     ],
