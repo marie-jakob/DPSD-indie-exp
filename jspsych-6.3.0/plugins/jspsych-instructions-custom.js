@@ -170,6 +170,7 @@ jsPsych.plugins.instructions = (function() {
       let slider = document.querySelector('.slider-container');
       console.log("slider: ", slider);
       if (slider != null) {
+        slider.focus();
         slider.addEventListener('keydown', function (event) {
           console.log("querySelector works");
           handle_keydown_slider(event);
