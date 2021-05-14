@@ -59,17 +59,26 @@ jsPsych.plugins['survey-text'] = (function() {
             default: '',
             description: 'Controls the name of data values associated with this question'
           },
+          // Edit Marie
           type: {
             type: jsPsych.plugins.parameterType.STRING,
             pretty_name: 'Input Type',
             default: 'text',
             description: 'Controls the type of input (numeric or text) that is allowed'
           },
+          // Edit Marie
           pattern: {
             type: jsPsych.plugins.parameterType.STRING,
             pretty_name: 'Input Pattern',
             default: '.*',
             description: 'Controls the allowed input type with a given Regex'
+          },
+          // Edit Marie
+          invalid_message: {
+            type: jsPsych.plugins.parameterType.STRING,
+            pretty_name: 'Invalid Message',
+            default: 'Bitte geben Sie eine passende Antwort ein.',
+            description: 'Displays a customized message when the input does not match the pattern'
           }
         }
       },
@@ -90,7 +99,7 @@ jsPsych.plugins['survey-text'] = (function() {
         pretty_name: 'Allow autocomplete',
         default: false,
         description: "Setting this to true will enable browser auto-complete or auto-fill for the form."
-      }
+      },
     }
   }
 
@@ -144,11 +153,12 @@ jsPsych.plugins['survey-text'] = (function() {
       var autofocus = i == 0 ? "autofocus" : "";
       var req = question.required ? "required" : "";
       let html_input = question.type == "text" ? '"text"' : '"number" min="1" max="8"';
-      if(question.rows == 1) {
-        html += '<input type=' + html_input + 'pattern=' + question.pattern +' id="input-' +
+      if (question.rows == 1) {
+        html += '<input type=' + html_input + 'pattern=' + question.pattern + ' title="HELLOOOO" id="input-' +
             question_index+'"  name="#jspsych-survey-text-response-' + question_index +
             '" data-name="'+question.name+'" size="'+question.columns+'" '+autofocus+' '+ req +
-            ' placeholder="'+question.placeholder+'" error="E-mail address seems to be invalid"></input>';
+            ' placeholder="'+question.placeholder+'"></input>';
+        console.log("input-" + question_index);
       } else {
         html += '<textarea id="input-'+question_index+'" name="#jspsych-survey-text-response-' + question_index + '" data-name="'+question.name+'" cols="' + question.columns + '" rows="' + question.rows + '" '+autofocus+' '+req+' placeholder="'+question.placeholder+'"></textarea>';
       }
@@ -160,6 +170,22 @@ jsPsych.plugins['survey-text'] = (function() {
 
     html += '</form>'
     display_element.innerHTML = html;
+
+    // Edit Marie
+    // Add the customized warning message if input doesn't match pattern
+    // (!! -> has to be done _after_ the html string has been added to
+    // display_element!
+    for (let i = 0; i < trial.questions.length; i++) {
+      let question = trial.questions[question_order[i]];
+      console.log(question.invalid_message);
+      let question_index = question_order[i];
+      let id_tmp = 'input-' + question_index;
+      console.log(id_tmp);
+      let element_tmp = document.getElementById(id_tmp);
+      element_tmp.oninvalid = function(event) {
+        event.target.setCustomValidity(question.invalid_message);
+      }
+    }
 
     // backup in case autofocus doesn't work
     display_element.querySelector('#input-'+question_order[0]).focus();
