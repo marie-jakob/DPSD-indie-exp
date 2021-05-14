@@ -267,8 +267,8 @@ let instr_test = {
         'ist das eine „Typ B“ Erinnerung.</li><br>' +
         '<li>Ein letztes Beispiel: Wenn Sie in der Testphase das Wort „Hund“ sehen ' +
         'und sich erinnern, woran Sie bei der Präsentation gedacht haben ' +
-        '(z.B., wie gerne Sie einen Hund hätten) oder was währenddessen passiert ist ' +
-        '(z.B., dass kurz davor der Nachbarshund gebellt hat, oder währenddessen Ihre Katze ins Zimmer kam), ' +
+        '(z.B., wie gerne Sie einen Hund oder ein anderes Haustier hätten) oder was währenddessen passiert ist ' +
+        '(z.B., dass kurz davor der Nachbarshund gebellt hat), ' +
         'ist das eine „Typ A“ Erinnerung. Erinnern Sie sich nicht an solche Dinge, ' +
         'haben aber das Gefühl, dass das Wort in der Lernphase präsentiert wurde, ' +
         'ist das eine „Typ B“ Erinnerung.</li></ul></div>',
@@ -403,14 +403,15 @@ let instr_end = {
 
 
 // Break slides
-function gen_instr_break(learn, block_num) {
+function gen_instr_break(learn, block_num, LOP) {
     let phase = learn ? "Lernphase" : "Testphase";
+    let n_block_total = LOP ? 4 : 8;
     return {
         type: 'html-button-response',
         stimulus:
             '<p id="Header">Pause</p>' +
             '<p style="margin-top: 20% max-width: 85%;">Block ' + block_num +
-            '/4 der ' + phase + ' ist geschafft! ' +
+            '/' + n_block_total + ' der ' + phase + ' ist geschafft! ' +
             'Sie können an dieser Stelle eine kurze Pause machen.</p>' +
             '<p>Klicken Sie auf "Weiter", um den nächsten Block zu starten.</p>',
         choices: ["Weiter"],
@@ -418,12 +419,6 @@ function gen_instr_break(learn, block_num) {
     }
 }
 
-let instr_breaks_learn = [];
-let instr_breaks_test = [];
-for (let block = 1; block <= 3; block++) {
-    instr_breaks_learn.push(gen_instr_break(learn = true, block));
-    instr_breaks_test.push(gen_instr_break(learn = false, block));
-}
 
 
 

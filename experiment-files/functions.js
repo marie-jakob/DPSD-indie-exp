@@ -197,9 +197,9 @@ function check_skip(LOP, learn) {
  */
 function gen_learning_block(block_num, LOP) {
     // slice timeline variables according to the block
-    let multi_tmp = LOP ? 1 : 2;
-    let start_idx_tmp = (N_STIM_BLOCK_LEARN * block_num - N_STIM_BLOCK_LEARN) * multi_tmp;
-    let end_idx_tmp = N_STIM_BLOCK_LEARN * block_num * multi_tmp;
+    // let multi_tmp = LOP ? 1 : 2;
+    let start_idx_tmp = (N_STIM_BLOCK_LEARN * block_num - N_STIM_BLOCK_LEARN);
+    let end_idx_tmp = N_STIM_BLOCK_LEARN * block_num;
     console.log(start_idx_tmp);
     console.log(end_idx_tmp);
     // determine which trial to display

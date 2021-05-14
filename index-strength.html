@@ -24,6 +24,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-text-custom.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-button-response.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-survey-html-form.js"></script>
     <!-- import JATOS -->
     <script src="/assets/javascripts/jatos.js"></script>
     <!-- import custom files -->
@@ -64,9 +65,16 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     // generate learn and test blocks for the strength manipulation
     let blocks_learn = [];
     let blocks_test = [];
-    for (let block = 1; block <= 4; block++) {
+    for (let block = 1; block <= 8; block++) {
         blocks_learn.push(gen_learning_block(block, LOP = false));
-        blocks_test.push(gen_test_block(block));
+        if (block < 5) blocks_test.push(gen_test_block(block));
+    }
+    // generate the break slides (also depending on the manipulation)
+    let instr_breaks_learn = [];
+    let instr_breaks_test = [];
+    for (let block = 1; block <= 7; block++) {
+        instr_breaks_learn.push(gen_instr_break(learn = true, block, LOP = false));
+        instr_breaks_test.push(gen_instr_break(learn = false, block, LOP = false));
     }
 
     // add everything to the timeline
