@@ -26,6 +26,11 @@ const DURATIONS = {
 let PAUSE = false; // is the experiment paused?
 let N_BLUR = 0;
 
+// codes the number of empty inputs in the LOP condition
+// --> experiment ends on > MAX_EMPTY empty inputs
+let N_EMPTY = 0;
+let MAX_EMPTY = 3;
+
 // number of stimuli in the different phases
 const N_STIMULI_LEARN = 100;
 const N_STIMULI_TEST = 200;  // usually 2 * N_STIMULI_LEARN

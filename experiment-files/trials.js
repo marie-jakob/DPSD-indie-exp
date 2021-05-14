@@ -50,10 +50,17 @@ let word_learning_LOP = {
     type: 'html-keyboard-response',
     stimulus: function() {
         // same here -> just add the whole html string and not just the text
-        let word = jsPsych.timelineVariable("word");
         let LOP_tmp = jsPsych.timelineVariable("LOP");
-        if (LOP_tmp === "deep") return '<p class="deep-word">' + word + '</p>';
-        else return '<p class="shallow-word">' + word + '</p>';
+        let word_html; let prompt;
+        if (LOP_tmp == "deep")  word_html = '<p class="deep-word">' + jsPsych.timelineVariable("word") + '</p>';
+        else word_html = '<p class="shallow-word">' + jsPsych.timelineVariable("word"); + '</p>';
+
+        if (LOP_tmp == "deep") {
+            prompt = "<p class='deep-prompt'>" + "Geben Sie ein assoziiertes Wort ein." + "<br></p>";
+        } else {
+            prompt = "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
+        }
+        return prompt + word_html;
     },
     choices: jsPsych.NO_KEYS,
     trial_duration: DURATIONS.LEARN
@@ -93,7 +100,18 @@ let resp_learning_LOP = {
     ],
     button_label: "Weiter",
     required: true,
-    on_finish: function(data) { TRIAL_IDX++ }
+    on_finish: function(data) {
+        // data only contains the data of the last trial
+        let resp = data["response"]["Q0"];
+        if (resp == "") N_EMPTY++;
+        console.log(N_EMPTY);
+        if (N_EMPTY > MAX_EMPTY) {
+            let end_message = "Leider haben Sie mehr als " + MAX_EMPTY + " leere Eingaben produziert. <br>" +
+                "Wie angekündigt, endet daher das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen."
+            jsPsych.endExperiment(end_message);
+        }
+        TRIAL_IDX++;
+    }
 };
 
 
