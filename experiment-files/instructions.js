@@ -424,7 +424,7 @@ let instr_end = {
         '<div><p style="font-weight: bold; font-size: 24px;">Das Experiment ist nun beendet. ' +
         'Vielen Dank für Ihre Teilnahme!</p>' +
         'Sie können dieses Fenster nun schließen / Sie werden nun zu Sona weitergeleitet.<br>' +
-        'Testmode: Drücken Sie eine beliebige Tasten, um die Daten herunterzuladen.</div>',
+        'Testmode: Drücken Sie eine beliebige Taste, um zu JATOS zurückzukehren.</div>',
     on_start: function() {
         PAUSE = true;
         EXP_PART = "instruction";
