@@ -25,17 +25,17 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-button-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-html-form.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-call-function.js"></script>
     <!-- import JATOS -->
-    <script src="/assets/javascripts/jatos.js"></script>
+    <script src="jatos.js"></script>
     <!-- import custom files -->
+    <script src="experiment-files/global-variables.js"></script>
     <script src="experiment-files/functions.js"></script>
     <script src="experiment-files/stimuli.js"></script>
-    <script src="experiment-files/global-variables.js"></script>
     <script src="experiment-files/trials.js"></script>
     <script src="experiment-files/instructions.js"></script>
     <script src="experiment-files/demographics.js"></script>
     <script src="experiment-files/post-exp-questions.js"></script>
-    <script src="experiment-files/jatos-stuff.js"></script>
 </head>
 <body></body>
 <script>
@@ -47,8 +47,22 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     // !!! set to false for data collection !!!
     DEV_MODE = true;
 
-    // change to "true" to test the study in JATOS
-    let JATOS = false;
+    // with a big thank you to Johanna Götz:
+    // enable tab navigation while recording browser interactions correctly
+    // -> prevent tab skipping to the url line (jump back to the first element)
+    window.onkeydown = function(event) {
+        var key = event.keyCode ? event.keyCode : event.which;
+        // When the tab key is pressed...
+        if (key == 9) {
+            focusableElements = getKeyboardFocusableElements();
+            // Check if the currently active element is the last one on this site
+            // If yes, focus the first one again and prevent further action
+            if (document.activeElement == focusableElements[focusableElements.length - 1]) {
+                focusableElements[0].focus();
+                return false;
+            }
+        }
+    };
 
     const ID = jsPsych.randomization.randomID(15);
     console.log("ID: ", ID);
@@ -56,6 +70,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         subject: ID,
         condition: "LOP"
     });
+
+    /* #####################################################################
+                Create all the important stuff
+    ##################################################################### */
 
     // contains timeline variables for the learning and the test phases
     // -> filter for the learning phase: "learned"
@@ -76,88 +94,79 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         instr_breaks_test.push(gen_instr_break(learn = false, block, LOP = true));
     }
 
-    /* #####################################################################
-            Populate Timeline
-    ##################################################################### */
+    // Init JATOS
+    jatos.onLoad(function () {
 
-    // add everything to the timeline
-    let timeline = [];
-    timeline.push(welcome);
-    timeline.push(informed_consent);
-    timeline.push(info_study);
-    timeline.push(demographics);
-    timeline.push(instr_learning_LOP);
-    for (let i = 0; i < 3; i++) {
-        timeline.push(blocks_learn[i]);
+        // add trial to store data incrementally
+        let data_to_JATOS = {
+            type: 'call-function',
+            func: function() {
+                console.log("Sending data to JATOS");
+                data_tmp = jsPsych.data.get().csv();
+                jatos.submitResultData(data_tmp);
+            }
+        };
+
+        /* #####################################################################
+                Populate Timeline
+        ##################################################################### */
+        let timeline = [];
+        timeline.push(welcome);
+        timeline.push(informed_consent);
+        timeline.push(info_study);
+        timeline.push(demographics);
+        timeline.push(instr_learning_LOP);
+        for (let i = 0; i < 3; i++) {
+            timeline.push(blocks_learn[i]);
+            // send data to JATOS after every block
+            timeline.push(data_to_JATOS);
+            timeline.push(instr_breaks_learn[i]);
+        }
+        timeline.push(blocks_learn[3]);
+        timeline.push(data_to_JATOS);
+        timeline.push(instr_calculations);
+        timeline.push(calc_block);
         // send data to JATOS after every block
-        if (JATOS) timeline.push(data_to_JATOS);
-        timeline.push(instr_breaks_learn[i]);
-    }
-    timeline.push(blocks_learn[3]);
-    if (JATOS) timeline.push(data_to_JATOS);
+        timeline.push(data_to_JATOS);
+        timeline.push(instr_test);
+        for (let i = 0; i < 3; i++) {
+            timeline.push(blocks_test[i]);
+            // send data to JATOS after every block
+            timeline.push(data_to_JATOS);
+            timeline.push(instr_breaks_test[i]);
+        }
+        timeline.push(blocks_test[3]);
+        timeline.push(data_to_JATOS);
 
-    timeline.push(instr_calculations);
-    timeline.push(calc_block);
-    // send data to JATOS after every block
-    if (JATOS) timeline.push(data_to_JATOS);
-    timeline.push(instr_test);
-    for (let i = 0; i < 3; i++) {
-        timeline.push(blocks_test[i]);
-        // send data to JATOS after every block
-        if (JATOS) timeline.push(data_to_JATOS);
-        timeline.push(instr_breaks_test[i]);
-    }
-    timeline.push(blocks_test[3]);
-    if (JATOS) timeline.push(data_to_JATOS);
+        timeline.push(instr_final_questions);
+        timeline.push(post_exp_questions);
+        timeline.push(debriefing_LOP);
+        timeline.push(instr_end);
 
-    timeline.push(instr_final_questions);
-    timeline.push(post_exp_questions);
-    timeline.push(debriefing_LOP);
-    timeline.push(instr_end);
+        /* #####################################################################
+                        Go!
+        ##################################################################### */
 
-    /* #####################################################################
-                Go!
-    ##################################################################### */
-
-    if (JATOS) {
-        jatos.onLoad(function () {
-            jsPsych.init({
-                timeline: timeline,
-                use_webaudio: false,
-                // control how often participants leave the browser tab / window
-                on_interaction_data_update: function () {
-                    control_browser_interactions();
-                },
-                on_trial_finish: function(data) {
-                    write_data(data);
-                },
-                on_finish: function () {
-                    // if in JATOS mode, send data to JATOS at the end
-                    var resultJson = jsPsych.data.get().json();
-                    jatos.submitResultData(resultJson, jatos.endStudy);
-                }
-            });
-        });
-    } else {
         jsPsych.init({
             timeline: timeline,
             use_webaudio: false,
             // control how often participants leave the browser tab / window
-            on_interaction_data_update: function() {
+            on_interaction_data_update: function () {
                 control_browser_interactions();
             },
             on_trial_finish: function(data) {
                 write_data(data);
             },
-            // display and download data at the end
             on_finish: function () {
-                var data = jsPsych.data.get().csv();
-                let path = ID + "-test.csv";
-                download(path, data);
-                jsPsych.data.displayData();
+                // save number of times the participant left the window
+                jsPsych.data.addProperties({n_blur_events: N_BLUR});
+                // send data to JATOS at the end
+                var resultJson = jsPsych.data.get().csv();
+                jatos.submitResultData(resultJson, jatos.endStudy);
             }
         });
-    }
+    });
+
 
 </script>
 </html>
