@@ -52,4 +52,4 @@ let SKIP = false;
 let DEV_MODE;
 
 
-console.log("setup.js imported successfully.");
+console.log("global-variables.js imported successfully.");

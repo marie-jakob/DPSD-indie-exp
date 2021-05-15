@@ -38,9 +38,11 @@ function control_browser_interactions() {
     let interaction_data = JSON.parse(get_interactions.json());
     let last_event = interaction_data[interaction_data.length - 1];
     if (! PAUSE) {
-        if (last_event["event"] === "blur") N_BLUR++;
+        if (last_event["event"] === "blur") {
+            N_BLUR++;
+            console.log("N_blur: ", N_BLUR);
+        }
         if (N_BLUR > 2) {
-            consent = false;
             console.log("exiting the experiment");
             jsPsych.endExperiment('<p><strong>End</strong></p>' +
                 'Unfortunately, you have left the tab/ browser windows more than two times. ' +
@@ -155,7 +157,6 @@ function write_data(data) {
     // no "correct" responses in a narrow sense
     data.correct = "NA";
     let attributes = Object.keys(TIMELINE_VARS.filter(x => x["learned"])[0]);
-    console.log(attributes);
     let last_trial = jsPsych.data.getLastTrialData();
     // use all trials with types in specified in use_types
     let last_trial_type = JSON.parse(last_trial.json())[0]["trial_type"];
@@ -177,7 +178,6 @@ function write_data(data) {
 function check_skip(LOP, learn) {
     // only enable skipping if dev-mode is on!
     if (! DEV_MODE) return true;
-    console.log("Dev mode - checking last response");
     let data_tmp = jsPsych.data.get().values();
 
     // index to get the last trial data from -> the last element for learn
@@ -207,9 +207,6 @@ function gen_learning_block(block_num, LOP) {
     // let multi_tmp = LOP ? 1 : 2;
     let start_idx_tmp = (N_STIM_BLOCK_LEARN * block_num - N_STIM_BLOCK_LEARN);
     let end_idx_tmp = N_STIM_BLOCK_LEARN * block_num;
-    console.log(start_idx_tmp);
-    console.log(end_idx_tmp);
-    // determine which trial to display
 
     let timeline_tmp = {
         timeline: [],
@@ -225,7 +222,10 @@ function gen_learning_block(block_num, LOP) {
         on_load: function() { EXP_PART = "learning"},
         data: { block_num: block_num },
         randomize_order: true,
-        on_timeline_start: function () { SKIP = false; }
+        on_timeline_start: function () {
+            PAUSE = false;
+            SKIP = false;
+        }
     }
 }
 
@@ -257,7 +257,10 @@ function gen_test_block(block_num) {
         on_load: function() { EXP_PART = "test" },
         data: { block_num: block_num},
         randomize_order: true,
-        on_timeline_start: function () { SKIP = false; }
+        on_timeline_start: function () {
+            PAUSE = false;
+            SKIP = false;
+        }
     }
 }
 

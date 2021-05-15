@@ -152,7 +152,6 @@ jsPsych.plugins.instructions = (function() {
           var slider_handle = document.querySelector('.slider-handle');
           // Get the slider position and decrease it by 1
           var value = Math.max(parseInt(slider_handle.style.left) - 1, 0);
-          console.log(value);
           // Set the new position, value and progress
           slider_handle.style.left = value.toString() + '%';
         }
@@ -162,17 +161,14 @@ jsPsych.plugins.instructions = (function() {
           var slider_handle = document.querySelector('.slider-handle');
           // Get the slider position and increase it by 1
           var value = Math.min(parseInt(slider_handle.style.left) + 1, 100);
-          console.log(value);
           // Set the new position, value and progress
           slider_handle.style.left = value.toString() + '%';
         }
       };
       let slider = document.querySelector('.slider-container');
-      console.log("slider: ", slider);
       if (slider != null) {
         slider.focus();
         slider.addEventListener('keydown', function (event) {
-          console.log("querySelector works");
           handle_keydown_slider(event);
         });
       }

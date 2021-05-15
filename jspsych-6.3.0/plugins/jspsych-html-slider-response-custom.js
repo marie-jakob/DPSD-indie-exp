@@ -160,7 +160,6 @@ jsPsych.plugins['html-slider-response'] = (function() {
         var slider_handle = document.querySelector('.slider-handle');
         // Get the slider position and decrease it by 1
         var value = Math.max(parseInt(slider_handle.style.left) - 1, 0);
-        console.log(value);
         // Set the new position, value and progress
         slider_handle.style.left = value.toString() + '%';
 
@@ -172,7 +171,6 @@ jsPsych.plugins['html-slider-response'] = (function() {
         var slider_handle = document.querySelector('.slider-handle');
         // Get the slider position and increase it by 1
         var value = Math.min(parseInt(slider_handle.style.left) + 1, 100);
-        console.log(value);
         // Set the new position, value and progress
         slider_handle.style.left = value.toString() + '%';
 
@@ -194,7 +192,6 @@ jsPsych.plugins['html-slider-response'] = (function() {
       //response.response = display_element.querySelector('#jspsych-html-slider-response-response').valueAsNumber;
         slider_handle = display_element.querySelector('.slider-handle');
         response.response = parseInt(slider_handle.style.left);
-        console.log(response.response);
       if(trial.response_ends_trial){
         end_trial();
       } else {

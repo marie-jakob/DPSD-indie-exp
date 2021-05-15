@@ -126,7 +126,6 @@ jsPsych.plugins['survey-text'] = (function() {
     if(trial.preamble !== null){
       //html += '<div id="jspsych-survey-text-preamble" class="jspsych-survey-text-preamble">'+trial.preamble+'</div>';
         html += trial.preamble;
-        console.log(trial.preamble);
     }
     // start form
     if (trial.autocomplete) {
@@ -158,7 +157,6 @@ jsPsych.plugins['survey-text'] = (function() {
             question_index+'"  name="#jspsych-survey-text-response-' + question_index +
             '" data-name="'+question.name+'" size="'+question.columns+'" '+autofocus+' '+ req +
             ' placeholder="'+question.placeholder+'"></input>';
-        console.log("input-" + question_index);
       } else {
         html += '<textarea id="input-'+question_index+'" name="#jspsych-survey-text-response-' + question_index + '" data-name="'+question.name+'" cols="' + question.columns + '" rows="' + question.rows + '" '+autofocus+' '+req+' placeholder="'+question.placeholder+'"></textarea>';
       }
@@ -177,17 +175,13 @@ jsPsych.plugins['survey-text'] = (function() {
     // display_element!
     for (let i = 0; i < trial.questions.length; i++) {
       let question = trial.questions[question_order[i]];
-      console.log(question.invalid_message);
       let question_index = question_order[i];
       let id_tmp = 'input-' + question_index;
-      console.log(id_tmp);
       let element_tmp = document.getElementById(id_tmp);
       element_tmp.oninvalid = function(event) {
-        console.log("invalid");
         event.target.setCustomValidity(question.invalid_message);
       }
       element_tmp.oninput = function(event) {
-        console.log("Hi");
         event.target.setCustomValidity("");
       }
     }

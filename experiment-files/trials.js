@@ -118,13 +118,19 @@ let resp_learning_LOP = {
     },
     on_finish: function(data) {
         // data only contains the data of the last trial
-        let resp = data["response"]["Q0"];
-        if (resp == "") N_EMPTY++;
-        console.log(N_EMPTY);
-        if (N_EMPTY > MAX_EMPTY) {
-            let end_message = "Leider haben Sie mehr als " + MAX_EMPTY + " leere Eingaben produziert. <br>" +
-                "Wie angekündigt, endet daher das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen."
-            jsPsych.endExperiment(end_message);
+        // catch case where no response was saved because the participant left
+        // the window too many times
+        if (data.hasOwnProperty("response")) {
+            let resp = data["response"]["Q0"];
+            if (resp == "") {
+                N_EMPTY++;
+                console.log("N_empty: ", N_EMPTY);
+            }
+            if (N_EMPTY > MAX_EMPTY) {
+                let end_message = "Leider haben Sie mehr als " + MAX_EMPTY + " leere Eingaben produziert. <br>" +
+                    "Wie angekündigt, endet daher das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen."
+                jsPsych.endExperiment(end_message);
+            }
         }
         TRIAL_IDX++;
     }
@@ -174,7 +180,7 @@ let familiarity_slider = {
     max: 1000,
     button_label: "Weiter",
     // set slider width dynamically, depending on the size of the browser window
-    slider_start: 500,
+    slider_start: 50,
     //slider_width: function() {
     //    return window.innerWidth * 0.6;
     //    return window.innerWidth * 0.6;
@@ -195,7 +201,6 @@ function gen_calc_task() {
     let correct_result;
     let html_str;
     while (true) {
-        console.log("while");
         correct_result = 0;
         html_str = '<p style="font-size: 28px">';
         let random_op = " + ";
@@ -212,7 +217,6 @@ function gen_calc_task() {
         // ensure that the tasks aren't too complicated^
         if (correct_result > 0 && correct_result < 50) break;
     }
-    console.log(correct_result);
     html_str += ' = ? </p>';
     // generate a jspsych trial with the task
     trial = {
@@ -231,11 +235,8 @@ function gen_calc_task() {
         timeline: [trial],
         // repeat the trial if the participant answered incorrectly
         loop_function: function(data) {
-            console.log(data.values()[0].response["calc"]);
-            console.log(correct_result);
             let resp = data.values()[0].response["calc"];
             let response_correct = resp === String(correct_result);
-            console.log(response_correct);
             if (DEV_MODE && resp === KEYS.SKIP) return false;
             else return ! response_correct;
         }
@@ -251,6 +252,7 @@ let calc_block = {
     ],
     on_start: function() {
         EXP_PART = "calculations";
+        PAUSE = false;
     }
 }
 
