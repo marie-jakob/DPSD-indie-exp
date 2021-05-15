@@ -77,6 +77,10 @@
 
 optgroup { font-size: 18px; }
 
+textarea {
+  font-size: 18px;
+  font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
+}
 
 .jspsych-display-element textarea[type="text"] {
   font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
@@ -365,10 +369,3 @@ optgroup { font-size: 18px; }
   border-color: grey;
   cursor: pointer;
 }
-
-
-
-
-
-
-
