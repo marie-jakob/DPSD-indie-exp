@@ -18,7 +18,10 @@ let welcome = {
         'Drücken Sie die Leertaste, wenn Sie bereit sind, zu starten.',  //+
         //'Klicken Sie auf „Weiter“, wenn Sie bereit sind, zu starten.</div>',
     choices: [' '],
-    on_start: function() { EXP_PART = "instruction"; }
+    on_start: function() {
+        EXP_PART = "instruction";
+        PAUSE = true;
+    }
 }
 
 
@@ -49,9 +52,9 @@ let informed_consent = {
     on_start: function() { EXP_PART = "consent"; },
     choices: ['Ich stimme <strong>nicht</strong> zu.', 'Ich stimme zu.'],
     on_finish: function(data){
-        PAUSE = false;
+        PAUSE = true;
         // button "Ich stimme nicht zu" was pressed -> consent not given
-        if (data.response === 0){
+        if (data.response === 0) {
             CONSENT = false;
             console.log("No consent");
             jsPsych.endExperiment('Das Experiment endet an dieser Stelle, da Sie' +
@@ -111,7 +114,10 @@ let info_study = {
     allow_keys: false,
     button_label_previous: "Zurück",
     button_label_next: "Weiter",
-    on_start: function() { EXP_PART = "instruction"; }
+    on_start: function() {
+        PAUSE = true;
+        EXP_PART = "instruction";
+    }
 }
 
 let instr_learning_LOP = {
@@ -148,7 +154,10 @@ let instr_learning_LOP = {
         'Danke für Ihre Kooperationsbereitschaft! <br><br>' +
         'Klicken Sie auf „Weiter“, wenn Sie bereit sind, mit der Lernphase zu beginnen.</div>',
     choices: ["Weiter"],
-    on_start: function() { EXP_PART = "instruction"; }
+    on_start: function() {
+        PAUSE = true;
+        EXP_PART = "instruction";
+    }
 }
 
 
@@ -182,7 +191,10 @@ let instr_break_learn = {
         'Sie können an dieser Stelle eine kurze Pause machen.</p>' +
         '<p>Klicken Sie auf "Weiter", um den nächsten Block zu starten.</p>',
     choices: ["Weiter"],
-    on_start: function() { EXP_PART = "instruction"; }
+    on_start: function() {
+        PAUSE = true;
+        EXP_PART = "instruction";
+    }
 }
 
 
@@ -196,7 +208,10 @@ let instr_calculations = {
         'gelangen Sie direkt zur nächsten Aufgabe.</p>' +
         '<p class="Instruction">Wenn Sie bereit sind, mit den Rechenaufgaben zu beginnen, klicken Sie auf „Weiter“.</p>',
     choices: ["Weiter"],
-    on_start: function() { EXP_PART = "instruction"; }
+    on_start: function() {
+        PAUSE = true;
+        EXP_PART = "instruction";
+    }
 }
 
 let instr_test = {
@@ -342,6 +357,7 @@ let instr_test = {
     on_start: function () {
         EXP_PART = "instruction";
         TRIAL_IDX = 0;
+        PAUSE = true;
     }
 }
 
@@ -352,7 +368,10 @@ let instr_final_questions = {
         '<div><p style="font-weight: bold; font-size: 24px;">' +
         'Die beiden Hauptteile des Experiments sind nun geschafft!</p>' +
         '<p style="margin-bottom: 5%">Es folgen nun noch einige Fragen zu Ihrer Teilnahme.</p></div>',
-    on_start: function() { EXP_PART = "instruction"; },
+    on_start: function() {
+        EXP_PART = "instruction";
+        PAUSE = true;
+        },
     choices: ["Weiter"]
 }
 
@@ -368,7 +387,10 @@ let debriefing_strength = {
         'manche Wörter mehrmals gesehen und andere nur einmal.</div>' +
         '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
         'Ihrer Teilnahme unsere Forschung unterstützt haben!</p>',
-    on_start: function() { EXP_PART = "instruction"; },
+    on_start: function() {
+        EXP_PART = "instruction";
+        PAUSE = true;
+        },
     choices: ["Weiter"]
 }
 
@@ -384,7 +406,10 @@ let debriefing_LOP = {
         'anderen Teil ein assoziiertes Wort angeben. </div>' +
         '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
         'Ihrer Teilnahme unsere Forschung unterstützt haben!</p>',
-    on_start: function() { EXP_PART = "instruction"; },
+    on_start: function() {
+        EXP_PART = "instruction";
+        PAUSE = true;
+        },
     choices: ["Weiter"]
 }
 
@@ -395,7 +420,10 @@ let instr_end = {
         'Vielen Dank für Ihre Teilnahme!</p>' +
         'Sie können dieses Fenster nun schließen / Sie werden nun zu Sona weitergeleitet.<br>' +
         'Testmode: Drücken Sie eine beliebige Tasten, um die Daten herunterzuladen.</div>',
-    on_start: function() { EXP_PART = "instruction"; }
+    on_start: function() {
+        PAUSE = true;
+        EXP_PART = "instruction";
+    }
 }
 
 
@@ -412,7 +440,10 @@ function gen_instr_break(learn, block_num, LOP) {
             'Sie können an dieser Stelle eine kurze Pause machen.</p>' +
             '<p>Klicken Sie auf "Weiter", um den nächsten Block zu starten.</p>',
         choices: ["Weiter"],
-        on_start: function() { EXP_PART = "break"; }
+        on_start: function() {
+            PAUSE = true;
+            EXP_PART = "break";
+        }
     }
 }
 
