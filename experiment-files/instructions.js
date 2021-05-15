@@ -237,31 +237,32 @@ let instr_test = {
         ////////////////////////////////////////////////////////////////////////
         // Type A and B memory
         '<div class="Instruction"><p id="Header">Typ A und B Erinnerungen</p>' +
-        '<p><strong>Typ A</strong>: Wenn Sie das Wort wiedererkennen und damit eine bewusste Erinnerung ' +
-        'an dessen Vorkommen in der Lernphase einhergeht, antworten Sie bitte „A“: ' +
-        'Typ A Erinnerungen sind dadurch charakterisiert, dass Sie sich bewusst ' +
-        'einen oder mehrere Aspekte von dem, was während der Präsentation des Wortes ' +
+        '<p><strong>Typ A</strong>: Wenn Sie das Wort wiedererkennen und damit <em>eine bewusste Erinnerung ' +
+        'an dessen Vorkommen in der Lernphase</em> einhergeht, antworten Sie bitte „A“: ' +
+        'Typ A Erinnerungen sind dadurch gekennzeichnet, dass Sie sich bewusst ' +
+        'etwas, was während der Präsentation des Wortes ' +
         'in der Lernphase passiert ist, ' +
         //'bzw. was Sie zu diesem Zeitpunkt gedacht oder erlebt haben, ' +
         'ins Gedächtnis zurückrufen können. Das können zum Beispiel sein: ' +
         '<ul><li>Aspekte in Bezug darauf, wie das Wort aussah,</li>' +
-        '<li>etwas, das zu diesem Zeitpunkt irgendwo im Raum passiert ist, </li>' +
+        '<li>etwas, das zu diesem Zeitpunkt irgendwo im Raum, draußen etc. passiert ist, </li>' +
         '<li>was Sie während der Präsentation des Wortes gedacht oder gemacht haben, </li>' +
+        '<li>wann das Wort präsentiert wurde (z.B. als erstes Wort im zweiten Block), </li>' +
         '<li>oder eine andere Erinnerung dieser Art.</li></ul>' +
         // '(z.B. Aspekte in Bezug darauf, wie das Wort aussah, ' +
         //'oder etwas, das zu diesem Zeitpunkt irgendwo im Raum passiert ist, ' +
         //'oder was Sie während der Präsentation des Wortes gedacht oder gemacht haben). ' +
         'Anders gesagt, eine Typ A Erinnerung sollte Ihnen eine bestimmte Assoziation, ' +
-        'ein Bild, etwas Persönlicheres, oder etwas in Bezug auf die Präsentation ' +
+        'ein Bild, etwas Persönliches, oder etwas in Bezug auf die Präsentation ' +
         'des Wortes (also bspw. was vor oder was nach dem Wort präsentiert wurde) ' +
-        'aus der Lernphase in Gedächtnis zurückrufen. Antworten Sie also bitte „A“, ' +
-        'wenn Sie diese Details, an die Sie sich erinnern, auch konkret angeben könnten, ' +
+        'aus der Lernphase ins Gedächtnis zurückrufen. Antworten Sie also bitte „A“, ' +
+        'wenn Sie diese Details, an die Sie sich erinnern, <em>auch konkret angeben könnten,</em> ' +
         'wenn Sie danach gefragt würden.</p>' +
         '<p><strong>Typ B</strong>: Antworten Sie bitte „B“, wenn Sie das Wort aus ' +
-        'der Lernphase wiedererkennen, Sie sich aber nicht bewusst an Aspekte erinnern, ' +
+        'der Lernphase wiedererkennen, Sie sich aber <strong>nicht</strong> bewusst an Aspekte erinnern, ' +
         'die während des Lernens dieses Wortes passiert sind oder die Sie währenddessen ' +
-        'erlebt oder gedacht haben. Anders gesagt, antworten Sie bitte „B“, wenn Sie das Gefühl haben, ' +
-        'das Wort wiederzuerkennen, das Wort aber keine spezifischen, bewussten Erinnerungen ' +
+        'erlebt oder gedacht haben. Anders gesagt, antworten Sie bitte „B“, wenn Sie <em>das Gefühl haben, ' +
+        'das Wort wiederzuerkennen</em>, es aber keine spezifischen Erinnerungen ' +
         'aus der Lernphase zurück ins Gedächtnis ruft.</p></div>',
         //'Auf der nächsten Seite folgen einige Beispiele dazu.</div>',
 
@@ -270,26 +271,30 @@ let instr_test = {
         '<div class="Instruction"><p id="Header">Typ A und B Erinnerungen</p>' +
         'Um die Unterschiede zwischen Typ A und Typ B Erinnerungen ' +
         // '<p>Um die Unterschiede zwischen diesen beiden Antworten bzw. Erinnerungen (also „A“ und „B“) ' +
-        'zu verdeutlichen, sind hier ein paar Beispiele: ' +
+        'zu verdeutlichen, sind hier ein paar Beispiele: <br>' +
         //'<ul><li>Wenn jemand Sie nach Ihrem Namen fragt, ' +
         //'antworten Sie üblicherweise im „Typ B“ Sinne, ohne sich irgendeines bestimmten ' +
         //'Ereignisses oder einer bestimmten Erfahrung bewusst zu werden. ' +
         //'Wenn Sie jedoch gefragt werden, was der letzte Film war, den Sie gesehen haben, ' +
         //'antworten Sie üblicherweise im „Typ A“ Sinne, erinnern sich also bewusst an ' +
         //'Aspekte dieser Erfahrung.</li><br>' +
-        '<li>Ein anderes Beispiel ist das Wiedererkennen einer Person: ' +
-        'Wenn Sie eine andere Person sehen und Ihnen einfällt, dass Sie diese Person ' +
+        '<ul><li>Wenn Sie eine andere Person sehen und Ihnen einfällt, dass Sie diese Person ' +
         'von der Arbeit kennen und dass Sie sie dort immer in der Kantine sehen, ' +
         'handelt es sich um eine „Typ A“ Erinnerung. Erinnern Sie sich jedoch nicht ' +
-        'an so ein Detail, aber trotzdem der Meinung sind, diese Person schon mal gesehen zu haben, ' +
+        'an so ein Detail, sind aber trotzdem der Meinung, diese Person schon mal gesehen zu haben, ' +
         'ist das eine „Typ B“ Erinnerung.</li><br>' +
-        '<li>Ein letztes Beispiel: Wenn Sie in der Testphase das Wort „Hund“ sehen ' +
+        '<li>Wenn Sie in der Testphase das Wort „Hund“ sehen ' +
         'und sich erinnern, woran Sie bei der Präsentation gedacht haben ' +
         '(z.B., wie gerne Sie einen Hund oder ein anderes Haustier hätten) oder was währenddessen passiert ist ' +
-        '(z.B., dass kurz davor der Nachbarshund gebellt hat), ' +
+        '(z.B., dass kurz davor der Nachbarshund gebellt hat, oder dass draußen ein Krankenwagen vorbeigefahren ist etc.), ' +
         'ist das eine „Typ A“ Erinnerung. Erinnern Sie sich nicht an solche Dinge, ' +
         'haben aber das Gefühl, dass das Wort in der Lernphase präsentiert wurde, ' +
-        'ist das eine „Typ B“ Erinnerung.</li></ul></div>',
+        'ist das eine „Typ B“ Erinnerung.</li><br>' +
+        '<li>Wenn Sie in der Testphase das Wort „Tomate" sehen und Ihnen einfällt, ' +
+        'bei der Präsentation in der Lernphase über Ihre Abneigung gegenüber Tomaten ' +
+        'nachgedacht zu haben, ist das eine "Typ A" Erinnerung. Erinnern Sie sich nicht an ' +
+        'Dinge dieser Art, denken aber dennoch, dass das Wort in der Lernphase präsentiert wurde, ' +
+        'ist das eine „Typ B“ Erinnerung.</li</li></ul></div>',
         //'<p>Noch einmal zusammengefasst: Antworten Sie für ein Wort „N“ (neu), ' +
         //'wenn Sie der Ansicht sind, dieses Wort in der Lernphase nicht gesehen zu haben. ' +
         //'Wenn Sie das Wort wiedererkennen und sich bewusst an Details aus der Lernphase ' +
@@ -303,7 +308,7 @@ let instr_test = {
         '<div class="Instruction" style="margin-bottom: 3%"><p id="Header">Testphase</p> ' +
         'Nachdem Sie entschieden haben, ob ein Wort neu ist, oder Sie es als ' +
         'eine Typ A oder Typ B Erinnerung wiedererkennen, folgt eine zweite Aufgabe: ' +
-        'Dabei sollen Sie für dasselbe Wort beurteilen, wie vertraut es Ihnen vorkommt. ' +
+        'Dabei sollen Sie für dasselbe Wort beurteilen, wie <em>vertraut</em> es Ihnen vorkommt. ' +
         'Ihre Antwort geben Sie mithilfe dieses Schiebereglers: </div>' +
         // my own slider, copied from the plugin:
         '<div class="slider-container" id="my-slider" tabindex="0" onclick: >' +
