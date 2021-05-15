@@ -51,5 +51,6 @@ let TRIAL_PART;
 let SKIP = false;
 let DEV_MODE;
 
+let focusableElements;
 
 console.log("global-variables.js imported successfully.");

@@ -129,6 +129,7 @@ let resp_learning_LOP = {
             if (N_EMPTY > MAX_EMPTY) {
                 let end_message = "Leider haben Sie mehr als " + MAX_EMPTY + " leere Eingaben produziert. <br>" +
                     "Wie angekündigt, endet daher das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen."
+                jsPsych.data.addProperties({status: "Aborted-empty-inputs"});
                 jsPsych.endExperiment(end_message);
             }
         }

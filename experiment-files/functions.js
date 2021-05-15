@@ -42,14 +42,25 @@ function control_browser_interactions() {
             N_BLUR++;
             console.log("N_blur: ", N_BLUR);
         }
-        if (N_BLUR > 2) {
+        if (N_BLUR > 3) {
             console.log("exiting the experiment");
+            jsPsych.data.addProperties({status: "Aborted-left-window"});
             jsPsych.endExperiment('<p><strong>End</strong></p>' +
-                'Unfortunately, you have left the tab/ browser windows more than two times. ' +
-                'As told you in the beginning of the experiment, we therefore have to end this experiment prematurely and we cannot grant you any credit.');
+                'Leider haben Sie das Browser Fenster/ den Tab mehr als drei Mal verlassen.' +
+                'Daher endet das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen.');
         }
     }
 }
+
+
+// Gets keyboard-focusable elements within a specified element
+// Source: https://zellwk.com/blog/keyboard-focusable-elements/
+function getKeyboardFocusableElements (element = document) {
+    console.log("Hello, it's me.");
+    return [...element.querySelectorAll(
+        'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'
+    )].filter(el => !el.hasAttribute('disabled'));
+};
 
 
 /**
