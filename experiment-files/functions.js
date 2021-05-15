@@ -155,7 +155,7 @@ function write_data(data) {
     data.exp_part = EXP_PART;
     data.trial_part = TRIAL_PART;
     // no "correct" responses in a narrow sense
-    data.correct = "NA";
+    data.correct = "";
     let attributes = Object.keys(TIMELINE_VARS.filter(x => x["learned"])[0]);
     let last_trial = jsPsych.data.getLastTrialData();
     // use all trials with types in specified in use_types

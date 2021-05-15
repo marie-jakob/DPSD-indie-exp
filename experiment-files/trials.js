@@ -157,7 +157,7 @@ let word_test = {
     show_stim_with_feedback: false,
     correct_text: "",
     incorrect_text: "",
-    key_answer: false,
+    key_answer: "",
     on_start: function() {
         TRIAL_PART = "R-K-N";
         TRIAL_IDX++
