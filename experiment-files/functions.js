@@ -151,11 +151,18 @@ function gen_timeline_variables(word_list, LOP) {
 function write_data(data) {
     data.trial_num = TRIAL_IDX;
     data.exp_part = EXP_PART;
+    data.trial_part = TRIAL_PART;
+    // no "correct" responses in a narrow sense
     data.correct = "NA";
     let attributes = Object.keys(TIMELINE_VARS.filter(x => x["learned"])[0]);
     console.log(attributes);
-    for (attribute of attributes) {
-        data[attribute] = jsPsych.timelineVariable(attribute);
+    let last_trial = jsPsych.data.getLastTrialData();
+    // use all trials with types in specified in use_types
+    let last_trial_type = JSON.parse(last_trial.json())[0]["trial_type"];
+    if (last_trial_type != "instructions") {
+        for (attribute of attributes) {
+            data[attribute] = jsPsych.timelineVariable(attribute);
+        }
     }
 }
 
@@ -210,7 +217,7 @@ function gen_learning_block(block_num, LOP) {
             return check_skip(LOP = LOP, learn = true);
         }
     }
-    if (LOP) timeline_tmp["timeline"] = [response_prompt, word_learning_LOP, resp_learning_LOP];
+    if (LOP) timeline_tmp["timeline"] = [empty_slide, response_prompt, word_learning_LOP, resp_learning_LOP];
     else timeline_tmp["timeline"] = [empty_slide, word_learning_strength];
     return {
         timeline: [timeline_tmp],

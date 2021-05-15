@@ -12,10 +12,14 @@ let word_learning_strength = {
             "font-size: 28px; line-height: 1.5'>" +
             word + "</p>";
     },
+    on_start: function() {
+        TRIAL_PART = "word";
+    },
     choices: [KEYS.SKIP],
     trial_duration: DURATIONS.LEARN,
     on_finish: function() {
         TRIAL_IDX++;
+        TRIAL_PART = "";
         // if (TRIAL_IDX == N_STIMULI_LEARN * 2) TRIAL_IDX = 0;
     },
     response_ends_trial: false,
@@ -26,6 +30,9 @@ let empty_slide = {
     stimulus: "",
     choices: jsPsych.NO_KEYS,
     trial_duration: DURATIONS.EMPTY,
+    on_start: function() {
+        TRIAL_PART = "empty";
+    }
 }
 
 /* #####################################################################
@@ -43,7 +50,10 @@ let response_prompt = {
         }
     },
     choices: jsPsych.NO_KEYS,
-    trial_duration: DURATIONS.PROMPT
+    trial_duration: DURATIONS.PROMPT,
+    on_start: function() {
+        TRIAL_PART = "resp_prompt";
+    },
 }
 
 let word_learning_LOP = {
@@ -63,7 +73,10 @@ let word_learning_LOP = {
         return prompt + word_html;
     },
     choices: jsPsych.NO_KEYS,
-    trial_duration: DURATIONS.LEARN
+    trial_duration: DURATIONS.LEARN,
+    on_start: function() {
+        TRIAL_PART = "word";
+    },
 }
 
 let resp_learning_LOP = {
@@ -100,6 +113,9 @@ let resp_learning_LOP = {
     ],
     button_label: "Weiter",
     required: true,
+    on_start: function() {
+        TRIAL_PART = "response";
+    },
     on_finish: function(data) {
         // data only contains the data of the last trial
         let resp = data["response"]["Q0"];
@@ -136,7 +152,10 @@ let word_test = {
     correct_text: "",
     incorrect_text: "",
     key_answer: false,
-    on_start: function(data) { TRIAL_IDX++ }
+    on_start: function() {
+        TRIAL_PART = "R-K-N";
+        TRIAL_IDX++
+    },
 };
 
 
@@ -165,6 +184,9 @@ let familiarity_slider = {
         "Bewegen Sie dazu den Schieberegler mit den Pfeiltasten." +
         "<br> <br>",
     require_movement: true,
+    on_start: function() {
+        TRIAL_PART = "rating";
+    },
 }
 
 
@@ -226,7 +248,10 @@ let calc_block = {
         gen_calc_task(),
         gen_calc_task(),
         gen_calc_task()
-    ]
+    ],
+    on_start: function() {
+        EXP_PART = "calculations";
+    }
 }
 
 

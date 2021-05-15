@@ -17,8 +17,8 @@ const KEYS = {
 
 // stimulus durations in ms
 const DURATIONS = {
-    LEARN: 2000,
     EMPTY: 500,
+    LEARN: 2000,
     PROMPT: 1000,
 }
 
@@ -38,8 +38,11 @@ const N_BLOCKS_LEARN = 4;  // should divide N_STIMULI_LEARN
 const N_BLOCKS_TEST = 4;  // should divide N_STIMULI_TEST
 const N_STIM_BLOCK_LEARN = N_STIMULI_LEARN / N_BLOCKS_LEARN;
 const N_STIM_BLOCK_TEST = N_STIMULI_TEST / N_BLOCKS_TEST;
+
+// init variables for the stored data
 let TRIAL_IDX = 0;
 let EXP_PART;
+let TRIAL_PART;
 
 // dev mode (very alpha^^)
 // -> by pressing "q" (strength manipulation learning phase, test phase) or by typing "q"
