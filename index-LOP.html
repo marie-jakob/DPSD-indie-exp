@@ -35,6 +35,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="experiment-files/instructions.js"></script>
     <script src="experiment-files/demographics.js"></script>
     <script src="experiment-files/post-exp-questions.js"></script>
+    <script src="experiment-files/jatos-stuff.js"></script>
 </head>
 <body></body>
 <script>
@@ -75,6 +76,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         instr_breaks_test.push(gen_instr_break(learn = false, block, LOP = true));
     }
 
+    /* #####################################################################
+            Populate Timeline
+    ##################################################################### */
+
     // add everything to the timeline
     let timeline = [];
     timeline.push(welcome);
@@ -84,17 +89,27 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     timeline.push(instr_learning_LOP);
     for (let i = 0; i < 3; i++) {
         timeline.push(blocks_learn[i]);
+        // send data to JATOS after every block
+        if (JATOS) timeline.push(data_to_JATOS);
         timeline.push(instr_breaks_learn[i]);
     }
     timeline.push(blocks_learn[3]);
+    if (JATOS) timeline.push(data_to_JATOS);
+
     timeline.push(instr_calculations);
     timeline.push(calc_block);
+    // send data to JATOS after every block
+    if (JATOS) timeline.push(data_to_JATOS);
     timeline.push(instr_test);
     for (let i = 0; i < 3; i++) {
         timeline.push(blocks_test[i]);
+        // send data to JATOS after every block
+        if (JATOS) timeline.push(data_to_JATOS);
         timeline.push(instr_breaks_test[i]);
     }
     timeline.push(blocks_test[3]);
+    if (JATOS) timeline.push(data_to_JATOS);
+
     timeline.push(instr_final_questions);
     timeline.push(post_exp_questions);
     timeline.push(debriefing_LOP);
@@ -111,7 +126,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                 use_webaudio: false,
                 // control how often participants leave the browser tab / window
                 on_interaction_data_update: function () {
-                    //control_browser_interactions();
+                    control_browser_interactions();
                 },
                 on_trial_finish: function(data) {
                     write_data(data);
@@ -119,7 +134,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                 on_finish: function () {
                     // if in JATOS mode, send data to JATOS at the end
                     var resultJson = jsPsych.data.get().json();
-                    jatos.submitResultData(resultJson, jatos.startNextComponent);
+                    jatos.submitResultData(resultJson, jatos.endStudy);
                 }
             });
         });
@@ -129,7 +144,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             use_webaudio: false,
             // control how often participants leave the browser tab / window
             on_interaction_data_update: function() {
-                //control_browser_interactions();
+                control_browser_interactions();
             },
             on_trial_finish: function(data) {
                 write_data(data);

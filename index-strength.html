@@ -25,6 +25,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-html-button-response.js"></script>
     <script src="jspsych-6.3.0/plugins/jspsych-survey-html-form.js"></script>
+    <script src="jspsych-6.3.0/plugins/jspsych-survey-likert.js"></script>
     <!-- import JATOS -->
     <script src="/assets/javascripts/jatos.js"></script>
     <!-- import custom files -->
@@ -131,7 +132,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             use_webaudio: false,
             // control how often participants leave the browser tab / window
             on_interaction_data_update: function () {
-                //control_browser_interactions();
+                control_browser_interactions();
             },
             on_trial_finish: function(data) {
                 write_data(data);
