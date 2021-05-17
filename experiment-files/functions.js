@@ -45,9 +45,11 @@ function control_browser_interactions() {
         if (N_BLUR > 3) {
             console.log("exiting the experiment");
             jsPsych.data.addProperties({status: "Aborted-left-window"});
-            jsPsych.endExperiment('<p><strong>End</strong></p>' +
-                'Leider haben Sie das Browser Fenster/ den Tab mehr als drei Mal verlassen.' +
-                'Daher endet das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen.');
+            END_TYPE = "left-window";
+            jsPsych.endExperiment();
+            //jsPsych.endExperiment('<p><strong>End</strong></p>' +
+            //    'Leider haben Sie das Browser Fenster/ den Tab mehr als drei Mal verlassen.' +
+            //    'Daher endet das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen.');
         }
     }
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ende</title>
+    <script src="jatos.js"></script>
     <style>
         #title {
             font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
@@ -28,6 +29,12 @@
         }
     </style>
 </head>
+<script>
+    jatos.onLoad(function() {
+        console.log("ending study");
+        jatos.endStudy(true, "", false);
+    });
+</script>
 <body>
 <p id="title">Ende</p>
 <p class="text">Leider haben Sie in diesem Teil mehr als fünf Mal keine Antwort eingegeben.

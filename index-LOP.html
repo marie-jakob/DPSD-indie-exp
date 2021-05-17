@@ -93,10 +93,9 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         instr_breaks_learn.push(gen_instr_break(learn = true, block, LOP = true));
         instr_breaks_test.push(gen_instr_break(learn = false, block, LOP = true));
     }
-
     // Init JATOS
     jatos.onLoad(function () {
-
+        //jatos.startComponentByPos(2, "does this do anything at all?", "and this?", "failure");
         // add trial to store data incrementally
         let data_to_JATOS = {
             type: 'call-function',
@@ -154,15 +153,41 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             on_interaction_data_update: function () {
                 control_browser_interactions();
             },
-            on_trial_finish: function(data) {
+            on_trial_finish: function (data) {
                 write_data(data);
             },
             on_finish: function () {
-                // save number of times the participant left the window
-                jsPsych.data.addProperties({n_blur_events: N_BLUR});
                 // send data to JATOS at the end
                 var resultJson = jsPsych.data.get().csv();
-                jatos.submitResultData(resultJson, jatos.endStudy);
+                let end_html = "";
+                let timeout = 10000;
+                let url = "https://psychologie-freiburg.sona-systems.com/";
+                jatos.submitResultData(resultJson);
+                if (! CONSENT) {
+                    end_html = '<p id="Header">Ende</p>' +
+                        '<p class="Instruction">Das Experiment endet an dieser Stelle, da Sie ' +
+                        'den Teilnahmebedingungen nicht zugestimmt haben. ' +
+                        'Sie können dieses Fenster jetzt schließen.</p>';
+                } else if (END_TYPE == "left-window") {
+                    end_html = '<p id="Header">Ende</p>' +
+                        '<p class="Instruction">Leider haben Sie das Browser Fenster/ den Tab mehr als drei Mal verlassen. ' +
+                        'Wie angekündigt endet daher das Experiment an dieser Stelle und wir können Ihre Teilnahme leider nicht über Sona anrechnen.<br><br>' +
+                        '<strong>Sie können dieses Fenster nun schließen.</strong></p>';
+                } else if (END_TYPE == "empty-inputs") {
+                    end_html = '<p id="Header">Ende</p>' +
+                        '<p class="Instruction">Leider haben Sie in diesem Teil mehr als fünf Mal keine Antwort eingegeben. ' +
+                        '    Wie angekündigt endet daher das Experiment an dieser Stelle und wir können Ihre Teilnahme leider nicht über Sona anrechnen.<br><br>' +
+                        '    <strong>Sie können dieses Fenster nun schließen.</strong></p>';
+                } else {
+                    timeout = 0;
+                    // TODO: change this to the respective Sona page
+                    url = "https://google.com";
+                }
+                // And thanks to Hannah Dames for this hacky + genius solution^^
+                document.body.innerHTML = end_html;
+                setTimeout(function () {
+                    jatos.endStudyAndRedirect(url);
+                }, timeout);
             }
         });
     });

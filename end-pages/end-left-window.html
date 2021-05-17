@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ende</title>
+    <script src="jatos.js"></script>
     <style>
         #title {
             font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
@@ -28,6 +29,14 @@
         }
     </style>
 </head>
+<script>
+    jatos.onLoad(function() {
+        jatos.startComponentByPos(1);
+        console.log("ending study");
+        jatos.endStudy(true, "", false);
+    });
+
+</script>
 <body>
 <p id="title">Ende</p>
 <p class="text">Leider haben Sie das Browser Fenster/ den Tab mehr als drei Mal verlassen.

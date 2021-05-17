@@ -157,7 +157,30 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             on_finish: function () {
                 // send data to JATOS at the end
                 var resultJson = jsPsych.data.get().csv();
-                jatos.submitResultData(resultJson, jatos.startNextComponent);
+                let end_html = "";
+                let timeout = 10000;
+                let url = "https://psychologie-freiburg.sona-systems.com/";
+                jatos.submitResultData(resultJson);
+                if (! CONSENT) {
+                    end_html = '<p id="Header">Ende</p>' +
+                        '<p class="Instruction">Das Experiment endet an dieser Stelle, da Sie ' +
+                        'den Teilnahmebedingungen nicht zugestimmt haben. ' +
+                        'Sie können dieses Fenster jetzt schließen.</p>';
+                } else if (END_TYPE == "left-window") {
+                    end_html = '<p id="Header">Ende</p>' +
+                        '<p class="Instruction">Leider haben Sie das Browser Fenster/ den Tab mehr als drei Mal verlassen. ' +
+                        'Wie angekündigt endet daher das Experiment an dieser Stelle und wir können Ihre Teilnahme leider nicht über Sona anrechnen.<br><br>' +
+                        '<strong>Sie können dieses Fenster nun schließen.</strong></p>';
+                } else {
+                    timeout = 0;
+                    // TODO: change this to the respective Sona page
+                    url = "https://google.com";
+                }
+                // And thanks to Hannah Dames for this hacky + genius solution^^
+                document.body.innerHTML = end_html;
+                setTimeout(function () {
+                    jatos.endStudyAndRedirect(url);
+                }, timeout);
             }
         });
     });

@@ -57,9 +57,7 @@ let informed_consent = {
         if (data.response === 0) {
             CONSENT = false;
             console.log("No consent");
-            jsPsych.endExperiment('Das Experiment endet an dieser Stelle, da Sie' +
-                'den Teilnahmebedingungen nicht zugestimmt haben. ' +
-                'Sie können dieses Fenster jetzt schließen.');
+            jsPsych.endExperiment();
         } else {
             console.log("consent given");
             CONSENT = true;

@@ -29,7 +29,7 @@ let N_BLUR = 0;
 // codes the number of empty inputs in the LOP condition
 // --> experiment ends on > MAX_EMPTY empty inputs
 let N_EMPTY = 0;
-let MAX_EMPTY = 3;
+let MAX_EMPTY = 5;
 
 // number of stimuli in the different phases
 const N_STIMULI_LEARN = 100;
@@ -43,6 +43,11 @@ const N_STIM_BLOCK_TEST = N_STIMULI_TEST / N_BLOCKS_TEST;
 let TRIAL_IDX = 0;
 let EXP_PART;
 let TRIAL_PART;
+
+// init variables containing how the experiment ended -> used to redirect from JATOS
+// "left-window": experiment ended because the participant left the window too often
+// "empty-inputs": experiment ended because the participant produced too many empty inputs (LOP)
+let END_TYPE = "";
 
 // dev mode (very alpha^^)
 // -> by pressing "q" (strength manipulation learning phase, test phase) or by typing "q"
