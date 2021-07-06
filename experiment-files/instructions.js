@@ -9,7 +9,7 @@ let welcome = {
         'In diesem Experiment wollen wir das menschliche Gedächtnis untersuchen. Daher wird es Ihre Aufgabe sein, ' +
         'sich Wörter zu merken, die auf dem Bildschirm präsentiert werden. ' +
         'Später werden wir Sie darum bitten, sich an diese Wörter zu erinnern. <br><br>' +
-        'Das Experiment wird etwa XXX Minuten dauern. Bitte sorgen Sie dafür, ' +
+        'Das Experiment wird etwa 50 Minuten dauern. Bitte sorgen Sie dafür, ' +
         'dass Sie das ganze Experiment ohne Unterbrechungen durchführen können. ' +
         'Vermeiden Sie bitte außerdem Ablenkungen jeglicher Art (z.B. durch Fernseher, Musik, Handy, Haustiere etc.). ' +
         'Sie können an dieser Studie nur von einem PC, nicht von einem Tablet oder Smartphone aus teilnehmen. <br><br>' +
@@ -104,12 +104,14 @@ let info_study = {
         'Wenn Sie mehr als drei Mal außerhalb der Pausen diese Seite verlassen, ' +
         'wird das Experiment automatisch vorzeitig beendet und Ihre Teilnahme kann nicht über Sona verbucht werden. ' +
         'Eine mehrmalige Teilnahme bzw. Wiederaufnahme des Experiments ist nicht möglich.</p></li>' +
+        '<li>Sie können die <strong>Tabulator-Taste</strong> benutzen, um zwischen den Elementen hin und her zu wechseln und das ' +
+        'Experiment so ohne Maus zu bearbeiten.</li>' +
         '<li><p>Bitte schalten Sie Ihr <strong>Handy aus</strong> oder auf stumm und legen Sie es außer Reichweite.</p></li>' +
         '<li><p>Falls Sie aktuell im Hintergrund Musik hören oder Videos abspielen, schalten Sie diese bitte aus.</p></li>' +
         '<li><p><strong>Schließen Sie diese Seite bitte nicht</strong> und laden Sie sie im Verlauf des Experiments nicht neu!</p></li></ol></div>'
     ],
     show_clickable_nav: true,
-    allow_keys: false,
+    // allow_keys: false,
     button_label_previous: "Zurück",
     button_label_next: "Weiter",
     on_start: function() {
@@ -136,14 +138,14 @@ let instr_learning_LOP = {
         '<ul><li><span class="shallow-prompt"><strong>Entweder: </strong>Geben Sie an, wie viele Vokale das Wort hat. </span>' +
         '"ä", "ü" und "ö" zählen dabei nicht als Vokale.</li>' +
         //'Bei der ersten Aufgabe sollen Sie angeben, wie viele Vokale das Wort hat.
-        '<li><span class="deep-prompt"><strong>Oder: </strong>Geben Sie das erste Wort an, das Ihnen in ' +
-        'Zusammenhang mit dem angezeigten Wort in den Sinn kommt.</span></li></ul>' +
+        '<li><span class="deep-prompt"><strong>Oder: </strong>Geben Sie an, wie angenehm bzw. unangenehm Sie das ' +
+        'Wort finden. Geben Sie dafür bitte eine Zahl von 1 bis 6 an wobei 1 \"sehr angenehm\" und 6 \"sehr unangenehm\" bedeutet.</span></li></ul>' +
         //'Bei der zweiten Aufgabe sollen Sie ein Wort in das Textfeld schreiben, das Sie mit dem Wort auf dem Bildschirm assoziieren. ' +
-        'Schreiben Sie Ihre Antwort bitte in das Textfeld, das nach dem Wort auf dem Bildschirm erscheint. ' +
-        'Falls Sie einmal ein Wort übersehen etc., können Sie das Textfeld auch leer lassen; passiert dies jedoch zu oft, ' +
-        'endet das Experiment vorzeitig. ' +
+
         'Welche Aufgabe Sie jeweils ausführen sollen, wird zu Beginn jedes Durchgangs zusammen ' +
-        'mit farblicher Markierung wie oben angezeigt.<br>' +
+        'mit farblicher Markierung wie oben angezeigt. Danach erscheint das Wort für genau 2 Sekunden. Geben Sie Ihre Antwort bitte ' +
+        '<strong>nachdem das Wort wieder verschwunden ist</strong>, indem Sie die entsprechende Taste drücken. ' +
+        'Der nächste Durchgang folgt direkt danach.<br>' +
         '<p>Insgesamt wird es <strong>vier Blöcke</strong> geben, zwischen denen Sie jeweils eine kurze Pause machen können. </p>' +
         '<em>Bitte benutzen Sie keine Hilfsmittel, wie Papier und Stift, Handy, ' +
         'oder einen Text-Editor auf dem Computer, sondern versuchen Sie, sich die Wörter ' +
@@ -433,7 +435,8 @@ let instr_end = {
 // Break slides
 function gen_instr_break(learn, block_num, LOP) {
     let phase = learn ? "Lernphase" : "Testphase";
-    let n_block_total = LOP ? 4 : 8;
+    let n_block_total = learn ? 4 : 8;
+
     return {
         type: 'html-button-response',
         stimulus:

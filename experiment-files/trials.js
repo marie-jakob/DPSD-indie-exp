@@ -42,12 +42,17 @@ let empty_slide = {
 let response_prompt = {
     type: 'html-keyboard-response',
     stimulus: function() {
+        // same here -> just add the whole html string and not just the text
         let LOP_tmp = jsPsych.timelineVariable("LOP");
+        let prompt;
+        let word_html = '<p class="hidden-word">' + jsPsych.timelineVariable("word") + '</p>';
         if (LOP_tmp == "deep") {
-            return "<p class='deep-prompt'>" + "Geben Sie ein assoziiertes Wort ein." + "<br></p>";
+            prompt = "<span class='deep-prompt'>" + "Geben Sie an, wie angenehm Sie das Wort finden.</span><br>" +
+                "<span class = 'deep-scale'>(1: sehr angenehm, 6: sehr unangenehm)" + "</span>";
         } else {
-            return "<p class='shallow-prompt'>" + "Geben Sie Anzahl Vokale ein." + "<br></p>";
+            prompt = "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
         }
+        return prompt + word_html;
     },
     choices: jsPsych.NO_KEYS,
     trial_duration: DURATIONS.PROMPT,
@@ -66,7 +71,8 @@ let word_learning_LOP = {
         else word_html = '<p class="shallow-word">' + jsPsych.timelineVariable("word"); + '</p>';
 
         if (LOP_tmp == "deep") {
-            prompt = "<p class='deep-prompt'>" + "Geben Sie ein assoziiertes Wort ein." + "<br></p>";
+            prompt = "<span class='deep-prompt'>" + "Geben Sie an, wie angenehm Sie das Wort finden.</span><br>" +
+                "<span class = 'deep-scale'>(1: sehr angenehm, 6: sehr unangenehm)" + "</span>";
         } else {
             prompt = "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
         }
@@ -80,64 +86,27 @@ let word_learning_LOP = {
 }
 
 let resp_learning_LOP = {
-    type: 'survey-text',
+    type: 'html-keyboard-response',
     // !!! the standard preamble function is overwritten in the customized plugin
     // -> you have to specify the exact html string that is displayed as preamble
-    preamble: function() {
+    stimulus: function() {
+        // same here -> just add the whole html string and not just the text
         let LOP_tmp = jsPsych.timelineVariable("LOP");
+        let prompt;
+        let word_html = '<p class="hidden-word">' + jsPsych.timelineVariable("word") + '</p>';
         if (LOP_tmp == "deep") {
-            return "<p class='deep-prompt'>" + "Geben Sie ein assoziiertes Wort ein." + "<br></p>";
+            prompt = "<span class='deep-prompt'>" + "Geben Sie an, wie angenehm Sie das Wort finden.</span><br>" +
+                "<span class = 'deep-scale'>(1: sehr angenehm, 6: sehr unangenehm)" + "</span>";
         } else {
-            return "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
+            prompt = "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
         }
+        return prompt + word_html;
     },
-    questions: [
-        {
-            prompt: "",
-            rows: 1,
-            columns: 20,
-            type: "text",
-            pattern: function() {
-                let type = jsPsych.timelineVariable("LOP") == "deep" ? "[^0-9]+" : "^[0-9q]+$";
-                return type;
-            },
-            invalid_message: function() {
-                if (jsPsych.timelineVariable("LOP") == "deep") {
-                    return "Bitte geben Sie nur Buchstaben ein.";
-                } else {
-                    return "Bitte geben Sie nur Zahlen ein.";
-                }
-            },
-            required: false
-        },
-    ],
-    button_label: "Weiter",
-    required: true,
+    choices: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
     on_start: function() {
         TRIAL_PART = "response";
     },
-    on_finish: function(data) {
-        // data only contains the data of the last trial
-        // catch case where no response was saved because the participant left
-        // the window too many times
-        if (data.hasOwnProperty("response")) {
-            let resp = data["response"]["Q0"];
-            if (resp == "") {
-                N_EMPTY++;
-                console.log("N_empty: ", N_EMPTY);
-            }
-            if (N_EMPTY > MAX_EMPTY) {
-                //let end_message = "Leider haben Sie mehr als " + MAX_EMPTY + " leere Eingaben produziert. <br>" +
-                //    "Wie angekündigt, endet daher das Experiment an dieser Stelle. Sie können dieses Fenster nun schließen."
-                jsPsych.data.addProperties({status: "Aborted-empty-inputs"});
-                END_TYPE = "empty-inputs";
-                jsPsych.endExperiment();
-                // jsPsych.endExperiment(end_message);
-            }
-        }
-        TRIAL_IDX++;
-    }
-};
+}
 
 
 let word_test = {
