@@ -282,7 +282,8 @@ textarea {
   font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
   line-height: 1.6em;
   max-width: 70%;
-  text-align: left;
+  text-align: justify;
+  text-justify: inter-word;
   margin: 0 auto;
   margin-bottom: 3%;
   font-size: 20px;
@@ -295,8 +296,13 @@ textarea {
 }
 
 .deep-prompt {
-  color: dodgerblue;
+  color: #009FE3;
   font-size: 20px;
+}
+
+.deep-scale {
+  color: #009FE3;
+  font-size: 14px;
 }
 
 .shallow-word {
@@ -305,8 +311,13 @@ textarea {
 }
 
 .shallow-prompt {
-  color: limegreen;
+  color: #EA5B0C;
   font-size: 20px;
+}
+
+.hidden-word {
+  color: white;
+  font-size: 28px;
 }
 
 /* Johannas Stuff + edits */
