@@ -12,6 +12,17 @@ Department of Psychology, Social Psychology and Methodology Unit
 
 University of Freiburg, April 2021
 
+Status: first version of the strength and LOP condition done --> .jzip folders contain the final JATOS versions
+
+### TODOs
+
+* implementation new LOP manipulation (shallow: count vowels, deep: pleasantness rating)
+* instructions new LOP manipulation
+* implementation familiarity rating
+* instructions familiarity rating
+* implement Hiwi feedback
+* fix some things in the data saving function
+
 
 ### Procedural Details (short)
 
@@ -22,14 +33,6 @@ University of Freiburg, April 2021
 * __Test Phase__: All words from the learning phase + an equal amount of new words are presented. Participants have to make a Remember-Know-New judgement, 
 followed by a familiarity rating on a pseduo-continuous scale
 
-
-### WIP Stuff & TODOs
-
-* post-experimental questions
-* browser interactions
-* screen participants who participate via phone (or decide that the space bar suffices)
-* decide on the number of blocks
-* deployment via JATOS
 
 
 ### Files
