@@ -94,7 +94,7 @@ let info_study = {
         'ob Sie es bereits in der Lernphase gesehen haben, oder ob das Wort neu ist. </li>' +
         '<li>Abschließend folgen einige <strong>Fragen zu Ihrer Teilnahme</strong>,' +
         'danach ist das Experiment beendet. <br><br></li></ul>' +
-        'Insgesamt wird das Experiment etwa <strong>XXX Minuten</strong> dauern.</div>',
+        'Insgesamt wird das Experiment etwa <strong>50 Minuten</strong> dauern.</div>',
 
         // page 2: general stuff about the participation
         '<div class="Instruction"><p id="Header">Hinweise zur Durchführung</p>' +
@@ -104,8 +104,8 @@ let info_study = {
         'Wenn Sie mehr als drei Mal außerhalb der Pausen diese Seite verlassen, ' +
         'wird das Experiment automatisch vorzeitig beendet und Ihre Teilnahme kann nicht über Sona verbucht werden. ' +
         'Eine mehrmalige Teilnahme bzw. Wiederaufnahme des Experiments ist nicht möglich.</p></li>' +
-        '<li>Sie können die <strong>Tabulator-Taste</strong> benutzen, um zwischen den Elementen hin und her zu wechseln und das ' +
-        'Experiment so ohne Maus zu bearbeiten.</li>' +
+        '<li>Sie können die <strong>Tabulator-Taste</strong> benutzen, um zwischen den Elementen auf der Seite ' +
+        'hin und her zu wechseln und das Experiment so ohne Maus zu bearbeiten.</li>' +
         '<li><p>Bitte schalten Sie Ihr <strong>Handy aus</strong> oder auf stumm und legen Sie es außer Reichweite.</p></li>' +
         '<li><p>Falls Sie aktuell im Hintergrund Musik hören oder Videos abspielen, schalten Sie diese bitte aus.</p></li>' +
         '<li><p><strong>Schließen Sie diese Seite bitte nicht</strong> und laden Sie sie im Verlauf des Experiments nicht neu!</p></li></ol></div>'
@@ -145,7 +145,7 @@ let instr_learning_LOP = {
         'Welche Aufgabe Sie jeweils ausführen sollen, wird zu Beginn jedes Durchgangs zusammen ' +
         'mit farblicher Markierung wie oben angezeigt. Danach erscheint das Wort für genau 2 Sekunden. Geben Sie Ihre Antwort bitte ' +
         '<strong>nachdem das Wort wieder verschwunden ist</strong>, indem Sie die entsprechende Taste drücken. ' +
-        'Der nächste Durchgang folgt direkt danach.<br>' +
+        'Danach folgt direkt der nächste Durchgang.<br>' +
         '<p>Insgesamt wird es <strong>vier Blöcke</strong> geben, zwischen denen Sie jeweils eine kurze Pause machen können. </p>' +
         '<em>Bitte benutzen Sie keine Hilfsmittel, wie Papier und Stift, Handy, ' +
         'oder einen Text-Editor auf dem Computer, sondern versuchen Sie, sich die Wörter ' +
@@ -308,36 +308,48 @@ let instr_test = {
         '<div class="Instruction" style="margin-bottom: 3%"><p id="Header">Testphase</p> ' +
         'Nachdem Sie entschieden haben, ob ein Wort neu ist, oder Sie es als ' +
         'eine Typ A oder Typ B Erinnerung wiedererkennen, folgt eine zweite Aufgabe: ' +
-        'Dabei sollen Sie für dasselbe Wort beurteilen, wie <em>vertraut</em> es Ihnen vorkommt. ' +
+        'Dabei sollen Sie für dasselbe Wort beurteilen, wie <em>vertraut</em> es Ihnen aus der ' +
+        'Lernphase vorkommt. <br>' +
+        '' +
         'Ihre Antwort geben Sie mithilfe dieses Schiebereglers: </div>' +
-        // my own slider, copied from the plugin:
-        '<div class="slider-container" id="my-slider" tabindex="0" onclick: >' +
-        '    <div class="slider-bar" style="width: 65%; margin: 0 auto;">' +
-        '      <div class="slider-handle" style="left: 50%;"></div>' +
-        '    </div>' +
-         // could this be any uglier?
-        //'<div style="width: 65%; margin: 0 auto;">' +
-        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
-        'text-align: center; width: 22%;">' +
-        '<span style="text-align: center; font-size: 80%;">extrem <strong>un</strong>vertraut</span>' +
-        '</div>' +
-        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
-        'text-align: center; width: 22%;">' +
-        '<span style="text-align: center; font-size: 80%;">relativ <strong>un</strong>vertraut</span>' +
-        '</div>' +
-        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
-        'text-align: center; width: 22%;">' +
-        '<span style="text-align: center; font-size: 80%;">relativ vertraut</span>' +
-        '</div>' +
-        '<div style="border: 1px solid transparent; display: inline-block; position: relative; ' +
-        'text-align: center; width: 22%;">' +
-        '<span style="text-align: center; font-size: 80%;">extrem vertraut</span>' +
-        '</div>' +
-        //'</div>' +
-
+            '<div style="width: 60%; position: relative; left: 20%;">' +
+        '<div class="slider-container" id="my-slider" tabindex="0" ' +
+        'data-max="100" data-min="-100" data-init=0">' +
+            '    <div class="slider-text"></div>\n' +
+            '    <div class="slider-bar">' +
+            '      <div class="slider-pointer"></div>' +
+            '      <div class="slider-scale-container" style="left 0;">' +
+            '        <div class="slider-scale"></div>' +
+            '           <div class="slider-ticks">' +
+            '          <!-- One div less than the number of labels -->' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '          </div>' +
+            '        <div class="slider-labels">' +
+            '            <div class="slider-label--4 slider-label-neg">'+ LABELS[0] + '</div>' +
+            '            <div class="slider-label--3 slider-label-neg">'+ LABELS[1] + '</div>' +
+            '            <div class="slider-label--2 slider-label-neg">'+ LABELS[2] + '</div>' +
+            '            <div class="slider-label--1 slider-label-neg">'+ LABELS[3] + '</div>' +
+            '            <div class="slider-label-0">'+ LABELS[4] + '</div>' +
+            '            <div class="slider-label-1 slider-label-pos">'+ LABELS[5] + '</div>' +
+            '            <div class="slider-label-2 slider-label-pos">'+ LABELS[6] + '</div>' +
+            '            <div class="slider-label-3 slider-label-pos">'+ LABELS[7] + '</div>' +
+            '            <div class="slider-label-4 slider-label-pos">'+ LABELS[8] + '</div>' +
+            '          </div>' +
+            '      </div>' +
+            '    </div>' +
+            '  </div>' +
+            '</div>' +
         '<div class="Instruction" style="margin-top: 7%"> Bewegen Sie den Schieberegler mit den Pfeiltasten ' +
         'auf die Stelle der Skala, die Ihrer Ansicht nach angibt, ' +
-        'wie vertraut Ihnen das Wort ist. ' +
+        'wie vertraut Ihnen das Wort aus der Lernphase ist. Wenn Sie sich unsicher sind, können Sie auch die Mitte ' +
+        'der Skala auswählen.       ' +
         //'Je weiter nach rechts Sie den Schieberegler einstellen, desto vertrauter kommt Ihnen ein Wort vor.
         'Versuchen Sie, für jedes Wort eine individuelle und möglichst akkurate Einschätzung vorzunehmen.</div>',
 
@@ -351,7 +363,7 @@ let instr_test = {
         '<strong>neu (Antwort „N“)</strong> ist, oder Sie es als <strong>Typ A (Antwort „A“)</strong> ' +
         'oder <strong>Typ B (Antwort „B“)</strong> Erinnerung wiedererkennen. </li>' +
         '<li>Anschließend sollen Sie mit einem Schieberegler angeben, <strong>wie vertraut</strong> ' +
-        'Ihnen das Wort vorkommt. </li></ul>' +
+        'Ihnen das Wort aus der Lernphase vorkommt. </li></ul>' +
         'Insgesamt wird es wieder vier Blöcke geben, zwischen denen Sie jeweils eine kurze Pause machen können.</p>' +
         '<p>Wenn Sie bereit sind, mit der Testphase zu beginnen, klicken Sie auf „Weiter“. </p></div> '
     ],
@@ -408,7 +420,7 @@ let debriefing_LOP = {
         'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie ' +
         'tief die Wörter verarbeitet wurden. Deshalb sollten Sie in der Lernphase' +
         'für einen Teil der Wörter die Anzahl der Vokale und für den ' +
-        'anderen Teil ein assoziiertes Wort angeben. </div>' +
+        'anderen Teil angeben, wie angenehm Sie es finden. </div>' +
         '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
         'Ihrer Teilnahme unsere Forschung unterstützt haben!</p>',
     on_start: function() {
@@ -433,10 +445,9 @@ let instr_end = {
 
 
 // Break slides
-function gen_instr_break(learn, block_num, LOP) {
+function gen_instr_break(learn, block_num) {
     let phase = learn ? "Lernphase" : "Testphase";
-    let n_block_total = learn ? 4 : 8;
-
+    let n_block_total = 4;
     return {
         type: 'html-button-response',
         stimulus:

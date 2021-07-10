@@ -191,6 +191,7 @@ function write_data(data) {
 function check_skip(LOP, learn) {
     // only enable skipping if dev-mode is on!
     if (! DEV_MODE) return true;
+    console.log("checking last response");
     let data_tmp = jsPsych.data.get().values();
 
     // index to get the last trial data from -> the last element for learn
@@ -199,8 +200,9 @@ function check_skip(LOP, learn) {
     if (data_idx_tmp > 0) {
         // get the last response (depending on phase + manipulation) and check
         // if remaining trials should be skipped
-        let trial_data_tmp = data_tmp[data_idx_tmp]["response"];
-        let resp_tmp = LOP && learn ? trial_data_tmp["Q0"] : trial_data_tmp;
+        let resp_tmp = data_tmp[data_idx_tmp]["response"];
+        console.log("resp_tmp: ", resp_tmp);
+        // let resp_tmp = LOP && learn ? trial_data_tmp["Q0"] : trial_data_tmp;
         if (resp_tmp === KEYS.SKIP) SKIP = true;
     } else { SKIP = false; }  // reset the variable in the new block
     return ! SKIP;

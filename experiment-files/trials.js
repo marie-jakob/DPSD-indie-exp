@@ -68,7 +68,7 @@ let word_learning_LOP = {
         let LOP_tmp = jsPsych.timelineVariable("LOP");
         let word_html; let prompt;
         if (LOP_tmp == "deep")  word_html = '<p class="deep-word">' + jsPsych.timelineVariable("word") + '</p>';
-        else word_html = '<p class="shallow-word">' + jsPsych.timelineVariable("word"); + '</p>';
+        else word_html = '<p class="shallow-word">' + jsPsych.timelineVariable("word") + '</p>';
 
         if (LOP_tmp == "deep") {
             prompt = "<span class='deep-prompt'>" + "Geben Sie an, wie angenehm Sie das Wort finden.</span><br>" +
@@ -102,7 +102,7 @@ let resp_learning_LOP = {
         }
         return prompt + word_html;
     },
-    choices: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
+    choices: ["1", "2", "3", "4", "5", "6", "7", "8", "9", KEYS.SKIP],
     on_start: function() {
         TRIAL_PART = "response";
     },
@@ -138,7 +138,7 @@ let word_test = {
 
 
 let familiarity_slider = {
-    type: 'html-slider-response',
+    type: 'html-slider-scale-response',
     stimulus: function() {
         let word = jsPsych.timelineVariable("word");
         return "<p style='position: relative; text-align: center;" +
@@ -146,13 +146,12 @@ let familiarity_slider = {
             word + "</p>" +
             "<br>";
     },
-    labels: ["extrem <strong>un</strong>vertraut", "relativ <strong>un</strong>vertraut",
-        "relativ vertraut", "extrem vertraut"],
-    min: 0,
-    max: 1000,
+    labels: LABELS,
+    min: -100,
+    max: 100,
     button_label: "Weiter",
     // set slider width dynamically, depending on the size of the browser window
-    slider_start: 50,
+    slider_start: 0,
     //slider_width: function() {
     //    return window.innerWidth * 0.6;
     //    return window.innerWidth * 0.6;

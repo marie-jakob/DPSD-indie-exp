@@ -14,13 +14,12 @@ University of Freiburg, April 2021
 
 Status: first version of the strength and LOP condition done --> .jzip folders contain the final JATOS versions
 
+__Those versions are considered archived and do not work with the current versions of the experiment-files!_
+
 ### TODOs
 
-* implementation new LOP manipulation (shallow: count vowels, deep: pleasantness rating)
-* instructions new LOP manipulation
 * implementation familiarity rating
 * instructions familiarity rating
-* implement Hiwi feedback
 * fix some things in the data saving function
 
 

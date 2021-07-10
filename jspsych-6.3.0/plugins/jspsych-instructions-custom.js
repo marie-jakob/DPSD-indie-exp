@@ -141,33 +141,75 @@ jsPsych.plugins.instructions = (function() {
         display_element.innerHTML = html;
       }
 
-
       // I am deeply ashamed of this part..
+
+      function init_slider(id) {
+        var slider = document.getElementById(id);
+        var width = parseInt(slider.dataset.width);
+        var minimum = parseInt(slider.dataset.min);
+        var maximum = parseInt(slider.dataset.max);
+        if (Math.abs(maximum) !== Math.abs(minimum)) {
+          console.log('WARNING: Minimum and maximum need to have the same absolute value for this to work properly!');
+        }
+        // Set the width scaling for the slider bar
+        if (typeof width !== 'undefined') {
+          var slider_bar = document.querySelector('#' + id + ' .slider-bar');
+          slider_bar.style.width = width.toString() + '%';
+          // Calculate how much will not be visible on each side
+          slider_bar.style.left = (-(width - 100) * 0.5).toString() + '%';
+        }
+        // Calculate the correct width and left position for the labels
+        var all_slider_labels = document.querySelectorAll('#' + id + ' .slider-labels > div');
+        var slider_labels = document.querySelector('#' + id + ' .slider-labels');
+        var labels_total_width = 100 / (all_slider_labels.length - 1) * all_slider_labels.length;
+        slider_labels.style.width = labels_total_width.toString() + '%';
+        slider_labels.style.left = (-(labels_total_width - 100) / 2).toString() + '%';
+      }
+
+      function set_slider(id, change) {
+        var slider = document.getElementById(id);
+        // Get minimum, maximum and the current value
+        var value = slider.dataset.value;
+        var minimum = parseInt(slider.dataset.min);
+        var maximum = parseInt(slider.dataset.max);
+        var initial = parseInt(slider.dataset.init);
+        // Set or change the value
+        if ((typeof value === 'undefined') || (typeof change === 'undefined')) {
+          value = parseInt(slider.dataset.init);
+        }
+        else {
+          value = Math.max(Math.min(parseInt(value) + change, maximum), minimum);
+        }
+        // Set the new value
+        slider.dataset.value = value;
+        console.log('Value:', value)
+        // Move the slider bar
+        var slider_scale_container = document.querySelector('#' + id + ' .slider-scale-container');
+
+        var position_change = Math.abs(value) * (slider_scale_container.offsetWidth / (Math.abs(maximum) + Math.abs(minimum)));
+        slider_scale_container.style.left = ((value < initial ? 1 : -1) * position_change).toString() + 'px';
+      };
+
       function handle_keydown_slider(event) {
+        // Get the id from the current element
+        var id = event.target.id;
+        console.log("ID:", id);
         var key = event.keyCode ? event.keyCode : event.which;
         // Left arrow
-        if (key == 37) {
-          // Get the slider progress and the handle
-          var slider_progress = document.querySelector('.slider-progress');
-          var slider_handle = document.querySelector('.slider-handle');
-          // Get the slider position and decrease it by 1
-          var value = Math.max(parseInt(slider_handle.style.left) - 1, 0);
-          // Set the new position, value and progress
-          slider_handle.style.left = value.toString() + '%';
+        if (key === 37) {
+          set_slider(id, -1);
         }
         // Right arrow
-        else if (key == 39) {
-          // Get the slider progress and the handle
-          var slider_handle = document.querySelector('.slider-handle');
-          // Get the slider position and increase it by 1
-          var value = Math.min(parseInt(slider_handle.style.left) + 1, 100);
-          // Set the new position, value and progress
-          slider_handle.style.left = value.toString() + '%';
+        else if (key === 39) {
+          set_slider(id, 1);
         }
-      };
+      }
+
+      // handle arrow key events and move the slider accordingly
       let slider = document.querySelector('.slider-container');
       if (slider != null) {
         slider.focus();
+        init_slider(slider.id);
         slider.addEventListener('keydown', function (event) {
           handle_keydown_slider(event);
         });

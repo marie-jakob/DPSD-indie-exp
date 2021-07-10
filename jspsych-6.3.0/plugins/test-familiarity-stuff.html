@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>X-axis Chart Marker Line Demo</title>
+  <style type="text/css">
+    .horiz-line {
+      width: 100%;
+      height: 0px;
+      content:' ';
+      display: block;
+      border: 1px solid black;
+      position: absolute;
+      top: 500px;
+      left: -2px;
+    }
+    .tick {
+      border-left: 2px solid black;
+      height: 18px;
+      top: 500px;
+      position: absolute;
+    }
+    .tick:nth-child(1) {
+      left: -2px;
+    }
+    .tick:nth-child(2) {
+      left: 98px;
+    }
+    .tick:nth-child(3) {
+      left: 198px;
+    }
+    .tick:nth-child(4) {
+      left: 298px;
+    }
+    .tick:nth-child(5) {
+      left: 398px;
+    }
+    .tick:nth-child(6) {
+      left: 498px;
+    }
+    .tick:nth-child(7) {
+      left: 598px;
+    }
+    .tick:nth-child(8) {
+      left: 698px;
+    }
+    .tick:nth-child(9) {
+      left: 798px;
+    }
+    .tick:nth-child(10) {
+      left: 898px;
+    }
+  </style>
+</head>
+<body>
+<h1>Familiarity Rating Test</h1>
+<div class="horiz-line">
+  <div class="chart">
+    <div class="tick">1</div>
+    <div class="tick">2</div>
+    <div class="tick">3</div>
+    <div class="tick">4</div>
+    <div class="tick">5</div>
+    <div class="tick">6</div>
+    <div class="tick">7</div>
+    <div class="tick">8</div>
+    <div class="tick">9</div>
+    <div class="tick">10</div>
+  </div>
+</div>
+</body>

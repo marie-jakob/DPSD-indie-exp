@@ -26,6 +26,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
   <script src="jspsych-6.3.0/plugins/jspsych-html-button-response.js"></script>
   <script src="jspsych-6.3.0/plugins/jspsych-survey-html-form.js"></script>
   <script src="jspsych-6.3.0/plugins/jspsych-call-function.js"></script>
+  <script src="jspsych-6.3.0/plugins/html-slider-scale-response.js"></script>
   <!-- import JATOS
   <script src="jatos.js"></script> -->
   <!-- import custom files -->
@@ -53,11 +54,11 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
   window.onkeydown = function(event) {
     var key = event.keyCode ? event.keyCode : event.which;
     // When the tab key is pressed...
-    if (key == 9) {
+    if (key === 9) {
       focusableElements = getKeyboardFocusableElements();
       // Check if the currently active element is the last one on this site
       // If yes, focus the first one again and prevent further action
-      if (document.activeElement == focusableElements[focusableElements.length - 1]) {
+      if (document.activeElement === focusableElements[focusableElements.length - 1]) {
         focusableElements[0].focus();
         return false;
       }
@@ -182,6 +183,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
           timeout = 0;
           // TODO: change this to the respective Sona page
           // url = "https://google.com";
+          jspsych.endExperiment("Bye");
         }
         // And thanks to Hannah Dames for this hacky + genius solution^^
         document.body.innerHTML = end_html;

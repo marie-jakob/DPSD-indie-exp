@@ -9,7 +9,7 @@
  */
 
 
-jsPsych.plugins['html-slider-response'] = (function() {
+jsPsych.plugins['html-keyboard-slider-response'] = (function() {
 
   var plugin = {};
 
@@ -156,7 +156,6 @@ jsPsych.plugins['html-slider-response'] = (function() {
       // Left arrow
       if (key == 37) {
         // Get the slider progress and the handle
-        var slider_progress = document.querySelector('.slider-progress');
         var slider_handle = document.querySelector('.slider-handle');
         // Get the slider position and decrease it by 1
         var value = Math.max(parseInt(slider_handle.style.left) - 1, 0);

@@ -44,6 +44,17 @@ let TRIAL_IDX = 0;
 let EXP_PART;
 let TRIAL_PART;
 
+
+let LABELS = ["extrem <strong>un</strong>vertraut",
+    "sehr <strong>un</strong>vertraut",
+    "relativ <strong>un</strong>vertraut",
+    "eher <strong>un</strong>vertraut",
+    "weder vertraut noch unvertraut",
+    "eher vertraut",
+    "relativ vertraut",
+    "sehr vertraut",
+    "extrem vertraut"];
+
 // init variables containing how the experiment ended -> used to redirect from JATOS
 // "left-window": experiment ended because the participant left the window too often
 // "empty-inputs": experiment ended because the participant produced too many empty inputs (LOP)

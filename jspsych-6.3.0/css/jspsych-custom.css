@@ -32,9 +32,10 @@
  }
 
  .jspsych-content {
-   max-width: 100%; /* this is mainly an IE 10-11 fix */
+   max-width: 100%; /*this is mainly an IE 10-11 fix */
    text-align: center;
    margin: auto; /* this is for overflowing content */
+   /*width: 80%;*/
  }
 
  .jspsych-top {
@@ -281,7 +282,7 @@ textarea {
 .Instruction {
   font-family: 'Helvetica Neue', 'Arial', 'Open Sans', 'sans-serif';
   line-height: 1.6em;
-  max-width: 70%;
+  width: 70%;
   text-align: justify;
   text-justify: inter-word;
   margin: 0 auto;
@@ -374,6 +375,7 @@ textarea {
 .slider-container:focus .slider-bar {
   border-color: grey;
   cursor: not-allowed;
+  horiz-align: center;
 }
 
 .slider-handle:hover {
@@ -386,3 +388,121 @@ textarea {
   border-color: grey;
   cursor: pointer;
 }
+
+/* New familiarity slider */
+
+
+.slider-container {
+  padding-bottom: 10%;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+  left: -12%;
+  width: 120%;
+}
+
+
+.slider-container.active,
+.slider-container:focus {
+  outline: none;
+}
+
+.slider-text {
+  margin-bottom: 1em;
+  pointer-events: none;
+}
+
+
+.slider-bar {
+  position: relative;
+  height: 1%;
+  width: 200%;
+  left: -50%;
+  margin: 0 auto;
+}
+
+
+.slider-scale-container {
+  width: 100%;
+  position: relative;
+}
+
+.slider-scale {
+  width: 100%;
+  height: 1%;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.slider-pointer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-top: -60px;
+  margin-left: -20px;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 60px solid black;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+
+.slider-labels {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  position: absolute;
+  line-height: 1.5em;
+  top: 1.5em;
+  font-size: 11pt;
+}
+
+.slider-labels {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  position: absolute;
+  top: 2em;
+}
+
+.slider-labels > div {
+  display: table-cell;
+  text-align: center;
+}
+
+.slider-labels .slider-label-neg {
+  margin-left: 50%;
+}
+
+.slider-ticks {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 25px;
+}
+
+.slider-ticks > div {
+  display: table-cell;
+  text-align: center;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  box-sizing: border-box;
+}
+
+.slider-ticks > div:first-child {
+  border-left: 2px solid grey;
+}
+
+.slider-ticks > div:last-child {
+  border-right: 2px solid grey;
+}
+
+
+
+
