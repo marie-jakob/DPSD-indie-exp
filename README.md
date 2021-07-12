@@ -1,7 +1,6 @@
 # DPSD-indie-pilot
 
-This project contains the implementation of a recognition memory experiment using Javascript and the JSPsych library.
-The experiment will be the pilot study for my Master's Thesis on the independence assumption of Yonelinas (1994) 
+This project contains the implementation of a recognition memory experiment using Javascript and the JSPsych library that will be conducted as part of my Master's Thesis on the independence assumption of Yonelinas (1994) 
 Dual Process Signal Detection Theory Model. 
 
 Author: Marie Jakob marie.a.jakob@gmail.com
@@ -14,14 +13,7 @@ University of Freiburg, April 2021
 
 Status: first version of the strength and LOP condition done --> .jzip folders contain the final JATOS versions
 
-__Those versions are considered archived and do not work with the current versions of the experiment-files!_
-
-### TODOs
-
-* implementation familiarity rating
-* instructions familiarity rating
-* fix some things in the data saving function
-
+__Those versions are considered archived and do not work with the current versions of the experiment-files!__ If you need to run an experiment, use the zipped JATOS version. 
 
 ### Procedural Details (short)
 
@@ -40,6 +32,8 @@ followed by a familiarity rating on a pseduo-continuous scale
 
 ```index-strength.html```: main file for the strength group -> open locally to test the experiment in the strength condition
 
+```index_LOP_pleasantness.html```: main file for the new LOP condition containing a pleasantness rating in the "high" condition
+
 ```.gitignore```: the usual stuff
 
 ```LICENCE```: copyright information
@@ -56,7 +50,7 @@ followed by a familiarity rating on a pseduo-continuous scale
 * ```global-variables.js```: Declares and sets all global variables that are used
 * ```instructions.js```: Contains the instructions as JSPsych variables
 * ```post-exp-questions.js```: Contains the post-experimental questions
-
+* JATOS-versions```: zipped JATOS versions of the experiments.
 
 ```stimuli```: 
 * ```description word list.docx```: Description of the stimuli
