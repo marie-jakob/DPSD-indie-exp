@@ -178,7 +178,8 @@ jsPsych.plugins.instructions = (function() {
           value = parseInt(slider.dataset.init);
         }
         else {
-          value = Math.max(Math.min(parseInt(value) + change, maximum), minimum);
+          // value = Math.max(Math.min(parseInt(value) + change, maximum), minimum);
+          value = parseInt(value) + change;
         }
         // Set the new value
         slider.dataset.value = value;

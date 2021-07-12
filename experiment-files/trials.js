@@ -48,7 +48,7 @@ let response_prompt = {
         let word_html = '<p class="hidden-word">' + jsPsych.timelineVariable("word") + '</p>';
         if (LOP_tmp == "deep") {
             prompt = "<span class='deep-prompt'>" + "Geben Sie an, wie angenehm Sie das Wort finden.</span><br>" +
-                "<span class = 'deep-scale'>(1: sehr angenehm, 6: sehr unangenehm)" + "</span>";
+                "<span class = 'deep-scale'>(1: sehr unangenehm, 6: sehr angenehm)" + "</span>";
         } else {
             prompt = "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
         }
@@ -72,7 +72,7 @@ let word_learning_LOP = {
 
         if (LOP_tmp == "deep") {
             prompt = "<span class='deep-prompt'>" + "Geben Sie an, wie angenehm Sie das Wort finden.</span><br>" +
-                "<span class = 'deep-scale'>(1: sehr angenehm, 6: sehr unangenehm)" + "</span>";
+                "<span class = 'deep-scale'>(1: sehr unangenehm, 6: sehr angenehm)" + "</span>";
         } else {
             prompt = "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
         }
@@ -96,7 +96,7 @@ let resp_learning_LOP = {
         let word_html = '<p class="hidden-word">' + jsPsych.timelineVariable("word") + '</p>';
         if (LOP_tmp == "deep") {
             prompt = "<span class='deep-prompt'>" + "Geben Sie an, wie angenehm Sie das Wort finden.</span><br>" +
-                "<span class = 'deep-scale'>(1: sehr angenehm, 6: sehr unangenehm)" + "</span>";
+                "<span class = 'deep-scale'>(1: sehr unangenehm, 6: sehr angenehm)" + "</span>";
         } else {
             prompt = "<p class='shallow-prompt'>" + "Geben Sie die Anzahl Vokale ein." + "<br></p>";
         }

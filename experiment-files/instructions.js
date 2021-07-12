@@ -139,7 +139,7 @@ let instr_learning_LOP = {
         '"ä", "ü" und "ö" zählen dabei nicht als Vokale.</li>' +
         //'Bei der ersten Aufgabe sollen Sie angeben, wie viele Vokale das Wort hat.
         '<li><span class="deep-prompt"><strong>Oder: </strong>Geben Sie an, wie angenehm bzw. unangenehm Sie das ' +
-        'Wort finden. Geben Sie dafür bitte eine Zahl von 1 bis 6 an wobei 1 \"sehr angenehm\" und 6 \"sehr unangenehm\" bedeutet.</span></li></ul>' +
+        'Wort finden. Geben Sie dafür bitte eine Zahl von 1 bis 6 an wobei 1 \"sehr unangenehm\" und 6 \"sehr angenehm\" bedeutet.</span></li></ul>' +
         //'Bei der zweiten Aufgabe sollen Sie ein Wort in das Textfeld schreiben, das Sie mit dem Wort auf dem Bildschirm assoziieren. ' +
 
         'Welche Aufgabe Sie jeweils ausführen sollen, wird zu Beginn jedes Durchgangs zusammen ' +
@@ -312,7 +312,7 @@ let instr_test = {
         'Lernphase vorkommt. <br>' +
         '' +
         'Ihre Antwort geben Sie mithilfe dieses Schiebereglers: </div>' +
-            '<div style="width: 60%; position: relative; left: 20%;">' +
+            '<div style="width: 70%; position: relative; left: 15%;">' +
         '<div class="slider-container" id="my-slider" tabindex="0" ' +
         'data-max="100" data-min="-100" data-init=0">' +
             '    <div class="slider-text"></div>\n' +
