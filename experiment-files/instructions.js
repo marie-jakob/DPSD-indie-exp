@@ -321,22 +321,22 @@ let instr_test = {
             '        <div class="slider-scale"></div>' +
             '           <div class="slider-ticks">' +
             '          <!-- One div less than the number of labels -->' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
+        '           <div></div><div></div><div></div><div></div>' +
             '          </div>' +
             '        <div class="slider-labels">' +
             '            <div class="slider-label--4 slider-label-neg">'+ LABELS[0] + '</div>' +
@@ -356,12 +356,11 @@ let instr_test = {
         '<div class="Instruction" style="margin-top: 3%"> Bewegen Sie den Schieberegler mit den <strong>Pfeiltasten</strong> ' +
         'auf die Stelle der Skala, die Ihrer Ansicht nach angibt, ' +
         'wie vertraut Ihnen das Wort aus der Lernphase ist. ' +
-        'Wenn Sie sich unsicher sind, können Sie auch die Mitte der Skala auswählen.       ' +
-        //'Je weiter nach rechts Sie den Schieberegler einstellen, desto vertrauter kommt Ihnen ein Wort vor.
+        // 'Wenn Sie sich unsicher sind, können Sie auch die Mitte der Skala auswählen.       ' +
+        // 'Je weiter nach rechts Sie den Schieberegler einstellen, desto vertrauter kommt Ihnen ein Wort vor.
         'Versuchen Sie, für jedes Wort eine <strong>individuelle</strong> und <strong>möglichst akkurate Einschätzung</strong> vorzunehmen. ' +
-        'Die Beschriftungen auf der Skala dienen entsprechend der Orientierung, <strong>auch Antworten dazwischen bzw. ' +
-        'nach und vor der ersten und letzten Beschriftung</strong> sind möglich. <br>' +
-
+        'Die Beschriftungen auf der Skala dienen dabei nur der Orientierung, <strong> auch alle Positionen zwischen den ' +
+        'Beschriftungen bzw. vor der ersten und nach letzten Beschriftung </strong> können ausgewählt werden.<br>' +
         '</div>',
 
         ////////////////////////////////////////////////////////////////////////

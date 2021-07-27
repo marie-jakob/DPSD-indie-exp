@@ -481,8 +481,9 @@ textarea {
 .slider-ticks {
   display: table;
   table-layout: fixed;
-  width: 100%;
+  width: 400%;
   position: absolute;
+  left: -150%;
   top: 0;
   height: 25px;
 }

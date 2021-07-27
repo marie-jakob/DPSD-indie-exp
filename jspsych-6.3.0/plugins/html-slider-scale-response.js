@@ -96,22 +96,22 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
             '        <div class="slider-scale"></div>' +
             '           <div class="slider-ticks">' +
             '          <!-- One div less than the number of labels -->' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
-            '           <div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
+            '           <div></div><div></div><div></div><div></div>' +
             '          </div>' +
             '        <div class="slider-labels">' +
             '            <div class="slider-label--4 slider-label-neg">'+ trial.labels[0] + '</div>' +
@@ -186,7 +186,7 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
             }
             // Set the new value
             slider.dataset.value = value;
-            // console.log('Value:', value)
+            console.log('Value:', value)
             // Move the slider bar
             var slider_scale_container = document.querySelector('#' + id + ' .slider-scale-container');
 
@@ -229,6 +229,7 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
             let value = slider.dataset.value;
             // console.log(value);
             response.response = value;
+            console.log("response: ", value);
             end_trial();
         });
 
