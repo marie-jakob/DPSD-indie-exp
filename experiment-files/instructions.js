@@ -45,7 +45,7 @@ let informed_consent = {
         'Empfehlungen der Deutschen Forschungsgemeinschaft (DFG) und der ' +
         'Deutschen Gesellschaft für Psychologie (DGPs) zur Qualitätssicherung in der Forschung.<br><br>' +
         '<em>Ansprechperson bei Fragen</em><br>' +
-        'Wenn sie jetzt oder nach dem Versuch Fragen zu diesen Informationen ' +
+        'Wenn Sie jetzt oder nach dem Versuch Fragen zu diesen Informationen ' +
         'oder zum Experiment haben, wenden Sie sich bitte an Marie Jakob (<em>mjakob@cs.uni-freiburg.de).</em><br><br>' +
         '<strong>Hiermit versichere ich, dass ich die oben beschriebenen Teilnahmeinformationen verstanden habe ' +
         'und mit den genannten Teilnahmebedingungen einverstanden bin.</strong>',
@@ -426,9 +426,9 @@ let debriefing_LOP = {
     stimulus: '<div class="Instruction"><p id="Header">Ziele dieser Studie</p>' +
         'Zum Abschluss möchten wir Sie kurz über den Hintergrund unserer Studie informieren. ' +
         'Wie bereits angekündigt, möchten wir das menschliche Gedächtnis untersuchen. ' +
-        'Konkret interessiert uns, ob Typ A Erinnerungen und Typ B Erinnerungen ' +
-        'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie ' +
-        'tief die Wörter verarbeitet wurden. Deshalb sollten Sie in der Lernphase ' +
+        'Konkret interessiert uns, ob Typ A Erinnerungen als ähnlich vertraut eingeschätzt werden wie Typ B Erinnerungen. ' +
+        'Außerdem möchten wir untersuchen, ob dies davon abhängt, inwieweit die Wörter inhaltlich verarbeitet wurden. ' +
+        'Deshalb sollten Sie in der Lernphase ' +
         'für einen Teil der Wörter die Vokale zählen und für den ' +
         'anderen Teil angeben, wie angenehm Sie es finden. </div>' +
         '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
