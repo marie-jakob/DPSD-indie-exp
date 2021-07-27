@@ -83,9 +83,9 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
     }
 
     plugin.trial = function(display_element, trial) {
-        console.log('<div class="slider-container" id="my-slider" tabindex="0" data-max="' +
-            trial.max + '" data-min="' + trial.min + '" data-init=">' + trial.slider_start + '">' +
-            '    <div class="slider-text"></div>')
+        //console.log('<div class="slider-container" id="my-slider" tabindex="0" data-max="' +
+        //    trial.max + '" data-min="' + trial.min + '" data-init=">' + trial.slider_start + '">' +
+        //    '    <div class="slider-text"></div>')
         var html = '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus + '</div>';
         html += '<div class="slider-container" id="my-slider" tabindex="0" data-max="' +
             trial.max + '" data-min="' + trial.min + '" data-init="' + trial.slider_start + '">' +
@@ -96,6 +96,14 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
             '        <div class="slider-scale"></div>' +
             '           <div class="slider-ticks">' +
             '          <!-- One div less than the number of labels -->' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
             '           <div></div>' +
             '           <div></div>' +
             '           <div></div>' +
@@ -178,7 +186,7 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
             }
             // Set the new value
             slider.dataset.value = value;
-            console.log('Value:', value)
+            // console.log('Value:', value)
             // Move the slider bar
             var slider_scale_container = document.querySelector('#' + id + ' .slider-scale-container');
 
@@ -189,7 +197,7 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
         function handle_keydown_slider(event) {
             // Get the id from the current element
             var id = event.target.id;
-            console.log("ID:", id);
+            // console.log("ID:", id);
             var key = event.keyCode ? event.keyCode : event.which;
             // Left arrow
             if (key === 37) {
@@ -219,7 +227,7 @@ jsPsych.plugins['html-slider-scale-response'] = (function() {
             //response.response = display_element.querySelector('#jspsych-html-slider-response-response').valueAsNumber;
             let slider = document.getElementById('my-slider');
             let value = slider.dataset.value;
-            console.log(value);
+            // console.log(value);
             response.response = value;
             end_trial();
         });

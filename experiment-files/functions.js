@@ -58,7 +58,7 @@ function control_browser_interactions() {
 // Gets keyboard-focusable elements within a specified element
 // Source: https://zellwk.com/blog/keyboard-focusable-elements/
 function getKeyboardFocusableElements (element = document) {
-    console.log("Hello, it's me.");
+    // console.log("Hello, it's me.");
     return [...element.querySelectorAll(
         'a, button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'
     )].filter(el => !el.hasAttribute('disabled'));
@@ -191,7 +191,7 @@ function write_data(data) {
 function check_skip(LOP, learn) {
     // only enable skipping if dev-mode is on!
     if (! DEV_MODE) return true;
-    console.log("checking last response");
+    // console.log("checking last response");
     let data_tmp = jsPsych.data.get().values();
 
     // index to get the last trial data from -> the last element for learn
@@ -201,7 +201,7 @@ function check_skip(LOP, learn) {
         // get the last response (depending on phase + manipulation) and check
         // if remaining trials should be skipped
         let resp_tmp = data_tmp[data_idx_tmp]["response"];
-        console.log("resp_tmp: ", resp_tmp);
+        // console.log("resp_tmp: ", resp_tmp);
         // let resp_tmp = LOP && learn ? trial_data_tmp["Q0"] : trial_data_tmp;
         if (resp_tmp === KEYS.SKIP) SKIP = true;
     } else { SKIP = false; }  // reset the variable in the new block

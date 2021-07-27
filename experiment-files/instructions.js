@@ -308,9 +308,8 @@ let instr_test = {
         '<div class="Instruction" style="margin-bottom: 3%"><p id="Header">Testphase</p> ' +
         'Nachdem Sie entschieden haben, ob ein Wort neu ist, oder Sie es als ' +
         'eine Typ A oder Typ B Erinnerung wiedererkennen, folgt eine zweite Aufgabe: ' +
-        'Dabei sollen Sie für dasselbe Wort beurteilen, wie <em>vertraut</em> es Ihnen aus der ' +
-        'Lernphase vorkommt. <br>' +
-        '' +
+        'Dabei sollen Sie für dasselbe Wort beurteilen, wie <strong>vertraut es Ihnen aus der ' +
+        'Lernphase vorkommt. </strong>' +
         'Ihre Antwort geben Sie mithilfe dieses Schiebereglers: </div>' +
             '<div style="width: 70%; position: relative; left: 15%;">' +
         '<div class="slider-container" id="my-slider" tabindex="0" ' +
@@ -322,6 +321,14 @@ let instr_test = {
             '        <div class="slider-scale"></div>' +
             '           <div class="slider-ticks">' +
             '          <!-- One div less than the number of labels -->' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
+            '           <div></div>' +
             '           <div></div>' +
             '           <div></div>' +
             '           <div></div>' +
@@ -346,12 +353,16 @@ let instr_test = {
             '    </div>' +
             '  </div>' +
             '</div>' +
-        '<div class="Instruction" style="margin-top: 7%"> Bewegen Sie den Schieberegler mit den Pfeiltasten ' +
+        '<div class="Instruction" style="margin-top: 3%"> Bewegen Sie den Schieberegler mit den <strong>Pfeiltasten</strong> ' +
         'auf die Stelle der Skala, die Ihrer Ansicht nach angibt, ' +
-        'wie vertraut Ihnen das Wort aus der Lernphase ist. Wenn Sie sich unsicher sind, können Sie auch die Mitte ' +
-        'der Skala auswählen.       ' +
+        'wie vertraut Ihnen das Wort aus der Lernphase ist. ' +
+        'Wenn Sie sich unsicher sind, können Sie auch die Mitte der Skala auswählen.       ' +
         //'Je weiter nach rechts Sie den Schieberegler einstellen, desto vertrauter kommt Ihnen ein Wort vor.
-        'Versuchen Sie, für jedes Wort eine individuelle und möglichst akkurate Einschätzung vorzunehmen.</div>',
+        'Versuchen Sie, für jedes Wort eine <strong>individuelle</strong> und <strong>möglichst akkurate Einschätzung</strong> vorzunehmen. ' +
+        'Die Beschriftungen auf der Skala dienen entsprechend der Orientierung, <strong>auch Antworten dazwischen bzw. ' +
+        'nach und vor der ersten und letzten Beschriftung</strong> sind möglich. <br>' +
+
+        '</div>',
 
         ////////////////////////////////////////////////////////////////////////
         // Recap
@@ -418,8 +429,8 @@ let debriefing_LOP = {
         'Wie bereits angekündigt, möchten wir das menschliche Gedächtnis untersuchen. ' +
         'Konkret interessiert uns, ob Typ A Erinnerungen und Typ B Erinnerungen ' +
         'Personen ähnlich bekannt vorkommen und ob dies davon abhängt, wie ' +
-        'tief die Wörter verarbeitet wurden. Deshalb sollten Sie in der Lernphase' +
-        'für einen Teil der Wörter die Anzahl der Vokale und für den ' +
+        'tief die Wörter verarbeitet wurden. Deshalb sollten Sie in der Lernphase ' +
+        'für einen Teil der Wörter die Vokale zählen und für den ' +
         'anderen Teil angeben, wie angenehm Sie es finden. </div>' +
         '<p style="margin-bottom: 3%; font-weight: bold">Herzlichen Dank, dass Sie mit ' +
         'Ihrer Teilnahme unsere Forschung unterstützt haben!</p>',
