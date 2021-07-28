@@ -102,7 +102,7 @@ let resp_learning_LOP = {
         }
         return prompt + word_html;
     },
-    choices: ["1", "2", "3", "4", "5", "6", "7", "8", "9", KEYS.SKIP],
+    choices: ["0", "1", "2", "3", "4", "5", "6", KEYS.SKIP],
     on_start: function() {
         TRIAL_PART = "response";
     },
