@@ -14,7 +14,7 @@ let questions_demo = {
             rows: 1, columns: 20,
             name: "age",
             required: true,
-            pattern: "^[0-9q]+$",
+            pattern: "^[0-9]+$",
             invalid_message: "Bitte geben Sie eine Zahl zwischen 18 und 70 ein."
         },
         /*{
