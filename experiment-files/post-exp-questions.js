@@ -74,6 +74,23 @@ let questions_data = {
     randomize_question_order: false
 }
 
+
+let questions_data_lab = {
+    type: 'survey-multi-choice',
+    questions: [
+        {
+            prompt: "<strong>Können wir Ihre Angaben für die Auswertung verwenden?</strong>",
+            options: scale_serious,
+            name: "serious_selection",
+            required: true
+        }
+    ],
+    button_label: "Weiter",
+    on_start: function() { EXP_PART = "post-exp-questions"; },
+    scale_width: 400,
+    randomize_question_order: false
+}
+
 let question_comments = {
     type: 'survey-text',
     questions: [
@@ -91,6 +108,14 @@ let post_exp_questions = {
     timeline: [
         questions_understanding,
         questions_data,
+        question_comments
+    ]
+}
+
+let post_exp_questions_lab = {
+    timeline: [
+        questions_understanding,
+        questions_data_lab,
         question_comments
     ]
 }

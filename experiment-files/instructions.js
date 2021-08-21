@@ -25,6 +25,26 @@ let welcome = {
 }
 
 
+let welcome_lab = {
+    type: 'html-keyboard-response',
+    stimulus:
+        '<div class="Instruction"><p id="Header"> Herzlich Willkommen zu dieser Studie der Universität Freiburg!</p>' +
+        'In diesem Experiment wollen wir das menschliche Gedächtnis untersuchen. Daher wird es Ihre Aufgabe sein, ' +
+        'sich Wörter zu merken, die auf dem Bildschirm präsentiert werden. ' +
+        'Später werden wir Sie darum bitten, sich an diese Wörter zu erinnern. <br><br>' +
+        'Das Experiment wird etwa 50 Minuten dauern. <br><br>' +
+        '<em>Wichtig: Bitte schließen Sie das Browser-Fenster während der Studie nicht ' +
+        'und laden Sie diese Seite nicht neu! </em><br><br></div>' +
+        'Drücken Sie die Leertaste, wenn Sie bereit sind, zu starten.',  //+
+    //'Klicken Sie auf „Weiter“, wenn Sie bereit sind, zu starten.</div>',
+    choices: [' '],
+    on_start: function() {
+        EXP_PART = "instruction";
+        PAUSE = true;
+    }
+}
+
+
 let informed_consent = {
     type: 'html-button-response',
     stimulus: '<div class="Instruction"><p id="Header">Informationen über die Studie</p>' +
@@ -120,6 +140,58 @@ let info_study = {
     }
 }
 
+
+let info_study_lab = {
+    type: 'instructions',
+    pages: [
+        // page 1: information about the study procedure
+        '<div class="Instruction"><p id="Header">Informationen zum Ablauf</p>' +
+        //'Wie vorhin bereits erwähnt, wollen wir in dieser Studie das menschliche Gedächtnis untersuchen. ' +
+        //'Daher wird es Ihre Aufgabe sein, sich Wörter zu merken, die nacheinander auf dem Bildschirm präsentiert werden. ' +
+        //'Später werden wir Sie darum bitten, diese Wörter wiederzuerkennen. <br><br>' +
+        //'Das Experiment besteht aus <strong>zwei Teilen</strong>, einer Lernphase und einer Testphase; ' +
+        //'davor und danach werden Ihnen ein paar Fragen gestellt. ' +
+        //'Dabei wird Ihnen vor jedem Teil genau erklärt, was Sie erwartet und was Ihre Aufgabe sein wird.
+        //'Zwischen den beiden Teilen können Sie eine kurze Pause einlegen.<br><br> ' +
+        'Der genaue Ablauf dieser Studie sieht so aus: ' +
+        '<ul><li>Zunächst bitten wir Sie, einige <strong>demographische Angaben</strong> zu machen.</li> ' +
+        '<li>Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in dem Sie sich einige ' +
+        'Wörter merken sollen, die nacheinander auf dem Bildschirm erscheinen.</li>' +
+        //'<li>Es folgt der erste Teil des Experiments, <strong>die Lernphase</strong>, in der nacheinander ' +
+        //'auf dem Bildschirm Wörter erscheinen, die Sie sich merken sollen. ' +
+        //'Bitte benutzen Sie dazu keine externen Hilfsmittel wie Stift und Papier, ' +
+        //'sondern versuchen Sie, sich die Wörter ohne Unterstützung möglichst gut zu merken. </li>' +
+        '<li>Danach sollen Sie ein paar <strong>kurze Rechenaufgaben</strong> lösen.</li>' +
+        '<li>Anschließend werden Ihnen in Teil zwei, ' +
+        'der <strong>Testphase</strong>, wieder nacheinander Wörter gezeigt. ' +
+        //'Manche der Wörter sind aus der Lernphase, andere sind neu.
+        'Sie sollen für jedes Wort zu entscheiden, ' +
+        'ob Sie es bereits in der Lernphase gesehen haben, oder ob das Wort neu ist. </li>' +
+        '<li>Abschließend folgen einige <strong>Fragen zu Ihrer Teilnahme</strong>,' +
+        'danach ist das Experiment beendet. <br><br></li></ul>' +
+        'Insgesamt wird das Experiment etwa <strong>50 Minuten</strong> dauern.</div>',
+
+        // page 2: general stuff about the participation
+        '<div class="Instruction"><p id="Header">Hinweise zur Durchführung</p>' +
+        '<ol>Bevor es mit der Studie losgeht, erhalten Sie hier noch einige Hinweise zur Durchführung.<br><br>' +
+        '<li>Sie können die <strong>Tabulator-Taste</strong> benutzen, um zwischen den Elementen auf der Seite ' +
+        'hin und her zu wechseln und das Experiment so ohne Maus zu bearbeiten.</li>' +
+        '<li><p>Bitte schalten Sie Ihr <strong>Handy aus</strong> oder auf stumm und legen Sie es außer Reichweite.</p></li>' +
+        '<li><p><strong>Schließen Sie diese Seite bitte nicht</strong> und laden Sie sie im Verlauf des Experiments nicht neu!</p></li></ol></div>'
+    ],
+    show_clickable_nav: true,
+    // allow_keys: false,
+    button_label_previous: "Zurück",
+    button_label_next: "Weiter",
+    on_start: function() {
+        PAUSE = true;
+        EXP_PART = "instruction";
+    }
+}
+
+
+
+
 let instr_learning_LOP = {
     type: 'html-button-response',
     stimulus:
@@ -182,6 +254,7 @@ let instr_learning_strength = {
     choices: ["Weiter"],
     on_start: function() { EXP_PART = "instruction"; }
 }
+
 
 let instr_break_learn = {
     type: 'html-button-response',
@@ -447,6 +520,17 @@ let instr_end = {
         'Vielen Dank für Ihre Teilnahme!</p>' +
         'Sie können dieses Fenster nun schließen / Sie werden nun zu Sona weitergeleitet.<br>' +
         'Testmode: Drücken Sie eine beliebige Taste, um zu JATOS zurückzukehren.</div>',
+    on_start: function() {
+        PAUSE = true;
+        EXP_PART = "instruction";
+    }
+}
+
+let instr_end_lab = {
+    type: 'html-keyboard-response',
+    stimulus:
+        '<div><p style="font-weight: bold; font-size: 24px;">Das Experiment ist nun beendet. ' +
+        'Vielen Dank für Ihre Teilnahme!</p>',
     on_start: function() {
         PAUSE = true;
         EXP_PART = "instruction";
