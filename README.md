@@ -1,4 +1,4 @@
-# DPSD-indie-pilot
+# DPSD-indie-exp
 
 This project contains the implementation of a recognition memory experiment using Javascript and the JSPsych library that will be conducted as part of my Master's Thesis on the independence assumption of Yonelinas (1994) 
 Dual Process Signal Detection Theory Model. 
