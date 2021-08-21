@@ -44,6 +44,8 @@ let TRIAL_IDX = 0;
 let EXP_PART;
 let TRIAL_PART;
 
+const ID = jsPsych.randomization.randomID(8);
+
 
 let LABELS = ["extrem <strong>un</strong>vertraut",
     //"", "", "",
