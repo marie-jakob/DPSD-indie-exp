@@ -64,8 +64,6 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
       }
     }
   };
-
-  const ID = jsPsych.randomization.randomID(15);
   console.log("ID: ", ID);
   jsPsych.data.addProperties({
     subject: ID,
@@ -141,14 +139,14 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     timeline.push(instr_final_questions);
     timeline.push(post_exp_questions);
     timeline.push(debriefing_LOP);
-    timeline.push(instr_end);
+    timeline.push(end);
 
     /* #####################################################################
                     Go!
     ##################################################################### */
 
     jsPsych.init({
-      timeline: [questions_data_lab],
+      timeline: timeline,
       use_webaudio: false,
       // control how often participants leave the browser tab / window
       on_interaction_data_update: function () {
@@ -161,20 +159,23 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         // send data to JATOS at the end
         var resultJson = jsPsych.data.get().csv();
         let end_html = "";
-        let timeout = 10000;
+        let timeout = 3000;
         let url = "https://psychologie-freiburg.sona-systems.com/";
         // jatos.submitResultData(resultJson);
         if (! CONSENT) {
+          timeout = 10000;
           end_html = '<p id="Header">Ende</p>' +
                   '<p class="Instruction">Das Experiment endet an dieser Stelle, da Sie ' +
                   'den Teilnahmebedingungen nicht zugestimmt haben. ' +
                   'Sie können dieses Fenster jetzt schließen.</p>';
         } else if (END_TYPE == "left-window") {
+          timeout = 10000;
           end_html = '<p id="Header">Ende</p>' +
                   '<p class="Instruction">Leider haben Sie das Browser Fenster/ den Tab mehr als drei Mal verlassen. ' +
                   'Wie angekündigt endet daher das Experiment an dieser Stelle und wir können Ihre Teilnahme leider nicht über Sona anrechnen.<br><br>' +
                   '<strong>Sie können dieses Fenster nun schließen.</strong></p>';
         } else if (END_TYPE == "empty-inputs") {
+          timeout = 10000;
           end_html = '<p id="Header">Ende</p>' +
                   '<p class="Instruction">Leider haben Sie in diesem Teil mehr als fünf Mal keine Antwort eingegeben. ' +
                   '    Wie angekündigt endet daher das Experiment an dieser Stelle und wir können Ihre Teilnahme leider nicht über Sona anrechnen.<br><br>' +
