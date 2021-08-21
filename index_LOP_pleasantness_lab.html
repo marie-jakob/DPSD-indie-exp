@@ -111,9 +111,9 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             Populate Timeline
     ##################################################################### */
     let timeline = [];
-    timeline.push(welcome);
+    timeline.push(welcome_lab);
     timeline.push(informed_consent);
-    timeline.push(info_study);
+    timeline.push(info_study_lab);
     timeline.push(demographics);
     timeline.push(instr_learning_LOP);
     for (let i = 0; i < 3; i++) {
@@ -139,20 +139,20 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     //timeline.push(data_to_JATOS);
 
     timeline.push(instr_final_questions);
-    timeline.push(post_exp_questions);
+    timeline.push(post_exp_questions_lab);
     timeline.push(debriefing_LOP);
-    timeline.push(instr_end);
+    timeline.push(instr_end_lab);
 
     /* #####################################################################
                     Go!
     ##################################################################### */
 
     jsPsych.init({
-      timeline: [questions_data_lab],
+      timeline: timeline,
       use_webaudio: false,
       // control how often participants leave the browser tab / window
       on_interaction_data_update: function () {
-        control_browser_interactions();
+        // control_browser_interactions();
       },
       on_trial_finish: function (data) {
         write_data(data);
