@@ -514,17 +514,119 @@ let debriefing_LOP = {
 }
 
 let instr_end = {
-    type: 'html-keyboard-response',
+    type: 'html-button-response',
     stimulus:
-        '<div><p style="font-weight: bold; font-size: 24px;">Das Experiment ist nun beendet. ' +
+        '<p style="font-weight: bold; font-size: 24px;">Das Experiment ist nun beendet. ' +
         'Vielen Dank für Ihre Teilnahme!</p>' +
-        'Sie können dieses Fenster nun schließen / Sie werden nun zu Sona weitergeleitet.<br>' +
-        'Testmode: Drücken Sie eine beliebige Taste, um zu JATOS zurückzukehren.</div>',
+        '<div class = "Instruction">Als Aufwandsentschädigung für Ihre Teilnahme können Sie eine Auszahlung in Höhe von ' +
+        '7,- € erhalten, die Sie innerhalb der nächsten drei Monate im Labor der Sozialpsychologie in Freiburg abholen können. Als Psychologie-Student:in ' +
+        'der Universität Freiburg können Sie eine Versuchspersonenstunde bekommen, die Ihnen über Sona ' +
+        'angerechnet wird. Wählen Sie unten eine der Optionen aus: </div>',
     on_start: function() {
         PAUSE = true;
         EXP_PART = "instruction";
+    },
+    choices: [
+        "Keine Aufwandsentschädigung",
+        "Versuchspersonenstunden",
+        "Auszahlung in der Sozialpsychologie in Freiburg",
+        ],
+}
+
+
+let end_no_credit = {
+    type: 'html-keyboard-response',
+    stimulus: '<p class = "instruction">Noch einmal herzlichen Dank für Ihre Teilnahme! Sie ' +
+        'können dieses Fenster nun schließen.</p>',
+    choices: [jsPsych.NO_KEYS]
+}
+
+
+let end_no_credit_conditional = {
+    timeline: [end_no_credit],
+    conditional_function: function() {
+        last_response = jsPsych.data.get().last(1).values()[0]["response"];
+        console.log(last_response);
+        return last_response === 0;
+    },
+    on_finish: function() {
+        jsPsych.data.addProperties({
+            credit: "no_credit"
+        });
     }
 }
+
+let end_sona = {
+    type: 'html-keyboard-response',
+    stimulus: '<p class = "instruction">Sie werden nun zu Sona weitergeleitet, um Ihre Teilnahme zu verbuchen. <br> Bitte ' +
+        'warten Sie einen Moment und schließen Sie dieses Fenster nicht.</p>' +
+        'Noch einmal herzlichen Dank für Ihre Teilnahme!',
+    choices: [jsPsych.NO_KEYS]
+}
+
+let end_sona_conditional = {
+    timeline: [end_sona],
+    conditional_function: function() {
+        last_response = jsPsych.data.get().last(1).values()[0]["response"];
+        console.log(last_response);
+        return last_response === 1;
+    },
+    on_finish: function() {
+        jsPsych.data.addProperties({
+            credit: "vp-h"
+        });
+    }
+}
+
+
+let end_money_1 = {
+    type: 'html-button-response',
+    stimulus: '<div class = "Instruction">' +
+        '<p>Sie können Ihre Aufwandsentschädigung in Höhe von 7,- € im Hiwi-Büro der Sozialpsychologie' +
+        'in Freiburg abholen. Dieses befindet sich im Psychologischen Institut der Universität Freiburg in der ' +
+        '<strong>Engelbergerstraße 41b im 4. Stock in Raum 4014.</strong> ' +
+        'Das Hiwi-Büro ist immer wochentags von <strong>10 - 17 Uhr</strong> geöffnet. </p>' +
+        'Bitte holen Sie Ihre Aufwandsentschädigung <strong>innerhalb von drei Monaten</strong> nach Ihrer Teilnahme ' +
+        'dort ab, um uns die Organisation zu erleichtern. Andernfalls können wir Ihnen eine Auszahlung ' +
+        'nicht garantieren. <p>' +
+        '<p>Geben Sie bei der Abholung bitte Ihren persönlichen Teilnahme-Code an. Dieser lautet: <strong>' + ID + '</strong></p>' +
+        'Noch einmal herzlichen Dank für Ihre Teilnahme!</div>',
+    choices: ["Studie beenden."]
+}
+
+let end_money_2 = {
+    type: 'html-keyboard-response',
+    stimulus: '<p class = "instruction">Sie werden nun zu Sona weitergeleitet, um Ihre Teilnahme zu verbuchen. <br> Bitte ' +
+        'warten Sie einen Moment und schließen Sie dieses Fenster nicht.</p>' +
+        'Noch einmal herzlichen Dank für Ihre Teilnahme!',
+    choices: [jsPsych.NO_KEYS]
+}
+
+let end_money_conditional = {
+    timeline: [end_money_1, end_money_2],
+    conditional_function: function() {
+        last_response = jsPsych.data.get().last(1).values()[0]["response"];
+        console.log(last_response);
+        return last_response === 2;
+    },
+    on_finish: function() {
+        jsPsych.data.addProperties({
+            credit: "financial"
+        });
+    }
+}
+
+let end = {
+    timeline: [
+        instr_end,
+        end_no_credit_conditional,
+        end_sona_conditional,
+        end_money_conditional,
+        end_sona
+    ]
+}
+
+
 
 let instr_end_lab = {
     type: 'html-keyboard-response',
