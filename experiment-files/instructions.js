@@ -518,9 +518,8 @@ let instr_end = {
     stimulus:
         '<p style="font-weight: bold; font-size: 24px;">Das Experiment ist nun beendet. ' +
         'Vielen Dank für Ihre Teilnahme!</p>' +
-        '<div class = "Instruction">Als Aufwandsentschädigung für Ihre Teilnahme können Sie eine Auszahlung in Höhe von ' +
-        '7,- € erhalten, die Sie innerhalb der nächsten drei Monate im Labor der Sozialpsychologie in Freiburg abholen können. Als Psychologie-Student:in ' +
-        'der Universität Freiburg können Sie eine Versuchspersonenstunde bekommen, die Ihnen über Sona ' +
+        '<div class = "Instruction">Als Psychologie-Student:in der Universität Freiburg können Sie für Ihre Teilnahme an ' +
+        'diesem Versuch eine Versuchspersonenstunde bekommen, die Ihnen über Sona ' +
         'angerechnet wird. Wählen Sie unten eine der Optionen aus: </div>',
     on_start: function() {
         PAUSE = true;
@@ -529,7 +528,6 @@ let instr_end = {
     choices: [
         "Keine Aufwandsentschädigung",
         "Versuchspersonenstunden",
-        "Auszahlung in der Sozialpsychologie in Freiburg",
         ],
 }
 
@@ -579,7 +577,7 @@ let end_sona_conditional = {
 }
 
 
-let end_money_1 = {
+/* let end_money_1 = {
     type: 'html-button-response',
     stimulus: '<div class = "Instruction">' +
         '<p>Sie können Ihre Aufwandsentschädigung in Höhe von 7,- € im Hiwi-Büro der Sozialpsychologie' +
@@ -614,15 +612,14 @@ let end_money_conditional = {
             credit: "financial"
         });
     }
-}
+}*/
 
 let end = {
     timeline: [
         instr_end,
         end_no_credit_conditional,
-        end_sona_conditional,
-        end_money_conditional,
-        end_sona
+        // end_sona_conditional,
+        // end_sona
     ]
 }
 

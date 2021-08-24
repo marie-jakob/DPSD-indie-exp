@@ -11,8 +11,8 @@ const KEYS = {
     BACK: "z",
     REMEMBER: "a",
     KNOW: "b",
-    NEW: "n",
-    SKIP: "q"
+    NEW: "n" ,
+    SKIP: ""
 };
 
 // stimulus durations in ms
