@@ -27,8 +27,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
   <script src="jspsych-6.3.0/plugins/jspsych-survey-html-form.js"></script>
   <script src="jspsych-6.3.0/plugins/jspsych-call-function.js"></script>
   <script src="jspsych-6.3.0/plugins/html-slider-scale-response.js"></script>
-  <!-- import JATOS
-  <script src="jatos.js"></script> -->
+  <!-- import JATOS -->
+  <script src="jatos.js"></script>
   <!-- import custom files -->
   <script src="experiment-files/global-variables.js"></script>
   <script src="experiment-files/functions.js"></script>
@@ -46,7 +46,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 
   // allows to skip the remaining trials of a block by pressing "q"
   // !!! set to false for data collection !!!
-  DEV_MODE = true;
+  DEV_MODE = false;
 
   // with a big thank you to Johanna Götz:
   // enable tab navigation while recording browser interactions correctly
@@ -67,7 +67,6 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
   console.log("ID: ", ID);
   jsPsych.data.addProperties({
     subject: ID,
-    condition: "LOP"
   });
 
   /* #####################################################################
@@ -92,8 +91,9 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     instr_breaks_learn.push(gen_instr_break(learn = true, block, LOP = true));
     instr_breaks_test.push(gen_instr_break(learn = false, block, LOP = true));
   }
+
   // Init JATOS
-  /*jatos.onLoad(function () {
+  jatos.onLoad(function () {
     //jatos.startComponentByPos(2, "does this do anything at all?", "and this?", "failure");
     // add trial to store data incrementally
     let data_to_JATOS = {
@@ -104,7 +104,21 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         jatos.submitResultData(data_tmp);
       }
     };
-*/
+
+    // SONA integration
+    // console.log(sona_ID);
+    if (jatos.urlQueryParameters.hasOwnProperty("SONA_ID")) {
+      console.log('Sona information is available');
+      sona_ID = jatos.urlQueryParameters.SONA_ID;
+    } else {
+      sona_ID = -1;
+      console.log('Sona information is not available (setting value to -1)');
+    }
+    jsPsych.data.addProperties({
+      sona_ID: -1,
+    });
+    console.log('sona_participant_id = ' + sona_ID);
+
     /* #####################################################################
             Populate Timeline
     ##################################################################### */
@@ -117,28 +131,29 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_learn[i]);
       // send data to JATOS after every block
-      //timeline.push(data_to_JATOS);
+      timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_learn[i]);
     }
     timeline.push(blocks_learn[3]);
-    //timeline.push(data_to_JATOS);
+    timeline.push(data_to_JATOS);
     timeline.push(instr_calculations);
     timeline.push(calc_block);
     // send data to JATOS after every block
-    //timeline.push(data_to_JATOS);
+    timeline.push(data_to_JATOS);
     timeline.push(instr_test);
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_test[i]);
       // send data to JATOS after every block
-      //timeline.push(data_to_JATOS);
+      timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_test[i]);
     }
     timeline.push(blocks_test[3]);
-    //timeline.push(data_to_JATOS);
+    timeline.push(data_to_JATOS);
 
     timeline.push(instr_final_questions);
     timeline.push(post_exp_questions);
     timeline.push(debriefing_LOP);
+    timeline.push(data_to_JATOS);
     timeline.push(end);
 
     /* #####################################################################
@@ -161,7 +176,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         let end_html = "";
         let timeout = 3000;
         let url = "https://psychologie-freiburg.sona-systems.com/";
-        // jatos.submitResultData(resultJson);
+        jatos.submitResultData(resultJson);
+        CONSENT = true;
         if (! CONSENT) {
           timeout = 10000;
           end_html = '<p id="Header">Ende</p>' +
@@ -181,19 +197,23 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
                   '    Wie angekündigt endet daher das Experiment an dieser Stelle und wir können Ihre Teilnahme leider nicht über Sona anrechnen.<br><br>' +
                   '    <strong>Sie können dieses Fenster nun schließen.</strong></p>';
         } else {
+          jsPsych.data.addProperties({
+            data_test: "success",
+          });
+          var resultJson = jsPsych.data.get().csv();
+          jatos.submitResultData(resultJson);
           timeout = 0;
           // TODO: change this to the respective Sona page
-          // url = "https://google.com";
-          jspsych.endExperiment("Bye");
+          url = "https://google.com";
         }
         // And thanks to Hannah Dames for this hacky + genius solution^^
         document.body.innerHTML = end_html;
-        //setTimeout(function () {
-        //  jatos.endStudyAndRedirect(url);
-        //}, timeout);
+        setTimeout(function () {
+          jatos.endStudyAndRedirect(url);
+        }, timeout);
       }
     });
-  // });
+  });
 
 
 </script>

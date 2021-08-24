@@ -27,8 +27,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
   <script src="jspsych-6.3.0/plugins/jspsych-survey-html-form.js"></script>
   <script src="jspsych-6.3.0/plugins/jspsych-call-function.js"></script>
   <script src="jspsych-6.3.0/plugins/html-slider-scale-response.js"></script>
-  <!-- import JATOS
-  <script src="jatos.js"></script> -->
+  <!-- import JATOS -->
+  <script src="jatos.js"></script>
   <!-- import custom files -->
   <script src="experiment-files/global-variables.js"></script>
   <script src="experiment-files/functions.js"></script>
@@ -46,7 +46,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 
   // allows to skip the remaining trials of a block by pressing "q"
   // !!! set to false for data collection !!!
-  DEV_MODE = true;
+  DEV_MODE = false;
 
   // with a big thank you to Johanna Götz:
   // enable tab navigation while recording browser interactions correctly
@@ -65,7 +65,6 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     }
   };
 
-  const ID = jsPsych.randomization.randomID(15);
   console.log("ID: ", ID);
   jsPsych.data.addProperties({
     subject: ID,
@@ -95,7 +94,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     instr_breaks_test.push(gen_instr_break(learn = false, block, LOP = true));
   }
   // Init JATOS
-  /*jatos.onLoad(function () {
+  jatos.onLoad(function () {
     //jatos.startComponentByPos(2, "does this do anything at all?", "and this?", "failure");
     // add trial to store data incrementally
     let data_to_JATOS = {
@@ -106,41 +105,42 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         jatos.submitResultData(data_tmp);
       }
     };
-*/
+    CONSENT = true;
     /* #####################################################################
             Populate Timeline
     ##################################################################### */
     let timeline = [];
     timeline.push(welcome_lab);
-    timeline.push(informed_consent);
+    // timeline.push(informed_consent);
     timeline.push(info_study_lab);
     timeline.push(demographics);
     timeline.push(instr_learning_LOP);
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_learn[i]);
       // send data to JATOS after every block
-      //timeline.push(data_to_JATOS);
+      timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_learn[i]);
     }
     timeline.push(blocks_learn[3]);
-    //timeline.push(data_to_JATOS);
+    timeline.push(data_to_JATOS);
     timeline.push(instr_calculations);
     timeline.push(calc_block);
     // send data to JATOS after every block
-    //timeline.push(data_to_JATOS);
+    timeline.push(data_to_JATOS);
     timeline.push(instr_test);
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_test[i]);
       // send data to JATOS after every block
-      //timeline.push(data_to_JATOS);
+      timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_test[i]);
     }
     timeline.push(blocks_test[3]);
-    //timeline.push(data_to_JATOS);
+    timeline.push(data_to_JATOS);
 
     timeline.push(instr_final_questions);
     timeline.push(post_exp_questions_lab);
     timeline.push(debriefing_LOP);
+    timeline.push(data_to_JATOS);
     timeline.push(instr_end_lab);
 
     /* #####################################################################
@@ -187,12 +187,12 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         }
         // And thanks to Hannah Dames for this hacky + genius solution^^
         document.body.innerHTML = end_html;
-        //setTimeout(function () {
-        //  jatos.endStudyAndRedirect(url);
-        //}, timeout);
+        setTimeout(function () {
+          jatos.endStudyAndRedirect(url);
+        }, timeout);
       }
     });
-  // });
+  });
 
 
 </script>
