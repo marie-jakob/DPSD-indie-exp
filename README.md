@@ -1,43 +1,33 @@
 # DPSD-indie-exp
 
-This project contains the implementation of a recognition memory experiment using Javascript and the JSPsych library that will be conducted as part of my Master's Thesis on the independence assumption of Yonelinas (1994) 
-Dual Process Signal Detection Theory Model. 
+This project contains the implementation of a recognition memory experiment using Javascript and the JSPsych library that will be conducted as part of my Master's Thesis on the independence assumption of Yonelinas (1994) Dual Process Signal Detection Model. 
+
+To run the experiment locally, open the respective index html file in a browser. Both versions ran via a JATOS server; the respective versions are stored in `JATOS-versions` (those will not work in the browser). 
 
 Author: Marie Jakob marie.a.jakob@gmail.com
 
-Project Contributors: Constantin Meyer-Grant, Karl Christoph Klauer
+Project Contributors: Constantin G. Meyer-Grant, Karl Christoph Klauer
 
 Department of Psychology, Social Psychology and Methodology Unit
 
 University of Freiburg, April 2021
 
-Status: first version of the strength and LOP condition done --> .jzip folders contain the final JATOS versions
-
-__These versions are considered archived and do not work with the current versions of the experiment-files!__ If you need to run an experiment, use the zipped JATOS version. 
 
 ### Procedural Details (short)
 
 * __Learning Phase__ (tested three different manipulations)
-* __*LOP manipulation (pleasantness rating)*__: Participants are sequentially presented with words and are instructed to type either rate the pleasantness of that word on a 6-point scale or to count the number of vowels of the given word ("shallow" condition)
-* _LOP manipulation (associated word) - archived_: Participants are sequentially presented with words and are instructed to type either a semantically related word ("deep" condition) or the number of vowels of the given word ("shallow" condition) into a text box
-* _Strength manipulation - archived_: Participants are sequentially presented with words for a fixed duration and are instructed to remember them. 
-* Some words are presented once ("weak items"), some three times ("strong items")
-* __Test Phase__: All words from the learning phase + an equal amount of new words are presented. Participants have to make a Remember-Know-New judgement, 
-followed by a familiarity rating on a pseduo-continuous scale
+* __*LOP manipulation *__: Participants are sequentially presented with words and are instructed to type either rate the pleasantness of that word on a 6-point scale or to count the number of vowels of the given word ("shallow" condition)
+* __Test Phase__: All words from the learning phase + an equal amount of new words are presented. Participants have to make a Remember-Know-New judgement, followed by a familiarity rating on a pseduo-continuous scale
 
 
 
 ### Files
 
-```index-LOP.html```: main file for the LOP group -> open locally to test the experiment in the LOP condition
-
-```index-strength.html```: main file for the strength group -> open locally to test the experiment in the strength condition
-
 ```index_LOP_pleasantness.html```: main file for the new LOP condition containing a pleasantness rating in the "high" condition
 
 ```index_LOP_pleasantness_lab.html```: main file for the new LOP condition for the laboratory
 
-```.gitignore```: the usual stuff
+```.gitignore```: the usual
 
 ```LICENCE```: copyright information
 
@@ -61,7 +51,5 @@ followed by a familiarity rating on a pseduo-continuous scale
 * ```stimuli_to_json.py```: Reads the wordpool and writes the words to a .js file so that the stimuli can be used from the other .js files
 also contains functions to generate dummy stimuli, save them, and put those into a .js file
 * ```wordpool.xlsx```: contains the stimuli in excel format
-
-```test```: Contains test data files and a short R script to test whether the randomization works and all important information is saved in the data.
 
 ```jspsych-6.3.0```: Latest version of the jspsych library. See https://github.com/jspsych/jsPsych + some modified files (-custom).
