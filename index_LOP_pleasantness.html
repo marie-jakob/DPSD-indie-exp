@@ -27,8 +27,8 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
   <script src="jspsych-6.3.0/plugins/jspsych-survey-html-form.js"></script>
   <script src="jspsych-6.3.0/plugins/jspsych-call-function.js"></script>
   <script src="jspsych-6.3.0/plugins/html-slider-scale-response.js"></script>
-  <!-- import JATOS -->
-  <script src="jatos.js"></script>
+  <!-- import JATOS
+  <script src="jatos.js"></script> -->
   <!-- import custom files -->
   <script src="experiment-files/global-variables.js"></script>
   <script src="experiment-files/functions.js"></script>
@@ -46,7 +46,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
 
   // allows to skip the remaining trials of a block by pressing "q"
   // !!! set to false for data collection !!!
-  DEV_MODE = false;
+  DEV_MODE = true;
 
   // with a big thank you to Johanna Götz:
   // enable tab navigation while recording browser interactions correctly
@@ -93,7 +93,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
   }
 
   // Init JATOS
-  jatos.onLoad(function () {
+  /* jatos.onLoad(function () {
     //jatos.startComponentByPos(2, "does this do anything at all?", "and this?", "failure");
     // add trial to store data incrementally
     let data_to_JATOS = {
@@ -131,29 +131,29 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_learn[i]);
       // send data to JATOS after every block
-      timeline.push(data_to_JATOS);
+      //timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_learn[i]);
     }
     timeline.push(blocks_learn[3]);
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
     timeline.push(instr_calculations);
     timeline.push(calc_block);
     // send data to JATOS after every block
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
     timeline.push(instr_test);
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_test[i]);
       // send data to JATOS after every block
-      timeline.push(data_to_JATOS);
+      //timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_test[i]);
     }
     timeline.push(blocks_test[3]);
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
 
     timeline.push(instr_final_questions);
     timeline.push(post_exp_questions);
     timeline.push(debriefing_LOP);
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
     timeline.push(end);
 
     /* #####################################################################
@@ -164,9 +164,9 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
       timeline: timeline,
       use_webaudio: false,
       // control how often participants leave the browser tab / window
-      on_interaction_data_update: function () {
-        control_browser_interactions();
-      },
+      // on_interaction_data_update: function () {
+        // control_browser_interactions();
+      // },
       on_trial_finish: function (data) {
         write_data(data);
       },
@@ -174,7 +174,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         // send data to JATOS at the end
         var resultJson = jsPsych.data.get().csv();
         let end_html = "";
-        let timeout = 3000;
+        let timeout;
         let url = "https://psychologie-freiburg.sona-systems.com/";
         jatos.submitResultData(resultJson);
         if (! CONSENT) {
@@ -200,10 +200,10 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
             data_test: "success",
           });
           var resultJson = jsPsych.data.get().csv();
-          jatos.submitResultData(resultJson);
+          //jatos.submitResultData(resultJson);
           timeout = 0;
-          // TODO: change this to the respective Sona page
-          url = "https://google.com";
+          // Sona redirection to book the credit
+          url = "https://psychologie-freiburg.sona-systems.com/webstudy_credit.aspx?experiment_id=854&credit_token=470b52ade8df454e92e58814e14c7f2e&survey_code=" + sona_ID;
         }
         // And thanks to Hannah Dames for this hacky + genius solution^^
         document.body.innerHTML = end_html;
@@ -212,7 +212,7 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         }, timeout);
       }
     });
-  });
+  //});
 
 
 </script>

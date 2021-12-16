@@ -94,17 +94,17 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     instr_breaks_test.push(gen_instr_break(learn = false, block, LOP = true));
   }
   // Init JATOS
-  jatos.onLoad(function () {
+  // jatos.onLoad(function () {
     //jatos.startComponentByPos(2, "does this do anything at all?", "and this?", "failure");
     // add trial to store data incrementally
-    let data_to_JATOS = {
-      type: 'call-function',
-      func: function() {
-        console.log("Sending data to JATOS");
-        data_tmp = jsPsych.data.get().csv();
-        jatos.submitResultData(data_tmp);
-      }
-    };
+    //let data_to_JATOS = {
+    //  type: 'call-function',
+    //  func: function() {
+    //    console.log("Sending data to JATOS");
+    //    data_tmp = jsPsych.data.get().csv();
+        // jatos.submitResultData(data_tmp);
+    //  }
+    //};
     CONSENT = true;
     /* #####################################################################
             Populate Timeline
@@ -118,29 +118,29 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_learn[i]);
       // send data to JATOS after every block
-      timeline.push(data_to_JATOS);
+      //timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_learn[i]);
     }
     timeline.push(blocks_learn[3]);
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
     timeline.push(instr_calculations);
     timeline.push(calc_block);
     // send data to JATOS after every block
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
     timeline.push(instr_test);
     for (let i = 0; i < 3; i++) {
       timeline.push(blocks_test[i]);
       // send data to JATOS after every block
-      timeline.push(data_to_JATOS);
+      //timeline.push(data_to_JATOS);
       timeline.push(instr_breaks_test[i]);
     }
     timeline.push(blocks_test[3]);
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
 
     timeline.push(instr_final_questions);
     timeline.push(post_exp_questions_lab);
     timeline.push(debriefing_LOP);
-    timeline.push(data_to_JATOS);
+    //timeline.push(data_to_JATOS);
     timeline.push(instr_end_lab);
 
     /* #####################################################################
@@ -188,11 +188,11 @@ Author:    Marie Jakob <marie.a.jakob@gmail.com>
         // And thanks to Hannah Dames for this hacky + genius solution^^
         document.body.innerHTML = end_html;
         setTimeout(function () {
-          jatos.endStudyAndRedirect(url);
+          //jatos.endStudyAndRedirect(url);
         }, timeout);
       }
     });
-  });
+  //});
 
 
 </script>
