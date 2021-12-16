@@ -1,2 +1,10 @@
 # temporary MacOS files
 .DS_Store
+
+# unnecessary files that are only needed locally
+test/
+index-LOP.html
+index-strength.html
+instructions.docx
+instrucions_(cmg).docx
+
