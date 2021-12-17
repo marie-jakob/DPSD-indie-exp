@@ -2,11 +2,11 @@
 
 This project contains the implementation of a recognition memory experiment using Javascript and the JSPsych library that will be conducted as part of my Master's Thesis on the independence assumption of Yonelinas (1994) Dual Process Signal Detection Model. 
 
-To run the experiment locally, open the respective index html file in a browser. Both versions ran via a JATOS server; the respective versions are stored in `JATOS-versions` (those will not work in the browser). 
+To run the experiment locally, open the respective index html file in a browser. Both versions ran via a JATOS server; the respective versions are stored in `JATOS-versions` (those will not work in the browser). To enable the dev-mode to skip to the end of experimental blocks using "q", set `DEV_MODE = true; in the respective index file. 
 
 Author: Marie Jakob marie.a.jakob@gmail.com
 
-Project Contributors: Constantin G. Meyer-Grant, Karl Christoph Klauer
+Project Contributors: Constantin G. Meyer-Grant, Prof. Dr. Karl Christoph Klauer
 
 Department of Psychology, Social Psychology and Methodology Unit
 
